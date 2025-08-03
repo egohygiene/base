@@ -1,0 +1,31 @@
+# Paths
+inputs = ["."]
+exclude = [
+  "node_modules",
+  "dist",
+  "build",
+  "coverage",
+  "CHANGELOG.md"
+]
+
+# Output
+output = ".cache/lychee.out"
+
+# Behavior
+max_concurrency = 20
+retry_count = 2
+timeout = 10
+scheme = ["http", "https"]
+verbose = true
+
+# Filtering
+exclude_all_private = true
+exclude_mail = true
+require_https = false
+
+# Accepted Status Codes
+accept = [200, 403]
+
+# Cache
+cache = ".cache/.lycheecache"
+cache_timeout = "1d"

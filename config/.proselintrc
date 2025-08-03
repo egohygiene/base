@@ -1,0 +1,19 @@
+{
+  "checks": {
+    "annotations.misc": true,
+    "capitalization.misc": true,
+    "cliches.misc": true,
+    "consistency.spacing": true,
+    "consistency.spacing_variants": true,
+    "contractions.general": true,
+    "jargon.misc": true,
+    "misc.punctuation": true,
+    "redundancy.misc": true,
+    "spelling.terms": true,
+    "typography.symbols": true,
+    "typography.symbols_currency": true,
+    "typography.ellipsis": true,
+    "weasel_words.weasel_words": true
+  },
+  "max_errors": 100
+}
