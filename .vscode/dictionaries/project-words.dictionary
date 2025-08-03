@@ -412,3 +412,4 @@ xclip
 xsel
 ZSTD
 CPPLINT
+pydocstyle

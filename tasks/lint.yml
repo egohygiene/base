@@ -11,6 +11,11 @@ env:
 
 tasks:
 
+  setup:logs:
+    desc: "Ensure logs directory exists"
+    cmds:
+      - sudo mkdir -p logs
+
   setup:lychee:
     desc: "Ensure Lychee output directory exists"
     cmds:
@@ -19,15 +24,17 @@ tasks:
   run:
     desc: "Run MegaLinter with custom args"
     cmds:
+      - task: setup:logs
       - task: setup:lychee
       - docker rm --force --volumes {{.CONTAINER_NAME}} || true
       - |
-        pnpm exec mega-linter-runner \
-          --container-name={{.CONTAINER_NAME}} \
-          --platform={{.PLATFORM}} \
-          --path={{.PATH}} \
-          --image {{.MEGALINTER_IMAGE}} \
-          {{.MEGALINTER_ARGS}}
+          sh -c 'pnpm exec mega-linter-runner \
+            --container-name={{.CONTAINER_NAME}} \
+            --platform={{.PLATFORM}} \
+            --path={{.PATH}} \
+            --image {{.MEGALINTER_IMAGE}} \
+            {{.MEGALINTER_ARGS}} \
+            2>&1 | sudo tee logs/megalinter-$(date +"%Y-%m-%d_%H-%M-%S").log'
     silent: false
     interactive: false
     vars:
@@ -41,6 +48,10 @@ tasks:
   spellcheck:
     desc: "SPELL"
     cmds: [{ task: run, vars: { MEGALINTER_ARGS: "--env ENABLE=SPELL" } }]
+
+  python:
+    desc: "PYTHON"
+    cmds: [{ task: run, vars: { MEGALINTER_ARGS: "--env ENABLE=PYTHON" } }]
 
   mypy:
     desc: "PYTHON_MYPY"
