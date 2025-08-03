@@ -7,6 +7,7 @@ version: "3"
 includes:
   lint: ./tasks/lint.yml
   utils: ./tasks/utils.yml
+  tools: ./tasks/tools.yml
   # dev: ./tasks/dev.yml
   # write: ./tasks/write.yml
   # security: ./tasks/security.yml
