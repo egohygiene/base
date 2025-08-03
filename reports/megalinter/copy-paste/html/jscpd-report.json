@@ -1,0 +1,2530 @@
+{
+  "statistics": {
+    "detectionDate": "2025-08-03T15:25:32.957Z",
+    "formats": {
+      "yaml": {
+        "sources": {
+          "/tmp/lint/.cache/.trivycache/policy/content/specs/compliance/rke2-cis-1.24.yaml": {
+            "lines": 908,
+            "tokens": 10803,
+            "sources": 1,
+            "clones": 7,
+            "duplicatedLines": 905,
+            "duplicatedTokens": 10835,
+            "percentage": 99.67,
+            "percentageTokens": 100.3,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/specs/compliance/k8s-pss-restricted-0.1.yaml": {
+            "lines": 111,
+            "tokens": 794,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 69,
+            "duplicatedTokens": 493,
+            "percentage": 62.16,
+            "percentageTokens": 62.09,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/specs/compliance/k8s-pss-baseline-0.1.yaml": {
+            "lines": 75,
+            "tokens": 542,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 69,
+            "duplicatedTokens": 493,
+            "percentage": 92,
+            "percentageTokens": 90.96,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/specs/compliance/k8s-nsa-1.0.yaml": {
+            "lines": 176,
+            "tokens": 1474,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/specs/compliance/k8s-cis-1.23.yaml": {
+            "lines": 908,
+            "tokens": 10793,
+            "sources": 1,
+            "clones": 6,
+            "duplicatedLines": 896,
+            "duplicatedTokens": 10728,
+            "percentage": 98.68,
+            "percentageTokens": 99.4,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/specs/compliance/eks-cis-1.4.yaml": {
+            "lines": 406,
+            "tokens": 3840,
+            "sources": 1,
+            "clones": 1,
+            "duplicatedLines": 9,
+            "duplicatedTokens": 107,
+            "percentage": 2.22,
+            "percentageTokens": 2.79,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/specs/compliance/docker-cis-1.6.0.yaml": {
+            "lines": 76,
+            "tokens": 700,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/specs/compliance/aws-cis-1.4.yaml": {
+            "lines": 246,
+            "tokens": 2980,
+            "sources": 1,
+            "clones": 3,
+            "duplicatedLines": 19,
+            "duplicatedTokens": 283,
+            "percentage": 7.72,
+            "percentageTokens": 9.5,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/specs/compliance/aws-cis-1.2.yaml": {
+            "lines": 217,
+            "tokens": 2570,
+            "sources": 1,
+            "clones": 3,
+            "duplicatedLines": 19,
+            "duplicatedTokens": 283,
+            "percentage": 8.76,
+            "percentageTokens": 11.01,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/schedulerConfFilePermissions.yaml": {
+            "lines": 8,
+            "tokens": 58,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/schedulerConfFileOwnership.yaml": {
+            "lines": 8,
+            "tokens": 60,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubernetesPKICertificateFilePermissionsRancher.yaml": {
+            "lines": 9,
+            "tokens": 88,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubernetesPKICertificateFilePermissions.yaml": {
+            "lines": 9,
+            "tokens": 88,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubeletTlsPrivateKeyFileArgumentSet.yaml": {
+            "lines": 9,
+            "tokens": 137,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubeletTlsCertFileTlsArgumentSet.yaml": {
+            "lines": 9,
+            "tokens": 131,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubeletStreamingConnectionIdleTimeoutArgumentSet.yaml": {
+            "lines": 11,
+            "tokens": 131,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubeletServiceFilePermissions.yaml": {
+            "lines": 8,
+            "tokens": 60,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubeletServiceFileOwnership.yaml": {
+            "lines": 9,
+            "tokens": 67,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubeletRotateKubeletServerCertificateArgumentSet.yaml": {
+            "lines": 11,
+            "tokens": 115,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubeletRotateCertificatesArgumentSet.yaml": {
+            "lines": 10,
+            "tokens": 130,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubeletReadOnlyPortArgumentSet.yaml": {
+            "lines": 10,
+            "tokens": 136,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubeletProtectKernelDefaultsArgumentSet.yaml": {
+            "lines": 10,
+            "tokens": 132,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubeletOnlyUseStrongCryptographic.yaml": {
+            "lines": 9,
+            "tokens": 113,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubeletMakeIptablesUtilChainsArgumentSet.yaml": {
+            "lines": 11,
+            "tokens": 143,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubeletHostnameOverrideArgumentSet.yaml": {
+            "lines": 9,
+            "tokens": 123,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubeletEventQpsArgumentSet.yaml": {
+            "lines": 9,
+            "tokens": 125,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubeletConfigYamlConfigurationFilePermission.yaml": {
+            "lines": 9,
+            "tokens": 67,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubeletConfigYamlConfigurationFileOwnership.yaml": {
+            "lines": 9,
+            "tokens": 69,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubeletConfFilePermissions.yaml": {
+            "lines": 8,
+            "tokens": 58,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubeletConfFileOwnership.yaml": {
+            "lines": 8,
+            "tokens": 60,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubeletClientCaFileArgumentSet.yaml": {
+            "lines": 10,
+            "tokens": 136,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubeletAuthorizationModeArgumentSet.yaml": {
+            "lines": 9,
+            "tokens": 125,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubeletAnonymousAuthArgumentSet.yaml": {
+            "lines": 10,
+            "tokens": 130,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubeconfigFileExistsPermissions.yaml": {
+            "lines": 10,
+            "tokens": 128,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubeconfigFileExistsOwnership.yaml": {
+            "lines": 10,
+            "tokens": 130,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubeSchedulerSpecFilePermission.yaml": {
+            "lines": 8,
+            "tokens": 62,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubeSchedulerSpecFileOwnership.yaml": {
+            "lines": 8,
+            "tokens": 64,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubePKIKeyFilePermissionsRancher.yaml": {
+            "lines": 9,
+            "tokens": 90,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubePKIKeyFilePermissions.yaml": {
+            "lines": 9,
+            "tokens": 90,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubePKIDirectoryFileOwnershipRancher.yaml": {
+            "lines": 8,
+            "tokens": 88,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubePKIDirectoryFileOwnership.yaml": {
+            "lines": 8,
+            "tokens": 88,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubeEtcdSpecFilePermission.yaml": {
+            "lines": 8,
+            "tokens": 62,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubeEtcdSpecFileOwnership.yaml": {
+            "lines": 8,
+            "tokens": 64,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubeControllerManagerSpecFilePermission.yaml": {
+            "lines": 8,
+            "tokens": 64,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubeControllerManagerSpecFileOwnership.yaml": {
+            "lines": 8,
+            "tokens": 76,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubeAPIServerSpecFilePermission.yaml": {
+            "lines": 8,
+            "tokens": 64,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/kubeAPIServerSpecFileOwnership.yaml": {
+            "lines": 8,
+            "tokens": 66,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/etcdDataDirectoryPermissionsRancher.yaml": {
+            "lines": 7,
+            "tokens": 55,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/etcdDataDirectoryPermissions.yaml": {
+            "lines": 7,
+            "tokens": 55,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/etcdDataDirectoryOwnershipRancher.yaml": {
+            "lines": 7,
+            "tokens": 57,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/etcdDataDirectoryOwnership.yaml": {
+            "lines": 7,
+            "tokens": 57,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/controllerManagerConfFilePermissions.yaml": {
+            "lines": 8,
+            "tokens": 60,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/controllerManagerConfFileOwnership.yaml": {
+            "lines": 8,
+            "tokens": 62,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/containerNetworkInterfaceFilePermissions.yaml": {
+            "lines": 8,
+            "tokens": 62,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/containerNetworkInterfaceFileOwnership.yaml": {
+            "lines": 8,
+            "tokens": 64,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/certificateAuthoritiesFilePermissions.yaml": {
+            "lines": 10,
+            "tokens": 130,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/certificateAuthoritiesFileOwnership.yaml": {
+            "lines": 10,
+            "tokens": 132,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/adminConfFilePermissions.yaml": {
+            "lines": 8,
+            "tokens": 58,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/kubernetes/adminConfFileOwnership.yaml": {
+            "lines": 8,
+            "tokens": 60,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/config/node.yaml": {
+            "lines": 148,
+            "tokens": 907,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.cache/.trivycache/policy/content/commands/config/kubelet_mapping.yaml": {
+            "lines": 15,
+            "tokens": 70,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.github/workflows/sanity.yml": {
+            "lines": 15,
+            "tokens": 100,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.github/ISSUE_TEMPLATE/config.yml": {
+            "lines": 9,
+            "tokens": 82,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/tasks/utils.yml": {
+            "lines": 105,
+            "tokens": 834,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/tasks/lint.yml": {
+            "lines": 114,
+            "tokens": 880,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/shell/Taskfile.yml": {
+            "lines": 12,
+            "tokens": 82,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/trivy.yaml": {
+            "lines": 49,
+            "tokens": 180,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/trivy-sbom.yaml": {
+            "lines": 26,
+            "tokens": 84,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/analysis_options.yml": {
+            "lines": 44,
+            "tokens": 185,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.yamllint.yml": {
+            "lines": 31,
+            "tokens": 122,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.v8rrc.yml": {
+            "lines": 35,
+            "tokens": 124,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.trufflehog.yml": {
+            "lines": 5,
+            "tokens": 28,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.tektonlintrc.yaml": {
+            "lines": 17,
+            "tokens": 91,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.syft.yaml": {
+            "lines": 44,
+            "tokens": 182,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.swiftlint.yml": {
+            "lines": 31,
+            "tokens": 131,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.ruby-lint.yml": {
+            "lines": 5,
+            "tokens": 15,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.protolintrc.yml": {
+            "lines": 43,
+            "tokens": 175,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.phplint.yml": {
+            "lines": 17,
+            "tokens": 64,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.hadolint.yaml": {
+            "lines": 49,
+            "tokens": 179,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.grype.yaml": {
+            "lines": 150,
+            "tokens": 363,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.golangci.yml": {
+            "lines": 114,
+            "tokens": 553,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.checkov.yml": {
+            "lines": 3,
+            "tokens": 13,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.cfnlintrc.yml": {
+            "lines": 34,
+            "tokens": 154,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.bandit.yml": {
+            "lines": 301,
+            "tokens": 1466,
+            "sources": 1,
+            "clones": 12,
+            "duplicatedLines": 456,
+            "duplicatedTokens": 2208,
+            "percentage": 151.5,
+            "percentageTokens": 150.61,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.github/actionlint.yaml": {
+            "lines": 18,
+            "tokens": 52,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.github/FUNDING.yml": {
+            "lines": 6,
+            "tokens": 33,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/Taskfile.yml": {
+            "lines": 11,
+            "tokens": 35,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.megalinter.yml": {
+            "lines": 476,
+            "tokens": 1484,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "total": {
+          "lines": 5486,
+          "tokens": 47634,
+          "sources": 88,
+          "clones": 17,
+          "duplicatedLines": 1221,
+          "duplicatedTokens": 12715,
+          "percentage": 22.26,
+          "percentageTokens": 26.69,
+          "newDuplicatedLines": 0,
+          "newClones": 0
+        }
+      },
+      "markdown": {
+        "sources": {
+          "/tmp/lint/shell/etc/dpkg/dpkg.cfg.d/README.md": {
+            "lines": 45,
+            "tokens": 412,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/shell/etc/apt/apt.conf.d/README.md": {
+            "lines": 34,
+            "tokens": 399,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/shell/etc/profile.d/banner.txt": {
+            "lines": 34,
+            "tokens": 3040,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/shell/bin/install/README.md": {
+            "lines": 14,
+            "tokens": 88,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.github/ISSUE_TEMPLATE/tech_debt.md": {
+            "lines": 17,
+            "tokens": 114,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.github/ISSUE_TEMPLATE/general.md": {
+            "lines": 22,
+            "tokens": 148,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.github/ISSUE_TEMPLATE/feature_request.md": {
+            "lines": 22,
+            "tokens": 144,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.github/ISSUE_TEMPLATE/ci_cd.md": {
+            "lines": 27,
+            "tokens": 224,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.github/ISSUE_TEMPLATE/bug_report.md": {
+            "lines": 37,
+            "tokens": 275,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.github/ISSUE_TEMPLATE/architecture.md": {
+            "lines": 28,
+            "tokens": 215,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.github/SUPPORT.md": {
+            "lines": 48,
+            "tokens": 448,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.github/SECURITY.md": {
+            "lines": 56,
+            "tokens": 486,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.github/PULL_REQUEST_TEMPLATE.md": {
+            "lines": 21,
+            "tokens": 173,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.github/OWNERS.md": {
+            "lines": 54,
+            "tokens": 445,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.github/GOVERNANCE.md": {
+            "lines": 81,
+            "tokens": 731,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "total": {
+          "lines": 540,
+          "tokens": 7342,
+          "sources": 15,
+          "clones": 0,
+          "duplicatedLines": 0,
+          "duplicatedTokens": 0,
+          "percentage": 0,
+          "percentageTokens": 0,
+          "newDuplicatedLines": 0,
+          "newClones": 0
+        }
+      },
+      "bash": {
+        "sources": {
+          "/tmp/lint/shell/etc/profile.d/xdg.sh": {
+            "lines": 46,
+            "tokens": 218,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/shell/etc/profile.d/disable-telemetry.sh": {
+            "lines": 603,
+            "tokens": 1847,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/shell/etc/profile.d/90-banner.sh": {
+            "lines": 76,
+            "tokens": 365,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/shell/lib/dev.sh": {
+            "lines": 15,
+            "tokens": 62,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/shell/lib/_os.sh": {
+            "lines": 349,
+            "tokens": 1378,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/shell/lib/_common.sh": {
+            "lines": 607,
+            "tokens": 2253,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/shell/bin/devtools.sh": {
+            "lines": 776,
+            "tokens": 3427,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "total": {
+          "lines": 2472,
+          "tokens": 9550,
+          "sources": 7,
+          "clones": 0,
+          "duplicatedLines": 0,
+          "duplicatedTokens": 0,
+          "percentage": 0,
+          "percentageTokens": 0,
+          "newDuplicatedLines": 0,
+          "newClones": 0
+        }
+      },
+      "markup": {
+        "sources": {
+          "/tmp/lint/shell/etc/policy.xml": {
+            "lines": 21,
+            "tokens": 320,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/sun_checks.xml": {
+            "lines": 68,
+            "tokens": 613,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/psalm.xml": {
+            "lines": 8,
+            "tokens": 42,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/phpcs.xml": {
+            "lines": 29,
+            "tokens": 187,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/java-pmd-ruleset.xml": {
+            "lines": 55,
+            "tokens": 407,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/apex-pmd-ruleset.xml": {
+            "lines": 35,
+            "tokens": 312,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "total": {
+          "lines": 216,
+          "tokens": 1881,
+          "sources": 6,
+          "clones": 0,
+          "duplicatedLines": 0,
+          "duplicatedTokens": 0,
+          "percentage": 0,
+          "percentageTokens": 0,
+          "newDuplicatedLines": 0,
+          "newClones": 0
+        }
+      },
+      "clojure": {
+        "sources": {
+          "/tmp/lint/config/.clj-kondo/config.edn": {
+            "lines": 33,
+            "tokens": 208,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "total": {
+          "lines": 33,
+          "tokens": 208,
+          "sources": 1,
+          "clones": 0,
+          "duplicatedLines": 0,
+          "duplicatedTokens": 0,
+          "percentage": 0,
+          "percentageTokens": 0,
+          "newDuplicatedLines": 0,
+          "newClones": 0
+        }
+      },
+      "json": {
+        "sources": {
+          "/tmp/lint/config/pyrightconfig.json": {
+            "lines": 31,
+            "tokens": 192,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/META6.json": {
+            "lines": 24,
+            "tokens": 155,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.tsqllintrc.json": {
+            "lines": 21,
+            "tokens": 110,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.stylelintrc.json": {
+            "lines": 37,
+            "tokens": 185,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.secretlintrc.json": {
+            "lines": 75,
+            "tokens": 360,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.remarkrc.json": {
+            "lines": 17,
+            "tokens": 104,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.npmpackagejsonlintrc.json": {
+            "lines": 72,
+            "tokens": 380,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.markdownlint.json": {
+            "lines": 24,
+            "tokens": 210,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.markdown-link-check.json": {
+            "lines": 33,
+            "tokens": 161,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.kics.config.json": {
+            "lines": 7,
+            "tokens": 48,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.jscpd.json": {
+            "lines": 17,
+            "tokens": 92,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.groovylintrc.json": {
+            "lines": 36,
+            "tokens": 204,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.flow-scanner.json": {
+            "lines": 40,
+            "tokens": 209,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.eslintrc-json.json": {
+            "lines": 27,
+            "tokens": 151,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.coffee-lint.json": {
+            "lines": 57,
+            "tokens": 308,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.vscode/tasks.json": {
+            "lines": 3,
+            "tokens": 15,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.vscode/settings.json": {
+            "lines": 135,
+            "tokens": 810,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/.vscode/extensions.json": {
+            "lines": 33,
+            "tokens": 130,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/package.json": {
+            "lines": 58,
+            "tokens": 367,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "total": {
+          "lines": 747,
+          "tokens": 4191,
+          "sources": 19,
+          "clones": 0,
+          "duplicatedLines": 0,
+          "duplicatedTokens": 0,
+          "percentage": 0,
+          "percentageTokens": 0,
+          "newDuplicatedLines": 0,
+          "newClones": 0
+        }
+      },
+      "ini": {
+        "sources": {
+          "/tmp/lint/config/.vale.ini": {
+            "lines": 11,
+            "tokens": 37,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.mypy.ini": {
+            "lines": 42,
+            "tokens": 250,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.checkmake.ini": {
+            "lines": 28,
+            "tokens": 254,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "total": {
+          "lines": 81,
+          "tokens": 541,
+          "sources": 3,
+          "clones": 0,
+          "duplicatedLines": 0,
+          "duplicatedTokens": 0,
+          "percentage": 0,
+          "percentageTokens": 0,
+          "newDuplicatedLines": 0,
+          "newClones": 0
+        }
+      },
+      "javascript": {
+        "sources": {
+          "/tmp/lint/config/.prettier.config.mjs": {
+            "lines": 54,
+            "tokens": 325,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.eslint.config.mjs": {
+            "lines": 61,
+            "tokens": 366,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.cspell.config.mjs": {
+            "lines": 149,
+            "tokens": 905,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.commitlint.config.cjs": {
+            "lines": 47,
+            "tokens": 471,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "total": {
+          "lines": 311,
+          "tokens": 2067,
+          "sources": 4,
+          "clones": 0,
+          "duplicatedLines": 0,
+          "duplicatedTokens": 0,
+          "percentage": 0,
+          "percentageTokens": 0,
+          "newDuplicatedLines": 0,
+          "newClones": 0
+        }
+      },
+      "powershell": {
+        "sources": {
+          "/tmp/lint/config/.powershell-psscriptanalyzer.psd1": {
+            "lines": 47,
+            "tokens": 213,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.powershell-formatter.psd1": {
+            "lines": 25,
+            "tokens": 143,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          },
+          "/tmp/lint/config/.arm-ttk.psd1": {
+            "lines": 31,
+            "tokens": 95,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "total": {
+          "lines": 103,
+          "tokens": 451,
+          "sources": 3,
+          "clones": 0,
+          "duplicatedLines": 0,
+          "duplicatedTokens": 0,
+          "percentage": 0,
+          "percentageTokens": 0,
+          "newDuplicatedLines": 0,
+          "newClones": 0
+        }
+      }
+    },
+    "total": {
+      "lines": 9989,
+      "tokens": 73865,
+      "sources": 146,
+      "clones": 17,
+      "duplicatedLines": 1221,
+      "duplicatedTokens": 12715,
+      "percentage": 12.22,
+      "percentageTokens": 17.21,
+      "newDuplicatedLines": 0,
+      "newClones": 0
+    }
+  },
+  "duplicates": [
+    {
+      "format": "yaml",
+      "lines": 70,
+      "fragment": "version: \"0.1\"\n  platform: k8s\n  type: pss\n  controls:\n    - name: HostProcess \n      description: \"Windows pods offer the ability to run HostProcess containers which enables privileged access to the Windows node. Privileged access to the host is disallowed in the baseline policy\" \n      id: \"1\"\n      checks:\n        - id: AVD-KSV-0103\n      severity: 'HIGH'\n    - name: Host Namespaces\n      description: \"Sharing the host namespaces must be disallowed.\" \n      id: \"2\"\n      checks:\n        - id: AVD-KSV-0008\n      severity: 'HIGH'\n    - name: Privileged Containers\n      description: \"Privileged Pods disable most security mechanisms and must be disallowed.\" \n      id: \"3\"\n      checks:\n        - id: AVD-KSV-0017\n      severity: 'HIGH'\n    - name: Capabilities\n      description: \"Adding additional capabilities beyond those listed below must be disallowed.\"\n      id: \"4\"\n      checks:\n        - id: AVD-KSV-0022\n      severity: 'MEDIUM'\n    - name: HostPath Volumes\n      description: \"HostPath volumes must be forbidden.\"\n      id: \"5\"\n      checks:\n        - id: AVD-KSV-0023\n      severity: 'MEDIUM'\n    - name: host ports\n      description: \"hostports should be disallowed, or at minimum restricted to a known list.\"\n      id: \"6\"\n      checks:\n        - id: avd-ksv-0024\n      severity: 'HIGH'\n    - name: AppArmor\n      description: \"On supported hosts, the runtime/default AppArmor profile is applied by default. The baseline policy should prevent overriding or disabling the default AppArmor profile, or restrict overrides to an allowed set of profiles.\"\n      id: \"7\"\n      checks:\n        - id: avd-ksv-0002\n      severity: 'HIGH'\n    - name: SELinux\n      description: \"Setting the SELinux type is restricted, and setting a custom SELinux user or role option is forbidden.\"\n      id: \"8\"\n      checks:\n        - id: avd-ksv-0025\n      severity: 'MEDIUM'\n    - name: \"/proc Mount Type\"\n      description: \"The default /proc masks are set up to reduce attack surface, and should be required.\"\n      id: \"9\"\n      checks:\n        - id: avd-ksv-0027\n      severity: 'MEDIUM'\n    - name: \"Seccomp\"\n      description: \"Seccomp profile must not be explicitly set to Unconfined.\"\n      id: \"10\"\n      checks:\n        - id: avd-ksv-0104\n      severity: 'MEDIUM'\n    - name: \"Sysctls\"\n      description: 'Sysctls can disable security mechanisms or affect all containers on a host, and should be disallowed except for an allowed \"safe\" subset. A sysctl is considered safe if it is namespaced in the container or the Pod, and it is isolated from other Pods or processes on the same Node.'\n      id: \"11\"\n      checks:\n        - id: avd-ksv-0026\n      severity: 'MEDIUM'",
+      "tokens": 0,
+      "firstFile": {
+        "name": "/tmp/lint/.cache/.trivycache/policy/content/specs/compliance/k8s-pss-baseline-0.1.yaml",
+        "start": 7,
+        "end": 76,
+        "startLoc": {
+          "line": 7,
+          "column": 3,
+          "position": 49
+        },
+        "endLoc": {
+          "line": 76,
+          "column": 9,
+          "position": 542
+        }
+      },
+      "secondFile": {
+        "name": "/tmp/lint/.cache/.trivycache/policy/content/specs/compliance/k8s-pss-restricted-0.1.yaml",
+        "start": 7,
+        "end": 76,
+        "startLoc": {
+          "line": 7,
+          "column": 3,
+          "position": 49
+        },
+        "endLoc": {
+          "line": 76,
+          "column": 9,
+          "position": 542
+        }
+      }
+    },
+    {
+      "format": "yaml",
+      "lines": 112,
+      "fragment": "type: cis\n  relatedResources:\n    - https://www.cisecurity.org/benchmark/kubernetes\n  controls:\n    - id: 1.1.1\n      name: Ensure that the API server pod specification file permissions are set to\n        600 or more restrictive\n      description: Ensure that the API server pod specification file has permissions\n        of 600 or more restrictive\n      checks:\n        - id: AVD-KCV-0048\n      commands:\n        - id: CMD-0001\n      severity: HIGH\n    - id: 1.1.2\n      name: Ensure that the API server pod specification file ownership is set to\n        root:root\n      description: Ensure that the API server pod specification file ownership is set\n        to root:root\n      checks:\n        - id: AVD-KCV-0049\n      commands:\n        - id: CMD-0002\n      severity: HIGH\n    - id: 1.1.3\n      name: Ensure that the controller manager pod specification file permissions are\n        set to 600 or more restrictive\n      description: Ensure that the controller manager pod specification file has\n        permissions of 600 or more restrictive\n      checks:\n        - id: AVD-KCV-0050\n      commands:\n        - id: CMD-0003\n      severity: HIGH\n    - id: 1.1.4\n      name: Ensure that the controller manager pod specification file ownership is set\n        to root:root\n      description: Ensure that the controller manager pod specification file ownership\n        is set to root:root\n      checks:\n        - id: AVD-KCV-0051\n      commands:\n        - id: CMD-0004\n      severity: HIGH\n    - id: 1.1.5\n      name: Ensure that the scheduler pod specification file permissions are set to\n        600 or more restrictive\n      description: Ensure that the scheduler pod specification file has permissions of\n        600 or more restrictive\n      checks:\n        - id: AVD-KCV-0052\n      commands:\n        - id: CMD-0005\n      severity: HIGH\n    - id: 1.1.6\n      name: Ensure that the scheduler pod specification file ownership is set to\n        root:root\n      description: Ensure that the scheduler pod specification file ownership is set\n        to root:root\n      checks:\n        - id: AVD-KCV-0053\n      commands:\n        - id: CMD-0006\n      severity: HIGH\n    - id: 1.1.7\n      name: Ensure that the etcd pod specification file permissions are set to 600 or\n        more restrictive\n      description: Ensure that the etcd pod specification file has permissions of 600\n        or more restrictive\n      checks:\n        - id: AVD-KCV-0054\n      commands:\n        - id: CMD-0007\n      severity: HIGH\n    - id: 1.1.8\n      name: Ensure that the etcd pod specification file ownership is set to root:root\n      description: Ensure that the etcd pod specification file ownership is set to\n        root:root.\n      checks:\n        - id: AVD-KCV-0055\n      commands:\n        - id: CMD-0008\n      severity: HIGH\n    - id: 1.1.9\n      name: Ensure that the Container Network Interface file permissions are set to\n        600 or more restrictive\n      description: Ensure that the Container Network Interface files have permissions\n        of 600 or more restrictive\n      checks:\n        - id: AVD-KCV-0056\n      commands:\n        - id: CMD-0009\n      severity: HIGH\n    - id: 1.1.10\n      name: Ensure that the Container Network Interface file ownership is set to\n        root:root\n      description: Ensure that the Container Network Interface files have ownership\n        set to root:root\n      checks:\n        - id: AVD-KCV-0057\n      commands:\n        - id: CMD-0010\n      severity: HIGH\n    - id: 1.1.11\n      name: Ensure that the etcd data directory permissions are set to 700 or more\n        restrictive\n      description: Ensure that the etcd data directory has permissions of 700 or more\n        restrictive\n      checks:\n        - id: AVD-KCV-0058\n      commands:\n        - id: CMD-0011",
+      "tokens": 0,
+      "firstFile": {
+        "name": "/tmp/lint/.cache/.trivycache/policy/content/specs/compliance/k8s-cis-1.23.yaml",
+        "start": 8,
+        "end": 119,
+        "startLoc": {
+          "line": 8,
+          "column": 3,
+          "position": 50
+        },
+        "endLoc": {
+          "line": 119,
+          "column": 5,
+          "position": 1275
+        }
+      },
+      "secondFile": {
+        "name": "/tmp/lint/.cache/.trivycache/policy/content/specs/compliance/rke2-cis-1.24.yaml",
+        "start": 8,
+        "end": 119,
+        "startLoc": {
+          "line": 8,
+          "column": 3,
+          "position": 60
+        },
+        "endLoc": {
+          "line": 119,
+          "column": 5,
+          "position": 1285
+        }
+      }
+    },
+    {
+      "format": "yaml",
+      "lines": 8,
+      "fragment": "severity: HIGH\n    - id: 1.1.12\n      name: Ensure that the etcd data directory ownership is set to etcd:etcd\n      description: Ensure that the etcd data directory ownership is set to etcd:etcd\n      checks:\n        - id: AVD-KCV-0059\n      commands:\n        - id: CMD-0012",
+      "tokens": 0,
+      "firstFile": {
+        "name": "/tmp/lint/.cache/.trivycache/policy/content/specs/compliance/k8s-cis-1.23.yaml",
+        "start": 120,
+        "end": 127,
+        "startLoc": {
+          "line": 120,
+          "column": 7,
+          "position": 1278
+        },
+        "endLoc": {
+          "line": 127,
+          "column": 5,
+          "position": 1375
+        }
+      },
+      "secondFile": {
+        "name": "/tmp/lint/.cache/.trivycache/policy/content/specs/compliance/rke2-cis-1.24.yaml",
+        "start": 120,
+        "end": 127,
+        "startLoc": {
+          "line": 120,
+          "column": 7,
+          "position": 1288
+        },
+        "endLoc": {
+          "line": 127,
+          "column": 5,
+          "position": 1385
+        }
+      }
+    },
+    {
+      "format": "yaml",
+      "lines": 63,
+      "fragment": "severity: LOW\n    - id: 1.1.13\n      name: Ensure that the admin.conf file permissions are set to 600\n      description: Ensure that the admin.conf file has permissions of 600\n      checks:\n        - id: AVD-KCV-0060\n      commands: \n        - id: CMD-0013\n      severity: CRITICAL\n    - id: 1.1.14\n      name: Ensure that the admin.conf file ownership is set to root:root\n      description: Ensure that the admin.conf file ownership is set to root:root\n      checks:\n        - id: AVD-KCV-0061\n      commands: \n        - id: CMD-0014\n      severity: CRITICAL\n    - id: 1.1.15\n      name: Ensure that the scheduler.conf file permissions are set to 600 or more\n        restrictive\n      description: Ensure that the scheduler.conf file has permissions of 600 or more\n        restrictive\n      checks:\n        - id: AVD-KCV-0062\n      commands:\n        - id: CMD-0015\n      severity: HIGH\n    - id: 1.1.16\n      name: Ensure that the scheduler.conf file ownership is set to root:root\n      description: Ensure that the scheduler.conf file ownership is set to root:root\n      checks:\n        - id: AVD-KCV-0063\n      commands:\n        - id: CMD-0016\n      severity: HIGH\n    - id: 1.1.17\n      name: Ensure that the controller-manager.conf file permissions are set to 600 or\n        more restrictive\n      description: Ensure that the controller-manager.conf file has permissions of 600\n        or more restrictive\n      checks:\n        - id: AVD-KCV-0064\n      commands:\n        - id: CMD-0017\n      severity: HIGH\n    - id: 1.1.18\n      name: Ensure that the controller-manager.conf file ownership is set to root:root\n      description: Ensure that the controller-manager.conf file ownership is set to\n        root:root.\n      checks:\n        - id: AVD-KCV-0065\n      commands:\n        - id: CMD-0018\n      severity: HIGH\n    - id: 1.1.19\n      name: Ensure that the Kubernetes PKI directory and file ownership is set to\n        root:root\n      description: Ensure that the Kubernetes PKI directory and file ownership is set\n        to root:root\n      checks:\n        - id: AVD-KCV-0066\n      commands:\n        - id: CMD-0019",
+      "tokens": 0,
+      "firstFile": {
+        "name": "/tmp/lint/.cache/.trivycache/policy/content/specs/compliance/k8s-cis-1.23.yaml",
+        "start": 128,
+        "end": 190,
+        "startLoc": {
+          "line": 128,
+          "column": 7,
+          "position": 1378
+        },
+        "endLoc": {
+          "line": 190,
+          "column": 5,
+          "position": 2082
+        }
+      },
+      "secondFile": {
+        "name": "/tmp/lint/.cache/.trivycache/policy/content/specs/compliance/rke2-cis-1.24.yaml",
+        "start": 128,
+        "end": 190,
+        "startLoc": {
+          "line": 128,
+          "column": 7,
+          "position": 1388
+        },
+        "endLoc": {
+          "line": 190,
+          "column": 5,
+          "position": 2092
+        }
+      }
+    },
+    {
+      "format": "yaml",
+      "lines": 10,
+      "fragment": "severity: CRITICAL\n    - id: 1.1.20\n      name: Ensure that the Kubernetes PKI certificate file permissions are set to 600\n        or more restrictive\n      description: Ensure that Kubernetes PKI certificate files have permissions of\n        600 or more restrictive\n      checks:\n        - id: AVD-KCV-0068\n      commands:\n        - id: CMD-0020",
+      "tokens": 0,
+      "firstFile": {
+        "name": "/tmp/lint/.cache/.trivycache/policy/content/specs/compliance/k8s-cis-1.23.yaml",
+        "start": 191,
+        "end": 200,
+        "startLoc": {
+          "line": 191,
+          "column": 7,
+          "position": 2085
+        },
+        "endLoc": {
+          "line": 200,
+          "column": 5,
+          "position": 2192
+        }
+      },
+      "secondFile": {
+        "name": "/tmp/lint/.cache/.trivycache/policy/content/specs/compliance/rke2-cis-1.24.yaml",
+        "start": 191,
+        "end": 200,
+        "startLoc": {
+          "line": 191,
+          "column": 7,
+          "position": 2095
+        },
+        "endLoc": {
+          "line": 200,
+          "column": 5,
+          "position": 2202
+        }
+      }
+    },
+    {
+      "format": "yaml",
+      "lines": 8,
+      "fragment": "severity: CRITICAL\n    - id: 1.1.21\n      name: Ensure that the Kubernetes PKI key file permissions are set to 600\n      description: Ensure that Kubernetes PKI key files have permissions of 600\n      checks:\n        - id: AVD-KCV-0067\n      commands:\n        - id: CMD-0021",
+      "tokens": 0,
+      "firstFile": {
+        "name": "/tmp/lint/.cache/.trivycache/policy/content/specs/compliance/k8s-cis-1.23.yaml",
+        "start": 201,
+        "end": 208,
+        "startLoc": {
+          "line": 201,
+          "column": 7,
+          "position": 2195
+        },
+        "endLoc": {
+          "line": 208,
+          "column": 5,
+          "position": 2288
+        }
+      },
+      "secondFile": {
+        "name": "/tmp/lint/.cache/.trivycache/policy/content/specs/compliance/rke2-cis-1.24.yaml",
+        "start": 201,
+        "end": 208,
+        "startLoc": {
+          "line": 201,
+          "column": 7,
+          "position": 2205
+        },
+        "endLoc": {
+          "line": 208,
+          "column": 5,
+          "position": 2298
+        }
+      }
+    },
+    {
+      "format": "yaml",
+      "lines": 701,
+      "fragment": "severity: CRITICAL\n    - id: 1.2.1\n      name: Ensure that the --anonymous-auth argument is set to false\n      description: Disable anonymous requests to the API server\n      checks:\n        - id: AVD-KCV-0001\n      severity: MEDIUM\n    - id: 1.2.2\n      name: Ensure that the --token-auth-file parameter is not set\n      description: Do not use token based authentication\n      checks:\n        - id: AVD-KCV-0002\n      severity: LOW\n    - id: 1.2.3\n      name: Ensure that the --DenyServiceExternalIPs is not set\n      description: This admission controller rejects all net-new usage of the Service\n        field externalIPs\n      checks:\n        - id: AVD-KCV-0003\n      severity: LOW\n    - id: 1.2.4\n      name: Ensure that the --kubelet-https argument is set to true\n      description: Use https for kubelet connections\n      checks:\n        - id: AVD-KCV-0004\n      severity: LOW\n    - id: 1.2.5\n      name: Ensure that the --kubelet-client-certificate and --kubelet-client-key\n        arguments are set as appropriate\n      description: Enable certificate based kubelet authentication\n      checks:\n        - id: AVD-KCV-0005\n      severity: HIGH\n    - id: 1.2.6\n      name: Ensure that the --kubelet-certificate-authority argument is set as\n        appropriate\n      description: Verify kubelets certificate before establishing connection\n      checks:\n        - id: AVD-KCV-0006\n      severity: HIGH\n    - id: 1.2.7\n      name: Ensure that the --authorization-mode argument is not set to AlwaysAllow\n      description: Do not always authorize all requests\n      checks:\n        - id: AVD-KCV-0007\n      severity: LOW\n    - id: 1.2.8\n      name: Ensure that the --authorization-mode argument includes Node\n      description: Restrict kubelet nodes to reading only objects associated with them\n      checks:\n        - id: AVD-KCV-0008\n      severity: HIGH\n    - id: 1.2.9\n      name: Ensure that the --authorization-mode argument includes RBAC\n      description: Turn on Role Based Access Control\n      checks:\n        - id: AVD-KCV-0009\n      severity: HIGH\n    - id: 1.2.10\n      name: Ensure that the admission control plugin EventRateLimit is set\n      description: Limit the rate at which the API server accepts requests\n      checks:\n        - id: AVD-KCV-0010\n      severity: HIGH\n    - id: 1.2.11\n      name: Ensure that the admission control plugin AlwaysAdmit is not set\n      description: Do not allow all requests\n      checks:\n        - id: AVD-KCV-0011\n      severity: LOW\n    - id: 1.2.12\n      name: Ensure that the admission control plugin AlwaysPullImages is set\n      description: Always pull images\n      checks:\n        - id: AVD-KCV-0012\n      severity: MEDIUM\n    - id: 1.2.13\n      name: Ensure that the admission control plugin SecurityContextDeny is set if\n        PodSecurityPolicy is not used\n      description: The SecurityContextDeny admission controller can be used to deny\n        pods which make use of some SecurityContext fields which could allow for\n        privilege escalation in the cluster. This should be used where\n        PodSecurityPolicy is not in place within the cluster\n      checks:\n        - id: AVD-KCV-0013\n      severity: MEDIUM\n    - id: 1.2.14\n      name: Ensure that the admission control plugin ServiceAccount is set\n      description: Automate service accounts management\n      checks:\n        - id: AVD-KCV-0014\n      severity: LOW\n    - id: 1.2.15\n      name: Ensure that the admission control plugin NamespaceLifecycle is set\n      description: Reject creating objects in a namespace that is undergoing termination\n      checks:\n        - id: AVD-KCV-0015\n      severity: LOW\n    - id: 1.2.16\n      name: Ensure that the admission control plugin NodeRestriction is set\n      description: Limit the Node and Pod objects that a kubelet could modify\n      checks:\n        - id: AVD-KCV-0016\n      severity: LOW\n    - id: 1.2.17\n      name: Ensure that the --secure-port argument is not set to 0\n      description: Do not disable the secure port\n      checks:\n        - id: AVD-KCV-0017\n      severity: HIGH\n    - id: 1.2.18\n      name: Ensure that the --profiling argument is set to false\n      description: Disable profiling, if not needed\n      checks:\n        - id: AVD-KCV-0018\n      severity: LOW\n    - id: 1.2.19\n      name: Ensure that the --audit-log-path argument is set\n      description: Enable auditing on the Kubernetes API Server and set the desired\n        audit log path.\n      checks:\n        - id: AVD-KCV-0019\n      severity: LOW\n    - id: 1.2.20\n      name: Ensure that the --audit-log-maxage argument is set to 30 or as appropriate\n      description: Retain the logs for at least 30 days or as appropriate\n      checks:\n        - id: AVD-KCV-0020\n      severity: LOW\n    - id: 1.2.21\n      name: Ensure that the --audit-log-maxbackup argument is set to 10 or as\n        appropriate\n      description: Retain 10 or an appropriate number of old log file\n      checks:\n        - id: AVD-KCV-0021\n      severity: LOW\n    - id: 1.2.22\n      name: Ensure that the --audit-log-maxsize argument is set to 100 or as\n        appropriate\n      description: Rotate log files on reaching 100 MB or as appropriate\n      checks:\n        - id: AVD-KCV-0022\n      severity: LOW\n    - id: 1.2.24\n      name: Ensure that the --service-account-lookup argument is set to true\n      description: Validate service account before validating token\n      checks:\n        - id: AVD-KCV-0024\n      severity: LOW\n    - id: 1.2.25\n      name: Ensure that the --service-account-key-file argument is set as appropriate\n      description: Explicitly set a service account public key file for service\n        accounts on the apiserver\n      checks:\n        - id: AVD-KCV-0025\n      severity: LOW\n    - id: 1.2.26\n      name: Ensure that the --etcd-certfile and --etcd-keyfile arguments are set as\n        appropriate\n      description: etcd should be configured to make use of TLS encryption for client\n        connections\n      checks:\n        - id: AVD-KCV-0026\n      severity: LOW\n    - id: 1.2.27\n      name: Ensure that the --tls-cert-file and --tls-private-key-file arguments are\n        set as appropriate\n      description: Setup TLS connection on the API server\n      checks:\n        - id: AVD-KCV-0027\n      severity: MEDIUM\n    - id: 1.2.28\n      name: Ensure that the --client-ca-file argument is set appropriate\n      description: Setup TLS connection on the API server\n      checks:\n        - id: AVD-KCV-0028\n      severity: LOW\n    - id: 1.2.29\n      name: Ensure that the --etcd-cafile argument is set as appropriate\n      description: etcd should be configured to make use of TLS encryption for client\n        connections.\n      checks:\n        - id: AVD-KCV-0029\n      severity: LOW\n    - id: 1.2.30\n      name: Ensure that the --encryption-provider-config argument is set as\n        appropriate\n      description: Encrypt etcd key-value store\n      checks:\n        - id: AVD-KCV-0030\n      severity: LOW\n    - id: 1.3.1\n      name: Ensure that the --terminated-pod-gc-threshold argument is set as\n        appropriate\n      description: Activate garbage collector on pod termination, as appropriate\n      checks:\n        - id: AVD-KCV-0033\n      severity: MEDIUM\n    - id: 1.3.3\n      name: Ensure that the --use-service-account-credentials argument is set to true\n      description: Use individual service account credentials for each controller\n      checks:\n        - id: AVD-KCV-0035\n      severity: MEDIUM\n    - id: 1.3.4\n      name: Ensure that the --service-account-private-key-file argument is set as\n        appropriate\n      description: Explicitly set a service account private key file for service\n        accounts on the controller manager\n      checks:\n        - id: AVD-KCV-0036\n      severity: MEDIUM\n    - id: 1.3.5\n      name: Ensure that the --root-ca-file argument is set as appropriate\n      description: Allow pods to verify the API servers serving certificate before\n        establishing connections\n      checks:\n        - id: AVD-KCV-0037\n      severity: MEDIUM\n    - id: 1.3.6\n      name: Ensure that the RotateKubeletServerCertificate argument is set to true\n      description: Enable kubelet server certificate rotation on controller-manager\n      checks:\n        - id: AVD-KCV-0038\n      severity: MEDIUM\n    - id: 1.3.7\n      name: Ensure that the --bind-address argument is set to 127.0.0.1\n      description: Do not bind the scheduler service to non-loopback insecure addresses\n      checks:\n        - id: AVD-KCV-0039\n      severity: LOW\n    - id: 1.4.1\n      name: Ensure that the --profiling argument is set to false\n      description: Disable profiling, if not needed\n      checks:\n        - id: AVD-KCV-0034\n      severity: MEDIUM\n    - id: 1.4.2\n      name: Ensure that the --bind-address argument is set to 127.0.0.1\n      description: Do not bind the scheduler service to non-loopback insecure addresses\n      checks:\n        - id: AVD-KCV-0041\n      severity: CRITICAL\n    - id: 2.1\n      name: Ensure that the --cert-file and --key-file arguments are set as\n        appropriate\n      description: Configure TLS encryption for the etcd service\n      checks:\n        - id: AVD-KCV-0042\n      severity: MEDIUM\n    - id: 2.2\n      name: Ensure that the --client-cert-auth argument is set to true\n      description: Enable client authentication on etcd service\n      checks:\n        - id: AVD-KCV-0043\n      severity: CRITICAL\n    - id: 2.3\n      name: Ensure that the --auto-tls argument is not set to true\n      description: Do not use self-signed certificates for TLS\n      checks:\n        - id: AVD-KCV-0044\n      severity: CRITICAL\n    - id: 2.4\n      name: Ensure that the --peer-cert-file and --peer-key-file arguments are set as\n        appropriate\n      description: etcd should be configured to make use of TLS encryption for peer\n        connections.\n      checks:\n        - id: AVD-KCV-0045\n      severity: CRITICAL\n    - id: 2.5\n      name: Ensure that the --peer-client-cert-auth argument is set to true\n      description: etcd should be configured for peer authentication\n      checks:\n        - id: AVD-KCV-0046\n      severity: CRITICAL\n    - id: 2.6\n      name: Ensure that the --peer-auto-tls argument is not set to true\n      description: Do not use self-signed certificates for TLS\n      checks:\n        - id: AVD-KCV-0047\n      severity: HIGH\n    - id: 3.1.1\n      name: Client certificate authentication should not be used for users (Manual)\n      description: Kubernetes provides the option to use client certificates for user\n        authentication. However as there is no way to revoke these certificates\n        when a user leaves an organization or loses their credential, they are\n        not suitable for this purpose\n      checks: null\n      severity: HIGH\n    - id: 3.2.1\n      name: Ensure that a minimal audit policy is created (Manual)\n      description: Kubernetes can audit the details of requests made to the API\n        server. The --audit- policy-file flag must be set for this logging to be\n        enabled.\n      checks: null\n      severity: HIGH\n    - id: 3.2.2\n      name: Ensure that the audit policy covers key security concerns (Manual)\n      description: Ensure that the audit policy created for the cluster covers key\n        security concerns\n      checks: null\n      severity: HIGH\n    - id: 4.1.1\n      name: Ensure that the kubelet service file permissions are set to 600 or more\n        restrictive\n      description: Ensure that the kubelet service file has permissions of 600 or more\n        restrictive.\n      checks:\n        - id: AVD-KCV-0069\n      commands:\n        - id: CMD-0022\n      severity: HIGH\n    - id: 4.1.2\n      name: Ensure that the kubelet service file ownership is set to root:root\n      description: Ensure that the kubelet service file ownership is set to root:root\n      checks:\n        - id: AVD-KCV-0070\n      commands:\n        - id: CMD-0023\n      severity: HIGH\n    - id: 4.1.3\n      name: If proxy kubeconfig file exists ensure permissions are set to 600 or more\n        restrictive\n      description: If kube-proxy is running, and if it is using a file-based\n        kubeconfig file, ensure that the proxy kubeconfig file has permissions\n        of 600 or more restrictive\n      checks:\n        - id: AVD-KCV-0071\n      commands:\n        - id: CMD-0024\n      severity: HIGH\n    - id: 4.1.4\n      name: If proxy kubeconfig file exists ensure ownership is set to root:root\n      description: If kube-proxy is running, ensure that the file ownership of its\n        kubeconfig file is set to root:root\n      checks:\n        - id: AVD-KCV-0072\n      commands:\n        - id: CMD-0025\n      severity: HIGH\n    - id: 4.1.5\n      name: Ensure that the --kubeconfig kubelet.conf file permissions are set to 600\n        or more restrictive\n      description: Ensure that the kubelet.conf file has permissions of 600 or more\n        restrictive\n      checks:\n        - id: AVD-KCV-0073\n      commands:\n        - id: CMD-0026\n      severity: HIGH\n    - id: 4.1.6\n      name: Ensure that the --kubeconfig kubelet.conf file ownership is set to\n        root:root\n      description: Ensure that the kubelet.conf file ownership is set to root:root\n      checks:\n        - id: AVD-KCV-0074\n      commands:\n        - id: CMD-0027\n      severity: HIGH\n    - id: 4.1.7\n      name: Ensure that the certificate authorities file permissions are set to 600 or\n        more restrictive\n      description: Ensure that the certificate authorities file has permissions of 600\n        or more restrictive\n      checks:\n        - id: AVD-KCV-0075\n      commands:\n        - id: CMD-0028\n      severity: CRITICAL\n    - id: 4.1.8\n      name: Ensure that the client certificate authorities file ownership is set to\n        root:root\n      description: Ensure that the certificate authorities file ownership is set to\n        root:root\n      checks:\n        - id: AVD-KCV-0076\n      commands:\n        - id: CMD-0029\n      severity: CRITICAL\n    - id: 4.1.9\n      name: If the kubelet config.yaml configuration file is being used validate\n        permissions set to 600 or more restrictive\n      description: Ensure that if the kubelet refers to a configuration file with the\n        --config argument, that file has permissions of 600 or more restrictive\n      checks:\n        - id: AVD-KCV-0077\n      commands:\n        - id: CMD-0030\n      severity: HIGH\n    - id: 4.1.10\n      name: If the kubelet config.yaml configuration file is being used validate file\n        ownership is set to root:root\n      description: Ensure that if the kubelet refers to a configuration file with the\n        --config argument, that file is owned by root:root\n      checks:\n        - id: AVD-KCV-0078\n      commands:\n        - id: CMD-0031\n      severity: HIGH\n    - id: 4.2.1\n      name: Ensure that the --anonymous-auth argument is set to false\n      description: Disable anonymous requests to the Kubelet server\n      checks:\n        - id: AVD-KCV-0079\n      commands:\n        - id: CMD-0032\n      severity: CRITICAL\n    - id: 4.2.2\n      name: Ensure that the --authorization-mode argument is not set to AlwaysAllow\n      description: Do not allow all requests. Enable explicit authorization\n      checks:\n        - id: AVD-KCV-0080\n      commands:\n        - id: CMD-0033\n      severity: CRITICAL\n    - id: 4.2.3\n      name: Ensure that the --client-ca-file argument is set as appropriate\n      description: Enable Kubelet authentication using certificates\n      checks:\n        - id: AVD-KCV-0081\n      commands:\n        - id: CMD-0034\n      severity: CRITICAL\n    - id: 4.2.4\n      name: Verify that the --read-only-port argument is set to 0\n      description: Disable the read-only port\n      checks:\n        - id: AVD-KCV-0082\n      commands:\n        - id: CMD-0035\n      severity: HIGH\n    - id: 4.2.5\n      name: Ensure that the --streaming-connection-idle-timeout argument is not set to\n        0\n      description: Do not disable timeouts on streaming connections\n      checks:\n        - id: AVD-KCV-0085\n      commands:\n        - id: CMD-0036\n      severity: HIGH\n    - id: 4.2.6\n      name: Ensure that the --protect-kernel-defaults argument is set to true\n      description: Protect tuned kernel parameters from overriding kubelet default\n        kernel parameter values\n      checks:\n        - id: AVD-KCV-0083\n      commands:\n        - id: CMD-0037\n      severity: HIGH\n    - id: 4.2.7\n      name: Ensure that the --make-iptables-util-chains argument is set to true\n      description: Allow Kubelet to manage iptables\n      checks:\n        - id: AVD-KCV-0084\n      commands:\n        - id: CMD-0038\n      severity: HIGH\n    - id: 4.2.8\n      name: Ensure that the --hostname-override argument is not set\n      description: Do not override node hostnames\n      checks:\n        - id: AVD-KCV-0086\n      commands:\n        - id: CMD-0039\n      severity: HIGH\n    - id: 4.2.9\n      name: Ensure that the --event-qps argument is set to 0 or a level which ensures\n        appropriate event capture\n      description: Security relevant information should be captured. The --event-qps\n        flag on the Kubelet can be used to limit the rate at which events are\n        gathered\n      checks:\n        - id: AVD-KCV-0087\n      commands:\n        - id: CMD-0040\n      severity: HIGH\n    - id: 4.2.10\n      name: Ensure that the --tls-cert-file and --tls-private-key-file arguments are\n        set as appropriate\n      description: Setup TLS connection on the Kubelets\n      checks:\n        - id: AVD-KCV-0088\n        - id: AVD-KCV-0089\n      commands:\n        - id: CMD-0041\n        - id: CMD-0042\n      severity: CRITICAL\n    - id: 4.2.11\n      name: Ensure that the --rotate-certificates argument is not set to false\n      description: Enable kubelet client certificate rotation\n      checks:\n        - id: AVD-KCV-0090\n      commands:\n        - id: CMD-0043\n      severity: CRITICAL\n    - id: 4.2.12\n      name: Verify that the RotateKubeletServerCertificate argument is set to true\n      description: Enable kubelet server certificate rotation\n      checks:\n        - id: AVD-KCV-0091\n      commands:\n        - id: CMD-0044\n      severity: CRITICAL\n    - id: 4.2.13\n      name: Ensure that the Kubelet only makes use of Strong Cryptographic Ciphers\n      description: Ensure that the Kubelet is configured to only use strong\n        cryptographic ciphers\n      checks:\n        - id: AVD-KCV-0092\n      commands:\n        - id: CMD-0045\n      severity: CRITICAL\n    - id: 5.1.1\n      name: Ensure that the cluster-admin role is only used where required\n      description: The RBAC role cluster-admin provides wide-ranging powers over the\n        environment and should be used only where and when needed\n      checks:\n        - id: AVD-KSV-0111\n      severity: HIGH\n    - id: 5.1.2\n      name: Minimize access to secrets\n      description: The Kubernetes API stores secrets, which may be service account\n        tokens for the Kubernetes API or credentials used by workloads in the\n        cluster\n      checks:\n        - id: AVD-KSV-0041\n      severity: HIGH\n    - id: 5.1.3\n      name: Minimize wildcard use in Roles and ClusterRoles\n      description: Kubernetes Roles and ClusterRoles provide access to resources based\n        on sets of objects and actions that can be taken on those objects. It is\n        possible to set either of these to be the wildcard \"*\" which matches all\n        items\n      checks:\n        - id: AVD-KSV-0044\n        - id: AVD-KSV-0045\n        - id: AVD-KSV-0046\n      severity: HIGH\n    - id: 5.1.6\n      name: Ensure that Service Account Tokens are only mounted where necessary\n      description: Service accounts tokens should not be mounted in pods except where\n        the workload running in the pod explicitly needs to communicate with the\n        API server\n      checks:\n        - id: AVD-KSV-0036\n      severity: HIGH\n    - id: 5.1.8\n      name: Limit use of the Bind, Impersonate and Escalate permissions in the\n        Kubernetes cluster\n      description: Cluster roles and roles with the impersonate, bind or escalate\n        permissions should not be granted unless strictly required\n      checks:\n        - id: AVD-KSV-0043\n      severity: HIGH\n    - id: 5.2.2\n      name: Minimize the admission of privileged containers\n      description: Do not generally permit containers to be run with the\n        securityContext.privileged flag set to true\n      checks:\n        - id: AVD-KSV-0017\n      severity: HIGH\n    - id: 5.2.3\n      name: Minimize the admission of containers wishing to share the host process ID\n        namespace\n      description: Do not generally permit containers to be run with the hostPID flag\n        set to true.\n      checks:\n        - id: AVD-KSV-0010\n      severity: HIGH\n    - id: 5.2.4\n      name: Minimize the admission of containers wishing to share the host IPC\n        namespace\n      description: Do not generally permit containers to be run with the hostIPC flag\n        set to true\n      checks:\n        - id: AVD-KSV-0008\n      severity: HIGH\n    - id: 5.2.5\n      name: Minimize the admission of containers wishing to share the host network\n        namespace\n      description: Do not generally permit containers to be run with the hostNetwork\n        flag set to true\n      checks:\n        - id: AVD-KSV-0009\n      severity: HIGH\n    - id: 5.2.6\n      name: Minimize the admission of containers with allowPrivilegeEscalation\n      description: Do not generally permit containers to be run with the\n        allowPrivilegeEscalation flag set to true\n      checks:\n        - id: AVD-KSV-0001\n      severity: HIGH\n    - id: 5.2.7\n      name: Minimize the admission of root containers\n      description: Do not generally permit containers to be run as the root user\n      checks:\n        - id: AVD-KSV-0012\n      severity: MEDIUM\n    - id: 5.2.8\n      name: Minimize the admission of containers with the NET_RAW capability\n      description: Do not generally permit containers with the potentially dangerous\n        NET_RAW capability\n      checks:\n        - id: AVD-KSV-0022\n      severity: MEDIUM\n    - id: 5.2.9\n      name: Minimize the admission of containers with added capabilities\n      description: Do not generally permit containers with capabilities assigned\n        beyond the default set\n      checks:\n        - id: AVD-KSV-0004\n      severity: LOW\n    - id: 5.2.10\n      name: Minimize the admission of containers with capabilities assigned\n      description: Do not generally permit containers with capabilities\n      checks:\n        - id: AVD-KSV-0003\n      severity: LOW\n    - id: 5.2.11\n      name: Minimize the admission of containers with capabilities assigned\n      description: Do not generally permit containers with capabilities\n      checks:\n        - id: AVD-KSV-0103\n      severity: MEDIUM\n    - id: 5.2.12\n      name: Minimize the admission of HostPath volumes\n      description: Do not generally admit containers which make use of hostPath volumes\n      checks:\n        - id: AVD-KSV-0023\n      severity: MEDIUM\n    - id: 5.2.13\n      name: Minimize the admission of containers which use HostPorts\n      description: Do not generally permit containers which require the use of HostPorts\n      checks:\n        - id: AVD-KSV-0024\n      severity: MEDIUM\n    - id: 5.3.1\n      name: Ensure that the CNI in use supports Network Policies (Manual)\n      description: There are a variety of CNI plugins available for Kubernetes. If the\n        CNI in use does not support Network Policies it may not be possible to\n        effectively restrict traffic in the cluster\n      checks: null\n      severity: MEDIUM\n    - id: 5.3.2\n      name: Ensure that all Namespaces have Network Policies defined\n      description: Use network policies to isolate traffic in your cluster network\n      checks:\n        - id: AVD-KSV-0038\n      severity: MEDIUM\n    - id: 5.4.1\n      name: Prefer using secrets as files over secrets as environment variables\n        (Manual)\n      description: Kubernetes supports mounting secrets as data volumes or as\n        environment variables. Minimize the use of environment variable secrets\n      checks: null\n      severity: MEDIUM\n    - id: 5.4.2\n      name: Consider external secret storage (Manual)\n      description: Consider the use of an external secrets storage and management\n        system, instead of using Kubernetes Secrets directly, if you have more\n        complex secret management needs\n      checks: null\n      severity: MEDIUM\n    - id: 5.5.1\n      name: Configure Image Provenance using ImagePolicyWebhook admission controller\n        (Manual)\n      description: Configure Image Provenance for your deployment\n      checks: null\n      severity: MEDIUM\n    - id: 5.7.1\n      name: Create administrative boundaries between resources using namespaces\n        (Manual)\n      description: Use namespaces to isolate your Kubernetes objects\n      checks: null\n      severity: MEDIUM\n    - id: 5.7.2\n      name: Ensure that the seccomp profile is set to docker/default in your pod\n        definitions\n      description: Enable docker/default seccomp profile in your pod definitions\n      checks:\n        - id: AVD-KSV-0104\n      severity: MEDIUM\n    - id: 5.7.3\n      name: Apply Security Context to Your Pods and Containers\n      description: Apply Security Context to Your Pods and Containers\n      checks:\n        - id: AVD-KSV-0021\n        - id: AVD-KSV-0020\n        - id: AVD-KSV-0005\n        - id: AVD-KSV-0025\n        - id: AVD-KSV-0104\n        - id: AVD-KSV-0030\n      severity: HIGH\n    - id: 5.7.4\n      name: The default namespace should not be used\n      description: Kubernetes provides a default namespace, where objects are placed\n        if no namespace is specified for them\n      checks:\n        - id: AVD-KSV-0110\n      severity: MEDIUM",
+      "tokens": 0,
+      "firstFile": {
+        "name": "/tmp/lint/.cache/.trivycache/policy/content/specs/compliance/k8s-cis-1.23.yaml",
+        "start": 209,
+        "end": 909,
+        "startLoc": {
+          "line": 209,
+          "column": 7,
+          "position": 2291
+        },
+        "endLoc": {
+          "line": 909,
+          "column": 7,
+          "position": 10793
+        }
+      },
+      "secondFile": {
+        "name": "/tmp/lint/.cache/.trivycache/policy/content/specs/compliance/rke2-cis-1.24.yaml",
+        "start": 209,
+        "end": 909,
+        "startLoc": {
+          "line": 209,
+          "column": 7,
+          "position": 2301
+        },
+        "endLoc": {
+          "line": 909,
+          "column": 7,
+          "position": 10803
+        }
+      }
+    },
+    {
+      "format": "yaml",
+      "lines": 10,
+      "fragment": "description: Apply Security Context to Your Pods and Containers\n    checks:\n      - id: AVD-KSV-0021\n      - id: AVD-KSV-0020\n      - id: AVD-KSV-0005\n      - id: AVD-KSV-0025\n      - id: AVD-KSV-0104\n      - id: AVD-KSV-0030\n    severity: HIGH\n  - id: 4.5.3",
+      "tokens": 0,
+      "firstFile": {
+        "name": "/tmp/lint/.cache/.trivycache/policy/content/specs/compliance/eks-cis-1.4.yaml",
+        "start": 308,
+        "end": 317,
+        "startLoc": {
+          "line": 308,
+          "column": 5,
+          "position": 2764
+        },
+        "endLoc": {
+          "line": 317,
+          "column": 6,
+          "position": 2871
+        }
+      },
+      "secondFile": {
+        "name": "/tmp/lint/.cache/.trivycache/policy/content/specs/compliance/rke2-cis-1.24.yaml",
+        "start": 894,
+        "end": 903,
+        "startLoc": {
+          "line": 894,
+          "column": 7,
+          "position": 10618
+        },
+        "endLoc": {
+          "line": 903,
+          "column": 6,
+          "position": 10725
+        }
+      }
+    },
+    {
+      "format": "yaml",
+      "lines": 8,
+      "fragment": "name: limit-root-account-usage\n    description: |-\n      The \"root\" account has unrestricted access to all resources in the AWS account. It is highly\n      recommended that the use of this account be avoided.\n    checks:\n    - id: AVD-AWS-0140\n    severity: LOW\n  - id: \"1.10\"",
+      "tokens": 0,
+      "firstFile": {
+        "name": "/tmp/lint/.cache/.trivycache/policy/content/specs/compliance/aws-cis-1.2.yaml",
+        "start": 12,
+        "end": 19,
+        "startLoc": {
+          "line": 12,
+          "column": 5,
+          "position": 77
+        },
+        "endLoc": {
+          "line": 19,
+          "column": 7,
+          "position": 175
+        }
+      },
+      "secondFile": {
+        "name": "/tmp/lint/.cache/.trivycache/policy/content/specs/compliance/aws-cis-1.4.yaml",
+        "start": 97,
+        "end": 104,
+        "startLoc": {
+          "line": 97,
+          "column": 5,
+          "position": 1072
+        },
+        "endLoc": {
+          "line": 104,
+          "column": 6,
+          "position": 1170
+        }
+      }
+    },
+    {
+      "format": "yaml",
+      "lines": 6,
+      "fragment": "name: no-root-access-keys\n    description: The root user has complete access to all services and resources in an AWS account. AWS Access Keys provide programmatic access to a given account.\n    checks:\n    - id: AVD-AWS-0141\n    severity: CRITICAL\n  - id: \"1.13\"",
+      "tokens": 0,
+      "firstFile": {
+        "name": "/tmp/lint/.cache/.trivycache/policy/content/specs/compliance/aws-cis-1.2.yaml",
+        "start": 32,
+        "end": 37,
+        "startLoc": {
+          "line": 32,
+          "column": 5,
+          "position": 308
+        },
+        "endLoc": {
+          "line": 37,
+          "column": 7,
+          "position": 401
+        }
+      },
+      "secondFile": {
+        "name": "/tmp/lint/.cache/.trivycache/policy/content/specs/compliance/aws-cis-1.4.yaml",
+        "start": 75,
+        "end": 80,
+        "startLoc": {
+          "line": 75,
+          "column": 5,
+          "position": 782
+        },
+        "endLoc": {
+          "line": 80,
+          "column": 6,
+          "position": 875
+        }
+      }
+    },
+    {
+      "format": "yaml",
+      "lines": 8,
+      "fragment": "name: enforce-root-mfa\n    description: |-\n      The \"root\" account has unrestricted access to all resources in the AWS account. It is highly\n      recommended that this account have MFA enabled.\n    checks:\n    - id: AVD-AWS-0142\n    severity: CRITICAL\n  - id: \"1.16\"",
+      "tokens": 0,
+      "firstFile": {
+        "name": "/tmp/lint/.cache/.trivycache/policy/content/specs/compliance/aws-cis-1.2.yaml",
+        "start": 38,
+        "end": 45,
+        "startLoc": {
+          "line": 38,
+          "column": 5,
+          "position": 404
+        },
+        "endLoc": {
+          "line": 45,
+          "column": 7,
+          "position": 496
+        }
+      },
+      "secondFile": {
+        "name": "/tmp/lint/.cache/.trivycache/policy/content/specs/compliance/aws-cis-1.4.yaml",
+        "start": 81,
+        "end": 88,
+        "startLoc": {
+          "line": 81,
+          "column": 5,
+          "position": 878
+        },
+        "endLoc": {
+          "line": 88,
+          "column": 6,
+          "position": 970
+        }
+      }
+    },
+    {
+      "format": "yaml",
+      "lines": 39,
+      "fragment": ":\n  no_shell:\n    - os.execl\n    - os.execle\n    - os.execlp\n    - os.execlpe\n    - os.execv\n    - os.execve\n    - os.execvp\n    - os.execvpe\n    - os.spawnl\n    - os.spawnle\n    - os.spawnlp\n    - os.spawnlpe\n    - os.spawnv\n    - os.spawnve\n    - os.spawnvp\n    - os.spawnvpe\n    - os.startfile\n  shell:\n    - os.system\n    - os.popen\n    - os.popen2\n    - os.popen3\n    - os.popen4\n    - popen2.popen2\n    - popen2.popen3\n    - popen2.popen4\n    - popen2.Popen3\n    - popen2.Popen4\n    - commands.getoutput\n    - commands.getstatusoutput\n  subprocess:\n    - subprocess.Popen\n    - subprocess.call\n    - subprocess.check_call\n    - subprocess.check_output\n    - subprocess.run\nssl_with_bad_defaults",
+      "tokens": 0,
+      "firstFile": {
+        "name": "/tmp/lint/config/.bandit.yml",
+        "start": 46,
+        "end": 84,
+        "startLoc": {
+          "line": 46,
+          "column": 34,
+          "position": 218
+        },
+        "endLoc": {
+          "line": 84,
+          "column": 22,
+          "position": 402
+        }
+      },
+      "secondFile": {
+        "name": "/tmp/lint/config/.bandit.yml",
+        "start": 1,
+        "end": 39,
+        "startLoc": {
+          "line": 1,
+          "column": 42,
+          "position": 1
+        },
+        "endLoc": {
+          "line": 39,
+          "column": 12,
+          "position": 185
+        }
+      }
+    },
+    {
+      "format": "yaml",
+      "lines": 39,
+      "fragment": ":\n  no_shell:\n    - os.execl\n    - os.execle\n    - os.execlp\n    - os.execlpe\n    - os.execv\n    - os.execve\n    - os.execvp\n    - os.execvpe\n    - os.spawnl\n    - os.spawnle\n    - os.spawnlp\n    - os.spawnlpe\n    - os.spawnv\n    - os.spawnve\n    - os.spawnvp\n    - os.spawnvpe\n    - os.startfile\n  shell:\n    - os.system\n    - os.popen\n    - os.popen2\n    - os.popen3\n    - os.popen4\n    - popen2.popen2\n    - popen2.popen3\n    - popen2.popen4\n    - popen2.Popen3\n    - popen2.Popen4\n    - commands.getoutput\n    - commands.getstatusoutput\n  subprocess:\n    - subprocess.Popen\n    - subprocess.call\n    - subprocess.check_call\n    - subprocess.check_output\n    - subprocess.run\nstart_process_with_no_shell",
+      "tokens": 0,
+      "firstFile": {
+        "name": "/tmp/lint/config/.bandit.yml",
+        "start": 102,
+        "end": 140,
+        "startLoc": {
+          "line": 102,
+          "column": 27,
+          "position": 487
+        },
+        "endLoc": {
+          "line": 140,
+          "column": 28,
+          "position": 671
+        }
+      },
+      "secondFile": {
+        "name": "/tmp/lint/config/.bandit.yml",
+        "start": 1,
+        "end": 39,
+        "startLoc": {
+          "line": 1,
+          "column": 42,
+          "position": 1
+        },
+        "endLoc": {
+          "line": 39,
+          "column": 12,
+          "position": 185
+        }
+      }
+    },
+    {
+      "format": "yaml",
+      "lines": 39,
+      "fragment": ":\n  no_shell:\n    - os.execl\n    - os.execle\n    - os.execlp\n    - os.execlpe\n    - os.execv\n    - os.execve\n    - os.execvp\n    - os.execvpe\n    - os.spawnl\n    - os.spawnle\n    - os.spawnlp\n    - os.spawnlpe\n    - os.spawnv\n    - os.spawnve\n    - os.spawnvp\n    - os.spawnvpe\n    - os.startfile\n  shell:\n    - os.system\n    - os.popen\n    - os.popen2\n    - os.popen3\n    - os.popen4\n    - popen2.popen2\n    - popen2.popen3\n    - popen2.popen4\n    - popen2.Popen3\n    - popen2.Popen4\n    - commands.getoutput\n    - commands.getstatusoutput\n  subprocess:\n    - subprocess.Popen\n    - subprocess.call\n    - subprocess.check_call\n    - subprocess.check_output\n    - subprocess.run\nstart_process_with_partial_path",
+      "tokens": 0,
+      "firstFile": {
+        "name": "/tmp/lint/config/.bandit.yml",
+        "start": 140,
+        "end": 178,
+        "startLoc": {
+          "line": 140,
+          "column": 28,
+          "position": 672
+        },
+        "endLoc": {
+          "line": 178,
+          "column": 32,
+          "position": 856
+        }
+      },
+      "secondFile": {
+        "name": "/tmp/lint/config/.bandit.yml",
+        "start": 1,
+        "end": 39,
+        "startLoc": {
+          "line": 1,
+          "column": 42,
+          "position": 1
+        },
+        "endLoc": {
+          "line": 39,
+          "column": 12,
+          "position": 185
+        }
+      }
+    },
+    {
+      "format": "yaml",
+      "lines": 39,
+      "fragment": ":\n  no_shell:\n    - os.execl\n    - os.execle\n    - os.execlp\n    - os.execlpe\n    - os.execv\n    - os.execve\n    - os.execvp\n    - os.execvpe\n    - os.spawnl\n    - os.spawnle\n    - os.spawnlp\n    - os.spawnlpe\n    - os.spawnv\n    - os.spawnve\n    - os.spawnvp\n    - os.spawnvpe\n    - os.startfile\n  shell:\n    - os.system\n    - os.popen\n    - os.popen2\n    - os.popen3\n    - os.popen4\n    - popen2.popen2\n    - popen2.popen3\n    - popen2.popen4\n    - popen2.Popen3\n    - popen2.Popen4\n    - commands.getoutput\n    - commands.getstatusoutput\n  subprocess:\n    - subprocess.Popen\n    - subprocess.call\n    - subprocess.check_call\n    - subprocess.check_output\n    - subprocess.run\nsubprocess_popen_with_shell_equals_true",
+      "tokens": 0,
+      "firstFile": {
+        "name": "/tmp/lint/config/.bandit.yml",
+        "start": 178,
+        "end": 216,
+        "startLoc": {
+          "line": 178,
+          "column": 32,
+          "position": 857
+        },
+        "endLoc": {
+          "line": 216,
+          "column": 40,
+          "position": 1041
+        }
+      },
+      "secondFile": {
+        "name": "/tmp/lint/config/.bandit.yml",
+        "start": 1,
+        "end": 39,
+        "startLoc": {
+          "line": 1,
+          "column": 42,
+          "position": 1
+        },
+        "endLoc": {
+          "line": 39,
+          "column": 12,
+          "position": 185
+        }
+      }
+    },
+    {
+      "format": "yaml",
+      "lines": 39,
+      "fragment": ":\n  no_shell:\n    - os.execl\n    - os.execle\n    - os.execlp\n    - os.execlpe\n    - os.execv\n    - os.execve\n    - os.execvp\n    - os.execvpe\n    - os.spawnl\n    - os.spawnle\n    - os.spawnlp\n    - os.spawnlpe\n    - os.spawnv\n    - os.spawnve\n    - os.spawnvp\n    - os.spawnvpe\n    - os.startfile\n  shell:\n    - os.system\n    - os.popen\n    - os.popen2\n    - os.popen3\n    - os.popen4\n    - popen2.popen2\n    - popen2.popen3\n    - popen2.popen4\n    - popen2.Popen3\n    - popen2.Popen4\n    - commands.getoutput\n    - commands.getstatusoutput\n  subprocess:\n    - subprocess.Popen\n    - subprocess.call\n    - subprocess.check_call\n    - subprocess.check_output\n    - subprocess.run\nsubprocess_without_shell_equals_true",
+      "tokens": 0,
+      "firstFile": {
+        "name": "/tmp/lint/config/.bandit.yml",
+        "start": 216,
+        "end": 254,
+        "startLoc": {
+          "line": 216,
+          "column": 40,
+          "position": 1042
+        },
+        "endLoc": {
+          "line": 254,
+          "column": 37,
+          "position": 1226
+        }
+      },
+      "secondFile": {
+        "name": "/tmp/lint/config/.bandit.yml",
+        "start": 1,
+        "end": 39,
+        "startLoc": {
+          "line": 1,
+          "column": 42,
+          "position": 1
+        },
+        "endLoc": {
+          "line": 39,
+          "column": 12,
+          "position": 185
+        }
+      }
+    },
+    {
+      "format": "yaml",
+      "lines": 39,
+      "fragment": ":\n  no_shell:\n    - os.execl\n    - os.execle\n    - os.execlp\n    - os.execlpe\n    - os.execv\n    - os.execve\n    - os.execvp\n    - os.execvpe\n    - os.spawnl\n    - os.spawnle\n    - os.spawnlp\n    - os.spawnlpe\n    - os.spawnv\n    - os.spawnve\n    - os.spawnvp\n    - os.spawnvpe\n    - os.startfile\n  shell:\n    - os.system\n    - os.popen\n    - os.popen2\n    - os.popen3\n    - os.popen4\n    - popen2.popen2\n    - popen2.popen3\n    - popen2.popen4\n    - popen2.Popen3\n    - popen2.Popen4\n    - commands.getoutput\n    - commands.getstatusoutput\n  subprocess:\n    - subprocess.Popen\n    - subprocess.call\n    - subprocess.check_call\n    - subprocess.check_output\n    - subprocess.run\ntry_except_continue",
+      "tokens": 0,
+      "firstFile": {
+        "name": "/tmp/lint/config/.bandit.yml",
+        "start": 254,
+        "end": 292,
+        "startLoc": {
+          "line": 254,
+          "column": 37,
+          "position": 1227
+        },
+        "endLoc": {
+          "line": 292,
+          "column": 20,
+          "position": 1411
+        }
+      },
+      "secondFile": {
+        "name": "/tmp/lint/config/.bandit.yml",
+        "start": 1,
+        "end": 39,
+        "startLoc": {
+          "line": 1,
+          "column": 42,
+          "position": 1
+        },
+        "endLoc": {
+          "line": 39,
+          "column": 12,
+          "position": 185
+        }
+      }
+    }
+  ],
+  "filename": "/node-deps/node_modules/@jscpd/html-reporter/dist/templates/main.pug"
+}

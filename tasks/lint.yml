@@ -20,11 +20,11 @@ tasks:
           --platform={{.PLATFORM}} \
           --path={{.PATH}} \
           --image {{.MEGALINTER_IMAGE}} \
-          {{.CLI_ARGS | default ""}}
+          {{.MEGALINTER_ARGS}}
     silent: false
     interactive: true
     vars:
-      CLI_ARGS: ""
+      MEGALINTER_ARGS: '{{default "" .MEGALINTER_ARGS}}'
 
   all:
     desc: "Run full MegaLinter scan"
@@ -33,7 +33,7 @@ tasks:
 
   spellcheck:
     desc: "SPELL"
-    cmds: [{ task: run, vars: { CLI_ARGS: "--env ENABLE=SPELL" } }]
+    cmds: [{ task: run, vars: { MEGALINTER_ARGS: "--env ENABLE=SPELL" } }]
 
   mypy:
     desc: "PYTHON_MYPY"

@@ -109,6 +109,9 @@
             "url": "https://www.schemastore.org/yamllint.json"
         }
     ],
+    "evenBetterToml.schema.associations": {
+        "pyproject.toml": "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/pyproject.json"
+    },
     "[dockerfile]": {
         "editor.formatOnSave": false,
         "editor.defaultFormatter": "ms-azuretools.vscode-containers"

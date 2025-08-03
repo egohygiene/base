@@ -314,6 +314,7 @@ REPOSITORY_KICS_CONFIG_FILE: config/.kics.config.json
 # secretlint: https://github.com/checkmarx/kics
 # https://megalinter.io/latest/descriptors/repository_secretlint/
 REPOSITORY_SECRETLINT_CONFIG_FILE: config/.secretlintrc.json
+REPOSITORY_SECRETLINT_ARGUMENTS: "--secretlintignore config/.secretlintignore"
 
 # syft: https://github.com/anchore/syft
 # https://megalinter.io/latest/descriptors/repository_syft/
