@@ -15,7 +15,7 @@ prompt = "{project_name}-py{python_version}"
 
 [virtualenvs.options]
 always-copy = false
-no-pip = true
+no-pip = false
 system-site-packages = false
 use-poetry-python = false
 

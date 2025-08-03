@@ -3,10 +3,11 @@
 verbose = "info"
 no_progress = false
 output = "reports/lychee/lychee.md"
+format = "json"
 
 #############################  Cache  ###############################
 
-cache = ".cache/.lycheecache"
+cache = false
 max_cache_age = "1d"
 
 #############################  Runtime  #############################
@@ -60,4 +61,4 @@ exclude_all_private = true
 exclude_private = false
 exclude_link_local = false
 exclude_loopback = false
-include_mail = false
+include_mail = true
