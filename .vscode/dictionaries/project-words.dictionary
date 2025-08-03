@@ -413,3 +413,6 @@ xsel
 ZSTD
 CPPLINT
 pydocstyle
+trufflehogignore
+lycheeignore
+trivycache

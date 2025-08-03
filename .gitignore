@@ -91,3 +91,5 @@ __pycache__/
 # Lychee, Trivy, scan outputs
 lychee.out
 .trivycache/
+
+reports

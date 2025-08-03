@@ -1,6 +1,7 @@
 # Security Policy
 
 ## **📌 Supported Versions**
+
 We actively maintain this project and provide **security updates** for the latest stable release.
 
 | Version  | Supported         |
@@ -11,9 +12,11 @@ We actively maintain this project and provide **security updates** for the lates
 ---
 
 ## **🛠 Reporting a Vulnerability**
+
 We take security issues **seriously**. If you discover a **vulnerability**, please **DO NOT** create a public GitHub issue.
 
 ### **How to Report:**
+
 1. **Email us at** `[your-security-email@example.com]`
 2. **Or use GitHub Security Advisories** (if enabled): [GitHub Security Advisories](https://github.com/advisories)
 3. **Provide the following details**:
@@ -26,6 +29,7 @@ We will **respond within 48 hours** and work on a resolution as soon as possible
 ---
 
 ## **✅ Best Practices for Secure Contributions**
+
 When contributing code, please follow these **security best practices**:
 
 ✔ **Avoid hardcoding secrets** (API keys, passwords).
@@ -37,7 +41,9 @@ When contributing code, please follow these **security best practices**:
 ---
 
 ## **🔍 Security Tools**
+
 We use the following tools to **automate security checks**:
+
 - **[Dependabot](https://github.com/dependabot)** → Automatic dependency updates.
 - **[Snyk](https://snyk.io/)** → Scans for vulnerabilities in dependencies.
 - **[Trivy](https://aquasecurity.github.io/trivy/)** → Security scanning for containers.
@@ -45,6 +51,7 @@ We use the following tools to **automate security checks**:
 - **[Lynis](https://github.com/CISOfy/lynis)** → Audits system configuration.
 
 🔗 **You can run security scans manually using:**
+
 ```sh
 npm audit fix  # For Node.js projects
 pip-audit      # For Python projects
@@ -55,6 +62,7 @@ trivy fs .     # Scan entire repository
 ---
 
 ## **🔗 Additional Resources**
+
 - [GitHub Security Best Practices](https://docs.github.com/en/code-security)
 
 ---

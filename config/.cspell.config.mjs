@@ -56,6 +56,7 @@ export default defineConfig({
         "**/*.{html,css,scss,less}", // Web styles/templates
         ".github/**/*.{yml,yaml}", // GitHub Actions
         "*.{md,json,yml}", // Root files
+        "*.{toml,txt}", // Other project files
     ],
     enableGlobDot: true,
     ignorePaths: [

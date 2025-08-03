@@ -53,6 +53,10 @@ tasks:
     desc: "PYTHON"
     cmds: [{ task: run, vars: { MEGALINTER_ARGS: "--env ENABLE=PYTHON" } }]
 
+  cspell:
+    desc: "SPELL_CSPELL"
+    cmds: [{ task: run, vars: { MEGALINTER_ARGS: "--env ENABLE_LINTERS=SPELL_CSPELL" } }]
+
   mypy:
     desc: "PYTHON_MYPY"
     cmds: [{ task: run, vars: { MEGALINTER_ARGS: "--env ENABLE_LINTERS=PYTHON_MYPY" } }]

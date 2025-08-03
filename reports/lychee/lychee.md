@@ -1,7 +1,7 @@
 📝 Summary
 ---------------------
-🔍 Total............0
-✅ Successful.......0
+🔍 Total............1
+✅ Successful.......1
 ⏳ Timeouts.........0
 🔀 Redirected.......0
 👻 Excluded.........0
