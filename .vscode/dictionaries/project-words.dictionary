@@ -25,10 +25,14 @@ btmp
 Buildx
 caddyfile
 ccache
+oneline
+virtualenv
 cdrom
 cfnlintrc
+shortlog
 checkmake
 CHKTEX
+Bazel
 chktexrc
 choosenim
 truecolor
@@ -402,3 +406,6 @@ xaver
 xclip
 xsel
 ZSTD
+gitmoji
+
+egohygiene

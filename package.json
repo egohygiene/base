@@ -1,0 +1,39 @@
+{
+  "name": "@egohygiene/base",
+  "version": "0.1.0",
+  "description": "Base development tooling, conventions, and shared configs for Ego Hygiene repositories.",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "commit": "cz",
+    "release": "semantic-release",
+    "changelog": "changeset",
+    "changelog:version": "changeset version",
+    "changelog:publish": "changeset publish"
+  },
+  "release": {
+    "extends": "semantic-release-config-gitmoji"
+  },
+  "devDependencies": {
+    "@changesets/cli": "2.29.4",
+    "@commitlint/cli": "19.8.1",
+    "@commitlint/config-conventional": "19.8.1",
+    "@cspell/cspell-json-reporter": "9.1.1",
+    "@stoplight/spectral-cli": "6.15.0",
+    "commitizen": "4.3.1",
+    "commitlint-plugin-gitmoji": "2.2.6",
+    "conventional-changelog-gitmoji-config": "1.5.2",
+    "cspell": "9.1.1",
+    "cz-emoji": "1.3.1",
+    "jscpd": "4.0.5",
+    "mega-linter-runner": "8.8.0",
+    "prettier": "3.5.3",
+    "prettier-plugin-pkg": "0.21.1",
+    "prettier-plugin-sh": "0.17.4",
+    "semantic-release": "24.2.5",
+    "semantic-release-config-gitmoji": "1.5.3"
+  }
+}

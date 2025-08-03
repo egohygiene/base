@@ -35,6 +35,7 @@ ENV DEVTOOLS_LIB="${DEVTOOLS_HOME}/lib"
 ENV DEVTOOLS_LOCKS="${DEVTOOLS_HOME}/locks"
 ENV DEVTOOLS_FONTS="${DEVTOOLS_HOME}/fonts"
 ENV DEVTOOLS_RUNTIME="${DEVTOOLS_HOME}/runtime"
+ENV DEVTOOLS_APPS="${DEVTOOLS_HOME}/apps"
 ENV APT_CACHE_DIR="${DEVTOOLS_CACHE}/apt"
 
 # Core environment variables for non-interactive apt operations and consistent Python behavior.
@@ -69,21 +70,18 @@ ENV DEBIAN_FRONTEND=noninteractive \
     FORCE_COLOR=1 \
     EDITOR=code \
     VISUAL=code \
-    GIT_PAGER=cat \
-    GIT_TERMINAL_PROMPT=0 \
-    GIT_CONFIG_GLOBAL=/etc/gitconfig \
-    GIT_CONFIG_SYSTEM=/etc/gitconfig \
-    GIT_CONFIG_LOCAL=${WORKSPACE_HOME}/.gitconfig \
-    GIT_CONFIG_NOSYSTEM=1 \
-    GIT_CONFIG=/etc/gitconfig \
-    GIT_EXEC_PATH=/usr/lib/git-core 
-    
+    PAGER=less \
+    GIT_PAGER=less
 
 # XDG Base Directories: https://wiki.archlinux.org/title/XDG_Base_Directory
 ENV XDG_CONFIG_HOME=${DEVTOOLS_CONFIG} \
     XDG_CACHE_HOME=${DEVTOOLS_CACHE} \
     XDG_DATA_HOME=${DEVTOOLS_TOOLBOX} \
     XDG_STATE_HOME=${DEVTOOLS_RUNTIME}
+
+# Add user application .desktop files to gnome.
+# https://help.gnome.org/admin//system-admin-guide/2.32/menustructure-desktopentry.html.en
+ENV XDG_DATA_DIRS="${DEVTOOLS_APPS}:${XDG_DATA_DIRS}"
 
 # Configure the ASDF version manager.
 ENV ASDF_DIR="${DEVTOOLS_HOME}/.asdf"
@@ -111,6 +109,9 @@ RUN find ${DEVTOOLS_LIB} -type f -name "*.sh" -exec chmod +x {} \;
 # Copy configuration files for apt and dpkg
 COPY shell/etc/dpkg/dpkg.cfg.d/*.conf /etc/dpkg/dpkg.cfg.d/
 COPY shell/etc/apt/apt.conf.d/*.conf /etc/apt/apt.conf.d/
+
+# Copy configuration files
+# COPY shell/config/.gitignore_global
 
 FROM base AS fonts
 
@@ -192,6 +193,8 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
     build-essential \
     ca-certificates \
     ccache \
+    procps \
+    file \
     chktex \
     clang-format \
     clang-tidy \

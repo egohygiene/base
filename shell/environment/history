@@ -1,0 +1,40 @@
+#!/bin/sh
+# Disable/move history files.
+
+# Disable nodeJS persistent REPL history file.
+export NODE_REPL_HISTORY=""
+
+# Disable bash history file.
+export HISTFILE=/dev/null
+
+# Disable less history.
+export LESSHISTFILE=-
+
+# Disable redis-cli history.
+export REDISCLI_HISTFILE=/dev/null
+
+# sqlite
+#
+export SQLITE_HISTORY="$XDG_CACHE_HOME/.sqlite_history"
+
+# calc
+#
+export CALCHISTFILE="$XDG_CACHE_HOME/.calc_history"
+
+# units history file:
+export UNITS_HISTORY_FILE="$USER_SYS_APPS/units/.units_history"
+
+# mathomatic
+export RLWRAP_HOME="$XDG_CACHE_HOME/mathomatic/history"
+
+# mysql
+export MYSQL_HISTFILE="$XDG_DATA_HOME/mysql/mysql_history"
+
+# gdb
+export GDBHISTFILE="$XDG_DATA_HOME/gdb/gdb_history"
+
+# postgresql
+export PSQL_HISTORY="$XDG_DATA_HOME/psql/psql_history"
+
+export OCTAVE_HISTFILE="$XDG_CACHE_HOME/octave-hsts"
+

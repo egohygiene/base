@@ -1,0 +1,115 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: "3"
+
+vars:
+  MEGALINTER_IMAGE: ghcr.io/oxsecurity/megalinter:latest
+
+env:
+  PLATFORM: linux/amd64
+  CONTAINER_NAME: megalinter
+  PATH: .
+
+tasks:
+
+  run:
+    desc: "Run MegaLinter with custom args"
+    cmds:
+      - |
+        pnpm exec mega-linter-runner \
+          --container-name={{.CONTAINER_NAME}} \
+          --platform={{.PLATFORM}} \
+          --path={{.PATH}} \
+          --image {{.MEGALINTER_IMAGE}} \
+          {{.CLI_ARGS | default ""}}
+    silent: false
+    interactive: true
+    vars:
+      CLI_ARGS: ""
+
+  all:
+    desc: "Run full MegaLinter scan"
+    cmds:
+      - task: run
+
+  spellcheck:
+    desc: "SPELL"
+    cmds: [{ task: run, vars: { CLI_ARGS: "--env ENABLE=SPELL" } }]
+
+  mypy:
+    desc: "PYTHON_MYPY"
+    cmds: [{ task: run, vars: { CLI_ARGS: "--env ENABLE_LINTERS=PYTHON_MYPY" } }]
+
+  actionlint:
+    desc: "ACTION_ACTIONLINT"
+    cmds: [{ task: run, vars: { CLI_ARGS: "--env ENABLE_LINTERS=ACTION_ACTIONLINT" } }]
+
+  ansible:
+    desc: "ANSIBLE_ANSIBLE_LINT"
+    cmds: [{ task: run, vars: { CLI_ARGS: "--env ENABLE_LINTERS=ANSIBLE_ANSIBLE_LINT" } }]
+
+  spectral:
+    desc: "API_SPECTRAL"
+    cmds: [{ task: run, vars: { CLI_ARGS: "--env ENABLE_LINTERS=API_SPECTRAL" } }]
+
+  arm-ttk:
+    desc: "ARM_ARM_TTK"
+    cmds: [{ task: run, vars: { CLI_ARGS: "--env ENABLE_LINTERS=ARM_ARM_TTK" } }]
+
+  bash_exec:
+    desc: "BASH_EXEC"
+    cmds: [{ task: run, vars: { CLI_ARGS: "--env ENABLE_LINTERS=BASH_EXEC" } }]
+
+  shellcheck:
+    desc: "BASH_SHELLCHECK"
+    cmds: [{ task: run, vars: { CLI_ARGS: "--env ENABLE_LINTERS=BASH_SHELLCHECK" } }]
+
+  shfmt:
+    desc: "BASH_SHFMT"
+    cmds: [{ task: run, vars: { CLI_ARGS: "--env ENABLE_LINTERS=BASH_SHFMT" } }]
+
+  bicep:
+    desc: "BICEP_BICEP_LINT"
+    cmds: [{ task: run, vars: { CLI_ARGS: "--env ENABLE_LINTERS=BICEP_BICEP_LINT" } }]
+
+  bicep-linter:
+    desc: "BICEP_BICEP_LINTER"
+    cmds: [{ task: run, vars: { CLI_ARGS: "--env ENABLE_LINTERS=BICEP_BICEP_LINTER" } }]
+
+  clojure-cljstyle:
+    desc: "CLOJURE_CLJSTYLE"
+    cmds: [{ task: run, vars: { CLI_ARGS: "--env ENABLE_LINTERS=CLOJURE_CLJSTYLE" } }]
+
+  clojure-clj-kondo:
+    desc: "CLOJURE_CLJ_KONDO"
+    cmds: [{ task: run, vars: { CLI_ARGS: "--env ENABLE_LINTERS=CLOJURE_CLJ_KONDO" } }]
+
+  cloudformation:
+    desc: "CLOUDFORMATION_CFN_LINT"
+    cmds: [{ task: run, vars: { CLI_ARGS: "--env ENABLE_LINTERS=CLOUDFORMATION_CFN_LINT" } }]
+
+  coffeelint:
+    desc: "COFFEE_COFFEELINT"
+    cmds: [{ task: run, vars: { CLI_ARGS: "--env ENABLE_LINTERS=COFFEE_COFFEELINT" } }]
+
+  cpp-clang-format:
+    desc: "CPP_CLANG_FORMAT"
+    cmds: [{ task: run, vars: { CLI_ARGS: "--env ENABLE_LINTERS=CPP_CLANG_FORMAT" } }]
+
+  cpp-cpplint:
+    desc: "CPP_CPPLINT"
+    cmds: [{ task: run, vars: { CLI_ARGS: "--env ENABLE_LINTERS=CPP_CPPLINT" } }]
+
+  credentials-secretlint:
+    desc: "CREDENTIALS_SECRETLINT"
+    cmds: [{ task: run, vars: { CLI_ARGS: "--env ENABLE_LINTERS=CREDENTIALS_SECRETLINT" } }]
+
+  csharp-csharpier:
+    desc: "CSHARP_CSHARPIER"
+    cmds: [{ task: run, vars: { CLI_ARGS: "--env ENABLE_LINTERS=CSHARP_CSHARPIER" } }]
+
+  # ... (remainder of ~100 linters goes here in same format)
+
+  copypaste:
+    desc: "Run jscpd for copy/paste detection"
+    cmds:
+      - jscpd --config .jscpd.json
