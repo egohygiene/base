@@ -1,0 +1,225 @@
+#!/usr/bin/env bash
+# install-imagemagick.sh — Reproducible ImageMagick build with apt lock support
+
+set -euo pipefail
+
+# === Constants ===
+IMAGEMAGICK_VERSION="${IMAGEMAGICK_VERSION:-7.1.1-47}"
+SOURCE_URL="https://api.github.com/repos/ImageMagick/ImageMagick/tarball/${IMAGEMAGICK_VERSION}"
+IMAGEMAGICK_SHA256="${IMAGEMAGICK_SHA256:-53ea43035cf0a1573bebd215932ea6ffeaa7ca1703f4e57d1e849b5bc0bed859}"
+IMAGEMAGICK_MD5="${IMAGEMAGICK_MD5:-895118664de9d97a10c2d86e222c60c5}"
+
+DEVTOOLS_HOME="${DEVTOOLS_HOME:-/opt/devtools}"
+DEVTOOLS_BIN="${DEVTOOLS_BIN:-${DEVTOOLS_HOME}/bin}"
+DEVTOOLS_TOOLBOX="${DEVTOOLS_TOOLBOX:-${DEVTOOLS_HOME}/toolbox}"
+DEVTOOLS_LOCKS="${DEVTOOLS_LOCKS:-${DEVTOOLS_HOME}/locks}"
+LOCK_FILE="${DEVTOOLS_LOCKS}/imagemagick.apt.lock"
+
+IMAGEMAGICK_PREFIX="${DEVTOOLS_TOOLBOX}/imagemagick"
+IMAGEMAGICK_TARBALL="${TMPDIR:-/tmp}/imagemagick.tar.gz"
+IMAGEMAGICK_SRC_DIR="${TMPDIR:-/tmp}/imagemagick-src"
+
+# === Dependencies ===
+APT_DEPS=(
+  autoconf
+  build-essential
+  ca-certificates
+  checkinstall
+  curl
+  ghostscript
+  git
+  libavif-dev
+  libbz2-dev
+  libcairo2-dev
+  libdb-dev
+  libdjvulibre-dev
+  libexpat1-dev
+  libfftw3-dev
+  libfontconfig1-dev
+  libfreetype-dev
+  libgdk-pixbuf2.0-dev
+  libgif-dev
+  libglib2.0-dev
+  libgraphviz-dev
+  libgs-dev
+  libheif-dev
+  libjbig-dev
+  libjemalloc-dev
+  libjpeg-dev
+  libjpeg-turbo8-dev
+  liblcms2-dev
+  liblqr-1-0-dev
+  libltdl-dev
+  liblzma-dev
+  libmagickcore-dev
+  libmagickwand-dev
+  libminizip-dev
+  libopenexr-dev
+  libopenjp2-7-dev
+  libpango1.0-dev
+  libperl-dev
+  libpng-dev
+  libraw-dev
+  librsvg2-dev
+  libtiff-dev
+  libtool
+  libwebp-dev
+  libwmf-bin
+  libwmf-dev
+  libx11-dev
+  libxcursor-dev
+  libxext-dev
+  libxft-dev
+  libxinerama-dev
+  libxml2-dev
+  libxrandr-dev
+  libzip-dev
+  libzstd-dev
+  pkg-config
+  zlib1g-dev
+)
+
+usage() {
+  echo "Usage:"
+  echo "  $0                 # Full install with apt deps"
+  echo "  $0 --lock          # Install + generate ${LOCK_FILE}"
+  echo "  $0 --from-lock     # Install apt packages from lock"
+  exit 1
+}
+
+install_deps() {
+  echo "📦 Installing all apt dependencies..."
+  add-apt-repository universe --yes
+  apt-get update -qq
+  apt-get install --yes --no-install-recommends "${APT_DEPS[@]}"
+}
+
+install_deps_from_lock() {
+  echo "📦 Installing from lock file: ${LOCK_FILE}"
+  if [[ ! -f "${LOCK_FILE}" ]]; then
+    echo "❌ Lock file not found!" >&2
+    exit 1
+  fi
+  xargs -a "${LOCK_FILE}" apt-get install -y --no-install-recommends
+}
+
+generate_lock_file() {
+  echo "🔒 Generating lock file at ${LOCK_FILE}..."
+  mkdir -p "${DEVTOOLS_LOCKS}"
+  dpkg-query -W -f='${Package}=${Version}\n' > "${LOCK_FILE}"
+}
+
+fetch_and_verify_source() {
+  echo "⬇️  Downloading ImageMagick source..."
+  curl -sSL "${SOURCE_URL}" -o "${IMAGEMAGICK_TARBALL}"
+
+  echo "🔐 Verifying SHA256..."
+  actual_sha256=$(sha256sum "${IMAGEMAGICK_TARBALL}" | awk '{print $1}')
+  [[ "${actual_sha256}" == "${IMAGEMAGICK_SHA256}" ]] || {
+    echo "❌ SHA256 mismatch!"; exit 1;
+  }
+
+  echo "🔐 Verifying MD5..."
+  actual_md5=$(md5sum "${IMAGEMAGICK_TARBALL}" | awk '{print $1}')
+  [[ "${actual_md5}" == "${IMAGEMAGICK_MD5}" ]] || {
+    echo "❌ MD5 mismatch!"; exit 1;
+  }
+
+  echo "✅ Checksums verified."
+}
+
+extract_and_build() {
+  echo "📂 Extracting and building..."
+  mkdir -p "${IMAGEMAGICK_SRC_DIR}"
+  tar -xzf "${IMAGEMAGICK_TARBALL}" --strip-components=1 -C "${IMAGEMAGICK_SRC_DIR}"
+  cd "${IMAGEMAGICK_SRC_DIR}"
+
+  ./configure \
+    --prefix="${IMAGEMAGICK_PREFIX}" \
+    --enable-hdri \
+    --enable-shared \
+    --enable-static \
+    --with-autotrace \
+    --with-bzlib \
+    --with-djvu \
+    --with-dps \
+    --with-fftw \
+    --with-flif \
+    --with-fontconfig \
+    --with-freetype \
+    --with-gslib \
+    --with-gvc \
+    --with-heic \
+    --with-jemalloc \
+    --with-lcms \
+    --with-lqr \
+    --with-modules \
+    --with-openexr \
+    --with-perl \
+    --with-quantum-depth=16 \
+    --with-raw \
+    --with-rsvg \
+    --with-uhdr \
+    --with-utilities \
+    --with-webp \
+    --with-wmf \
+    --with-x
+
+  local num_jobs
+  num_jobs="$(nproc)"
+  make -j"${num_jobs}"
+  make install
+  ldconfig
+}
+
+symlink_binaries() {
+  echo "🔗 Linking binaries to ${DEVTOOLS_BIN}..."
+  mkdir -p "${DEVTOOLS_BIN}"
+  for bin in "${IMAGEMAGICK_PREFIX}/bin/"*; do
+    ln -sf "${bin}" "${DEVTOOLS_BIN}/$(basename "${bin}")"
+  done
+}
+
+cleanup() {
+  echo "🧹 Cleaning up..."
+  rm -rf "${IMAGEMAGICK_TARBALL}" "${IMAGEMAGICK_SRC_DIR}"
+}
+
+verify_install() {
+  echo "🔍 Verifying ImageMagick install..."
+  "${DEVTOOLS_BIN}/magick" -version
+}
+
+main() {
+  trap cleanup EXIT
+
+  case "${1:-}" in
+    --lock)
+      install_deps
+      generate_lock_file
+      fetch_and_verify_source
+      extract_and_build
+    #   symlink_binaries
+      verify_install
+      ;;
+    --from-lock)
+      install_deps_from_lock
+    #   symlink_binaries
+      verify_install
+      ;;
+    "")
+      install_deps
+      fetch_and_verify_source
+      extract_and_build
+    #   symlink_binaries
+      verify_install
+      ;;
+    *)
+      usage
+      ;;
+  esac
+
+  echo "🎉 Done."
+}
+
+main "$@"

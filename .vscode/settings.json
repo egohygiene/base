@@ -20,6 +20,32 @@
     "cSpell.maxDuplicateProblems": 20,
     "cSpell.mergeCSpellSettings": true,
     "cSpell.useGitignore": true,
+    "cSpell.customDictionaries": {
+      "project-words": {
+        "path": "${workspaceFolder}/.vscode/dictionaries/project-words.dictionary",
+        "addWords": true
+      },
+      "backend-terms": {
+        "path": "${workspaceFolder}/.vscode/dictionaries/backend-terms.dictionary",
+        "addWords": false
+      },
+      "devops-cloud-terms": {
+        "path": "${workspaceFolder}/.vscode/dictionaries/devops-cloud-terms.dictionary",
+        "addWords": false
+      },
+      "frontend-terms": {
+        "path": "${workspaceFolder}/.vscode/dictionaries/frontend-terms.dictionary",
+        "addWords": false
+      },
+      "programming-terms": {
+        "path": "${workspaceFolder}/.vscode/dictionaries/programming-terms.dictionary",
+        "addWords": false
+      },
+      "software-terms": {
+        "path": "${workspaceFolder}/.vscode/dictionaries/software-terms.dictionary",
+        "addWords": false
+      }
+    },
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.codeActionsOnSave": {

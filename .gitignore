@@ -50,7 +50,7 @@ Desktop.ini
 # .env.local
 .envrc
 *.local.json
-*.lock
+# *.lock
 
 # Specific tools
 .history/
