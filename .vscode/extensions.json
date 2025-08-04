@@ -29,6 +29,7 @@
         "coolbear.systemd-unit-file",
         "jetmartin.bats",
         "ms-vscode.cpptools-extension-pack",
-        "ms-vscode.cpptools"
+        "ms-vscode.cpptools",
+        "donjayamanne.githistory"
     ]
 }

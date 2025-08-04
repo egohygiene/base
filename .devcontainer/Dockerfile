@@ -25,18 +25,18 @@ ARG LC_ALL=en_US.UTF-8
 ENV WORKSPACE_HOME=/workspace
 
 # Location where additional development utilities are installed
-ENV DEVTOOLS_HOME=/opt/devtools
-ENV DEVTOOLS_BIN="${DEVTOOLS_HOME}/bin"
-ENV DEVTOOLS_TOOLBOX="${DEVTOOLS_HOME}/toolbox"
-ENV DEVTOOLS_CACHE="${DEVTOOLS_HOME}/cache"
-ENV DEVTOOLS_LOGS="${DEVTOOLS_HOME}/logs"
-ENV DEVTOOLS_CONFIG="${DEVTOOLS_HOME}/config"
-ENV DEVTOOLS_LIB="${DEVTOOLS_HOME}/lib"
-ENV DEVTOOLS_LOCKS="${DEVTOOLS_HOME}/locks"
-ENV DEVTOOLS_FONTS="${DEVTOOLS_HOME}/fonts"
-ENV DEVTOOLS_RUNTIME="${DEVTOOLS_HOME}/runtime"
-ENV DEVTOOLS_APPS="${DEVTOOLS_HOME}/apps"
-ENV APT_CACHE_DIR="${DEVTOOLS_CACHE}/apt"
+ENV UNIVERSAL_HOME=/opt/devtools
+ENV UNIVERSAL_BIN="${UNIVERSAL_HOME}/bin"
+ENV UNIVERSAL_TOOLBOX="${UNIVERSAL_HOME}/toolbox"
+ENV UNIVERSAL_CACHE="${UNIVERSAL_HOME}/cache"
+ENV UNIVERSAL_LOGS="${UNIVERSAL_HOME}/logs"
+ENV UNIVERSAL_CONFIG="${UNIVERSAL_HOME}/config"
+ENV UNIVERSAL_LIB="${UNIVERSAL_HOME}/lib"
+ENV UNIVERSAL_LOCKS="${UNIVERSAL_HOME}/locks"
+ENV UNIVERSAL_FONTS="${UNIVERSAL_HOME}/fonts"
+ENV UNIVERSAL_RUNTIME="${UNIVERSAL_HOME}/runtime"
+ENV UNIVERSAL_APPS="${UNIVERSAL_HOME}/apps"
+ENV APT_CACHE_DIR="${UNIVERSAL_CACHE}/apt"
 
 # Core environment variables for non-interactive apt operations and consistent Python behavior.
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -74,37 +74,37 @@ ENV DEBIAN_FRONTEND=noninteractive \
     GIT_PAGER=less
 
 # XDG Base Directories: https://wiki.archlinux.org/title/XDG_Base_Directory
-ENV XDG_CONFIG_HOME=${DEVTOOLS_CONFIG} \
-    XDG_CACHE_HOME=${DEVTOOLS_CACHE} \
-    XDG_DATA_HOME=${DEVTOOLS_TOOLBOX} \
-    XDG_STATE_HOME=${DEVTOOLS_RUNTIME}
+ENV XDG_CONFIG_HOME=${UNIVERSAL_CONFIG} \
+    XDG_CACHE_HOME=${UNIVERSAL_CACHE} \
+    XDG_DATA_HOME=${UNIVERSAL_TOOLBOX} \
+    XDG_STATE_HOME=${UNIVERSAL_RUNTIME} \
+    XDG_CONFIG_DIRS="${UNIVERSAL_CONFIG}:/etc/xdg"
 
 # Add user application .desktop files to gnome.
 # https://help.gnome.org/admin//system-admin-guide/2.32/menustructure-desktopentry.html.en
-ENV XDG_DATA_DIRS="${DEVTOOLS_APPS}:${XDG_DATA_DIRS}"
+ENV XDG_DATA_DIRS="${UNIVERSAL_APPS}:/usr/local/share:/usr/share"
 
 # Configure the ASDF version manager.
-ENV ASDF_DIR="${DEVTOOLS_HOME}/.asdf"
+ENV ASDF_DIR="${UNIVERSAL_HOME}/.asdf"
 ENV ASDF_DATA_DIR="${ASDF_DIR}/data"
 ENV ASDF_SHIMS_DIR="${ASDF_DATA_DIR}/shims"
 
 # Taskfile installation directory
-ENV TASKFILE_HOME_DIR="${DEVTOOLS_HOME}/.task"
+ENV TASKFILE_HOME_DIR="${UNIVERSAL_HOME}/.task"
 
 # Prepend devtool locations to the PATH for easy access
-ENV PATH="${DEVTOOLS_BIN}:${DEVTOOLS_BIN}/install:${DEVTOOLS_BIN}/tests:${DEVTOOLS_TOOLBOX}:${TASKFILE_HOME_DIR}:${ASDF_DIR}/bin:${ASDF_SHIMS_DIR}:${PATH}"
-
+ENV PATH="${UNIVERSAL_BIN}:${UNIVERSAL_BIN}/install:${UNIVERSAL_BIN}/tests:${UNIVERSAL_TOOLBOX}:${TASKFILE_HOME_DIR}:${ASDF_DIR}/bin:${ASDF_SHIMS_DIR}:${PATH}"
 
 # Set working directory
 WORKDIR ${WORKSPACE_HOME}
 
 # Copy custom shell scripts and binaries
-COPY --chown=vscode:vscode shell/bin/ ${DEVTOOLS_BIN}/
-RUN chmod +x ${DEVTOOLS_BIN}/*
+COPY --chown=vscode:vscode shell/bin/ ${UNIVERSAL_BIN}/
+RUN chmod +x ${UNIVERSAL_BIN}/*
 
 # COPY custom shell library
-COPY --chown=vscode:vscode shell/lib/ ${DEVTOOLS_LIB}/
-RUN find ${DEVTOOLS_LIB} -type f -name "*.sh" -exec chmod +x {} \;
+COPY --chown=vscode:vscode shell/lib/ ${UNIVERSAL_LIB}/
+RUN find ${UNIVERSAL_LIB} -type f -name "*.sh" -exec chmod +x {} \;
 
 # Copy configuration files for apt and dpkg
 COPY shell/etc/dpkg/dpkg.cfg.d/*.conf /etc/dpkg/dpkg.cfg.d/
@@ -145,7 +145,7 @@ ENV INSTALL_IMAGEMAGICK=${INSTALL_IMAGEMAGICK} \
     IMAGEMAGICK_VERSION=${IMAGEMAGICK_VERSION} \
     IMAGEMAGICK_SHA256=${IMAGEMAGICK_SHA256} \
     IMAGEMAGICK_MD5=${IMAGEMAGICK_MD5} \
-    IMAGEMAGICK_PREFIX=${DEVTOOLS_TOOLBOX}/imagemagick
+    IMAGEMAGICK_PREFIX=${UNIVERSAL_TOOLBOX}/imagemagick
 
 ENV PATH="${IMAGEMAGICK_PREFIX}/bin:${PATH}" \
     PKG_CONFIG_PATH="${IMAGEMAGICK_PREFIX}/lib/pkgconfig:${PKG_CONFIG_PATH}" \
@@ -159,7 +159,7 @@ FROM base AS texlive
 ARG INSTALL_TEXLIVE=false
 
 # Set texlive directories.
-ENV TEXLIVE_INSTALL_PREFIX="${DEVTOOLS_TOOLBOX}/texlive"
+ENV TEXLIVE_INSTALL_PREFIX="${UNIVERSAL_TOOLBOX}/texlive"
 ENV TEXMFHOME="${TEXLIVE_INSTALL_PREFIX}/texmf"
 ENV TEXMFVAR="${TEXLIVE_INSTALL_PREFIX}/.texlive/texmf-var"
 ENV TEXMFCONFIG="${TEXLIVE_INSTALL_PREFIX}/.texlive/texmf-config"
@@ -319,15 +319,15 @@ FROM perl AS devtools
 COPY .tool-versions ${WORKSPACE_HOME}/.tool-versions
 
 # Install asdf version manager and plugins along with taskfile
-RUN /usr/bin/env bash ${DEVTOOLS_BIN}/setup-asdf
+RUN /usr/bin/env bash ${UNIVERSAL_BIN}/setup-asdf
 
 FROM devtools AS final
 
 # Ensure SYS_UID_MAX and SYS_GID_MAX are set to high values, uncommented or inserted
-RUN /usr/bin/env bash ${DEVTOOLS_BIN}/set-sys-uid-max
+RUN /usr/bin/env bash ${UNIVERSAL_BIN}/set-sys-uid-max
 
 # Create the directory in advance so ownership can be adjusted later
-RUN mkdir -p "${DEVTOOLS_HOME}"
+RUN mkdir -p "${UNIVERSAL_HOME}"
 
 # Copy and source custom shell aliases
 COPY shell/aliases /etc/profile.d/aliases.sh
@@ -338,3 +338,145 @@ RUN chmod 644 /etc/profile.d/aliases.sh && \
     >> /etc/bash.bashrc
 
 RUN echo 'source /etc/profile.d/aliases.sh' >> /etc/zsh/zshrc
+
+
+
+FROM base AS environment
+
+# Set cache directories for various tools.
+ENV SONARLINT_USER_HOME="${XDG_CACHE_HOME}/.sonarlint" \
+    YARN_CACHE_FOLDER="${XDG_CACHE_HOME}/yarn" \
+    PUB_CACHE="${XDG_CACHE_HOME}/.pub-cache"
+
+# History settings
+ENV HISTFILE="${XDG_CACHE_HOME}/bash_history" \
+    HISTSIZE=10000 \
+    NODE_REPL_HISTORY="${XDG_CACHE_HOME}/node_repl_history" \
+    LESSHISTFILE="${XDG_CACHE_HOME}/less_history" \
+    LESSHISTSIZE=10000 \
+    REDISCLI_HISTFILE="${XDG_CACHE_HOME}/rediscli_history" \
+    SQLITE_HISTORY="${XDG_CACHE_HOME}/sqlite_history" \
+    PSQL_HISTORY="${XDG_CACHE_HOME}/psql_history" \
+    PGSQL_HISTORY="${XDG_CACHE_HOME}/pgsql_history" \
+    MYSQL_HISTFILE="${XDG_CACHE_HOME}/mysql_history" \
+    MYSQL_HISTSIZE=10000 \
+    CALCHISTFILE="${XDG_CACHE_HOME}/calc_history" \
+    UNITS_HISTORY_FILE="${XDG_CACHE_HOME}/units_history" \
+    RLWRAP_HOME="${XDG_CACHE_HOME}/rlwrap" \
+    GDBHISTFILE="${XDG_CACHE_HOME}/gdb_history"
+
+# Disable telemetry for various tools.
+# https://github.com/beatcracker/toptout
+ENV DO_NOT_TRACK=1 \
+    ANALYTICS="no" \
+    ADBLOCK="true" \
+    DisableTelemetry="True" \
+    TELEMETRY_ENABLED=0 \
+    AZURE_CORE_COLLECT_TELEMETRY=0 \
+    SAM_CLI_TELEMETRY=0 \
+    GOTELEMETRY="off" \
+    STNOUPGRADE=1 \
+    YARN_ENABLE_TELEMETRY=false \
+    NEXT_TELEMETRY_DISABLED=1 \
+    GATSBY_TELEMETRY_DISABLED=1 \
+    STORYBOOK_DISABLE_TELEMETRY=1 \
+    DOTNET_CLI_TELEMETRY_OPTOUT=1 \
+    DOTNET_EnableDiagnostics=0 \
+    DOTNET_INTERACTIVE_CLI_TELEMETRY_OPTOUT=1 \
+    MLDOTNET_CLI_TELEMETRY_OPTOUT="True" \
+    DOTNET_SVCUTIL_TELEMETRY_OPTOUT=1 \
+    CANVAS_LMS_STATS_COLLECTION="opt_out" \
+    TELEMETRY_OPT_IN="" \
+    ET_NO_TELEMETRY="ANY_VALUE" \
+    WERF_TELEMETRY=0 \
+    MSLAB_TELEMETRY_LEVEL="None" \
+    ALLOW_UI_ANALYTICS="false" \
+    NUKE_TELEMETRY_OPTOUT=1 \
+    EARTHLY_DISABLE_ANALYTICS=1 \
+    STRIPE_CLI_TELEMETRY_OPTOUT=1 \
+    FEAST_TELEMETRY="False" \
+    MELTANO_DISABLE_TRACKING="True" \
+    QUILT_DISABLE_USAGE_METRICS="True" \
+    CARBON_TELEMETRY_DISABLED=1 \
+    FASTLANE_OPT_OUT_USAGE="YES" \
+    GATSBY_TELEMETRY_DISABLED=1 \
+    ORYX_DISABLE_TELEMETRY="true" \
+    RASA_TELEMETRY_ENABLED="false" \
+    CLOUDSDK_CORE_DISABLE_USAGE_REPORTING="true" \
+    ALIBUILD_NO_ANALYTICS=1 \
+    HOMEBREW_NO_ANALYTICS=1 \
+    HOMEBREW_NO_ANALYTICS_THIS_RUN=1 \
+    HOMEBREW_NO_AUTO_UPDATE=1 \
+    DECK_ANALYTICS="off" \
+    NG_CLI_ANALYTICS="false" \
+    NG_CLI_ANALYTICS_SHARE="false" \
+    INFLUXD_REPORTING_DISABLED="true" \
+    MOBILE_CENTER_TELEMETRY="off" \
+    ARDUINO_METRICS_ENABLED="false" \
+    POWERSHELL_TELEMETRY_OPTOUT=1 \
+    POWERSHELL_UPDATECHECK="Off" \
+    LYNX_ANALYTICS=0 \
+    DISABLE_QUICKWIT_TELEMETRY=1 \
+    AUTOMAGICA_NO_TELEMETRY="1" \
+    MM_LOGSETTINGS_ENABLEDIAGNOSTICS="false" \
+    MM_SERVICESETTINGS_ENABLESECURITYFIXALERT="false" \
+    APPCD_TELEMETRY=0 \
+    BF_CLI_TELEMETRY="false" \
+    DA_TEST_DISABLE_TELEMETRY=1 \
+    CHOOSENIM_NO_ANALYTICS=1 \
+    COCOAPODS_DISABLE_STATS="true" \
+    CUBEJS_TELEMETRY="false" \
+    HOOKDECK_CLI_TELEMETRY_OPTOUT=1 \
+    VUEDX_TELEMETRY="off" \
+    HINT_TELEMETRY="off" \
+    BATECT_ENABLE_TELEMETRY="false" \
+    DAGSTER_DISABLE_TELEMETRY=1 \
+    TELEMETRY_DISABLED=1 \
+    PROSE_TELEMETRY_OPTOUT=1 \
+    SKU_TELEMETRY="false" \
+    PANTS_ANONYMOUS_TELEMETRY_ENABLED="false" \
+    CHECKPOINT_DISABLE=1 \
+    ARM_DISABLE_TERRAFORM_PARTNER_ID="true" \
+    SCOUT_DISABLE=1 \
+    PULUMI_SKIP_UPDATE_CHECK="true" \
+    DISABLE_CRASH_REPORT=1 \
+    KICS_COLLECT_TELEMETRY=0 \
+    INFRACOST_SELF_HOSTED_TELEMETRY="false" \
+    INFRACOST_SKIP_UPDATE_CHECK="true" \
+    DISABLE_AUTO_UPDATE="true" \
+    BUGGER_OFF=1 \
+    HASURA_GRAPHQL_ENABLE_TELEMETRY="false" \
+    MEILI_NO_ANALYTICS="true" \
+    NC_DISABLE_TELE=1 \
+    ONE_CODEX_NO_TELEMETRY="True" \
+    SQA_OPT_OUT="true" \
+    ROCKSET_CLI_TELEMETRY_OPTOUT=1 \
+    TUIST_STATS_OPT_OUT=1 \
+    AUTOMATEDLAB_TELEMETRY_OPTIN=0 \
+    AUTOMATEDLAB_TELEMETRY_OPTOUT=1 \
+    CHEF_TELEMETRY_OPT_OUT=1 \
+    DASH_DISABLE_TELEMETRY=1 \
+    TYPO3_DISABLE_CORE_UPDATER=1 \
+    REDIRECT_TYPO3_DISABLE_CORE_UPDATER=1 \
+    IG_PRO_OPT_OUT="YES" \
+    PNPPOWERSHELL_DISABLETELEMETRY="true" \
+    PNPPOWERSHELL_UPDATECHECK="false" \
+    SF_DISABLE_TELEMETRY="true" \
+    APOLLO_TELEMETRY_DISABLED=1 \
+    REPORTPORTAL_CLIENT_JS_NO_ANALYTICS="true" \
+    SALTO_TELEMETRY_DISABLE=1 \
+    VSTEST_TELEMETRY_OPTEDIN=0 \
+    NUXT_TELEMETRY_DISABLED=1 \
+    MSSQL_CLI_TELEMETRY_OPTOUT="True" \
+    VAGRANT_CHECKPOINT_DISABLE=1 \
+    VAGRANT_BOX_UPDATE_CHECK_DISABLE=1 \
+    SFDX_DISABLE_TELEMETRY="true" \
+    RESTLER_TELEMETRY_OPTOUT=1 \
+    TEEM_DISABLE="true" \
+    F5_ALLOW_TELEMETRY="false" \
+    REACT_APP_WEBINY_TELEMETRY="false" \
+    STRAPI_TELEMETRY_DISABLED="true" \
+    STRAPI_DISABLE_UPDATE_NOTIFICATION="true" \
+    SLS_TRACKING_DISABLED=1 \
+    SLS_TELEMETRY_DISABLED=1 \
+    SUGGESTIONS_OPT_OUT=1

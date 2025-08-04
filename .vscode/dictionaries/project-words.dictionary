@@ -24,6 +24,7 @@ btmp
 Buildx
 bzlib
 caddyfile
+CALCHISTFILE
 ccache
 cdrom
 cfnlintrc
@@ -52,6 +53,7 @@ coreutils
 coveragexml
 cpanm
 cpanminus
+CPPLINT
 cpptools
 CUBEJS
 customised
@@ -69,17 +71,22 @@ devcontainer
 devcontainers
 devnet
 DEVSKIM
+DISABLETELEMETRY
 DISTRIB
 DISTRO
 djvu
 dnsutils
+dockerfilelint
 Dockerfiles
+dotenv
 dpage
 dpkg
 ecrc
 egohygiene
 ehthumbs
 emojisense
+ENABLEDIAGNOSTICS
+ENABLESECURITYFIXALERT
 esbenp
 eslintcache
 fakeshell
@@ -95,6 +102,7 @@ fromfile
 frontmatter
 Ganepola
 gdal
+GDBHISTFILE
 geotiff
 ghostscript
 gitmoji
@@ -107,6 +115,8 @@ Hasura
 hdri
 healthcheck
 hier
+HISTFILE
+HISTSIZE
 hmac
 Hoockdeck
 HOOKDECK
@@ -140,6 +150,8 @@ LATEXMK
 lcms
 ldconfig
 LDFLAGS
+LESSHISTFILE
+LESSHISTSIZE
 levelname
 libavif
 libblosc
@@ -209,11 +221,13 @@ LISTBUGS
 LISTCHANGES
 lmodern
 loglevel
+LOGSETTINGS
 lscpu
 luacheck
 luacheckrc
 lxcfs
 lycheecache
+lycheeignore
 magick
 matthewpi
 Meili
@@ -282,6 +296,7 @@ psscriptanalyzer
 Pulumi
 pwgen
 pycache
+pydocstyle
 pylance
 pylint
 pylintrc
@@ -305,6 +320,7 @@ Rasa
 rdepends
 readlink
 realpath
+rediscli
 reexec
 REGEN
 remarkrc
@@ -314,9 +330,11 @@ requiretty
 RESTler
 RGBA
 richterger
+rlwrap
 rmem
 Roboto
 Rockset
+ROSLYNATOR
 rstcheck
 rsvg
 RUBOCOP
@@ -326,6 +344,7 @@ Sanjula
 sarif
 scalafix
 Scaleway
+SERVICESETTINGS
 setgid
 sfctl
 sfdx
@@ -338,6 +357,7 @@ showformat
 showmanual
 snakefmt
 snakemake
+sonarlint
 Sourcegraph
 sqlfluff
 STNOUPGRADE
@@ -378,7 +398,9 @@ timesyncd
 timonwong
 tmpfs
 toplevel
+trivycache
 truecolor
+trufflehogignore
 tsqllint
 tsqllintrc
 TTYGROUP
@@ -411,11 +433,3 @@ xaver
 xclip
 xsel
 ZSTD
-CPPLINT
-pydocstyle
-trufflehogignore
-lycheeignore
-trivycache
-ROSLYNATOR
-dockerfilelint
-dotenv
