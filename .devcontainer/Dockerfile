@@ -21,6 +21,10 @@ ARG LANGUAGE=en_US:en
 ARG TZ=UTC
 ARG LC_ALL=en_US.UTF-8
 
+ARG NODE_OPTIONS="--max-old-space-size=4096 --max-new-space-size=2048 --max-semi-space-size=512"
+
+# ENV NODE_OPTIONS="--max-old-space-size=4096 --report-directory=$USER_SYS_REPORTS/node"
+
 # Set workspace home directory
 ENV WORKSPACE_HOME=/workspace
 
@@ -65,6 +69,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
     DO_NOT_TRACK=1 \
     PYTHONWARNINGS=default \
     CLICOLOR_FORCE=1 \
+    CLICOLOR=1 \
     LESS=-R \
     COLORTERM=truecolor \
     FORCE_COLOR=1 \
@@ -346,7 +351,8 @@ FROM base AS environment
 # Set cache directories for various tools.
 ENV SONARLINT_USER_HOME="${XDG_CACHE_HOME}/.sonarlint" \
     YARN_CACHE_FOLDER="${XDG_CACHE_HOME}/yarn" \
-    PUB_CACHE="${XDG_CACHE_HOME}/.pub-cache"
+    PUB_CACHE="${XDG_CACHE_HOME}/.pub-cache" \
+    __GL_SHADER_DISK_CACHE_PATH="${XDG_CACHE_HOME}/.nv"
 
 # History settings
 ENV HISTFILE="${XDG_CACHE_HOME}/bash_history" \
