@@ -10,7 +10,6 @@ env:
   PATH: .
 
 tasks:
-
   setup:logs:
     desc: "Ensure logs directory exists"
     cmds:
@@ -137,23 +136,57 @@ tasks:
     desc: "CSHARP_ROSLYNATOR"
     cmds: [{ task: run, vars: { MEGALINTER_ARGS: "--env ENABLE_LINTERS=CSHARP_ROSLYNATOR" } }]
 
+  css-scss-lint:
+    desc: "CSS_SCSS_LINT"
+    cmds: [{ task: run, vars: { MEGALINTER_ARGS: "--env ENABLE_LINTERS=CSS_SCSS_LINT" } }]
+
+  css-stylelint:
+    desc: "CSS_STYLELINT"
+    cmds: [{ task: run, vars: { MEGALINTER_ARGS: "--env ENABLE_LINTERS=CSS_STYLELINT" } }]
+
+  c-clang-format:
+    desc: "C_CLANG_FORMAT"
+    cmds: [{ task: run, vars: { MEGALINTER_ARGS: "--env ENABLE_LINTERS=C_CLANG_FORMAT" } }]
+
+  c-cpplint:
+    desc: "C_CPPLINT"
+    cmds: [{ task: run, vars: { MEGALINTER_ARGS: "--env ENABLE_LINTERS=C_CPPLINT" } }]
+
+  dart:
+    desc: "DART_DARTANALYZER"
+    cmds: [{ task: run, vars: { MEGALINTER_ARGS: "--env ENABLE_LINTERS=DART_DARTANALYZER" } }]
+
+  dockerfilelint:
+    desc: "DOCKERFILE_DOCKERFILELINT"
+    cmds: [{ task: run, vars: { MEGALINTER_ARGS: "--env ENABLE_LINTERS=DOCKERFILE_DOCKERFILELINT" } }]
+
+  hadolint:
+    desc: "DOCKERFILE_HADOLINT"
+    cmds: [{ task: run, vars: { MEGALINTER_ARGS: "--env ENABLE_LINTERS=DOCKERFILE_HADOLINT" } }]
+
+  editorconfig:
+    desc: "EDITORCONFIG_EDITORCONFIG_CHECKER"
+    cmds: [{ task: run, vars: { MEGALINTER_ARGS: "--env ENABLE_LINTERS=EDITORCONFIG_EDITORCONFIG_CHECKER" } }]
+
+  dotenv-linter:
+    desc: "ENV_DOTENV_LINTER"
+    cmds: [{ task: run, vars: { MEGALINTER_ARGS: "--env ENABLE_LINTERS=ENV_DOTENV_LINTER" } }]
+
+  gherkin:
+    desc: "GHERKIN_GHERKIN_LINT"
+    cmds: [{ task: run, vars: { MEGALINTER_ARGS: "--env ENABLE_LINTERS=GHERKIN_GHERKIN_LINT" } }]
+
+  git-diff:
+    desc: "GIT_GIT_DIFF"
+    cmds: [{ task: run, vars: { MEGALINTER_ARGS: "--env ENABLE_LINTERS=GIT_GIT_DIFF" } }]
+
+
+
   copypaste:
     desc: "Run jscpd for copy/paste detection"
     cmds:
       - jscpd --config .jscpd.json
 
-
-
-        # "lint:css-scss-lint": "npm run lint:base -- --env ENABLE_LINTERS=CSS_SCSS_LINT",
-        # "lint:css-stylelint": "npm run lint:base -- --env ENABLE_LINTERS=CSS_STYLELINT",
-        # "lint:c-clang-format": "npm run lint:base -- --env ENABLE_LINTERS=C_CLANG_FORMAT",
-        # "lint:c-cpplint": "npm run lint:base -- --env ENABLE_LINTERS=C_CPPLINT",
-        # "lint:dart": "npm run lint:base -- --env ENABLE_LINTERS=DART_DARTANALYZER",
-        # "lint:dockerfile-dockerfilelint": "npm run lint:base -- --env ENABLE_LINTERS=DOCKERFILE_DOCKERFILELINT",
-        # "lint:dockerfile-hadolint": "npm run lint:base -- --env ENABLE_LINTERS=DOCKERFILE_HADOLINT",
-        # "lint:editorconfig": "npm run lint:base -- --env ENABLE_LINTERS=EDITORCONFIG_EDITORCONFIG_CHECKER",
-        # "lint:env-dotenv-linter": "npm run lint:base -- --env ENABLE_LINTERS=ENV_DOTENV_LINTER",
-        # "lint:gherkin": "npm run lint:base -- --env ENABLE_LINTERS=GHERKIN_GHERKIN_LINT",
         # "lint:git-diff": "npm run lint:base -- --env ENABLE_LINTERS=GIT_GIT_DIFF",
         # "lint:go-golangci-lint": "npm run lint:base -- --env ENABLE_LINTERS=GO_GOLANGCI_LINT",
         # "lint:go-revive": "npm run lint:base -- --env ENABLE_LINTERS=GO_REVIVE",

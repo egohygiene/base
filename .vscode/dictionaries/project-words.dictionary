@@ -416,3 +416,6 @@ pydocstyle
 trufflehogignore
 lycheeignore
 trivycache
+ROSLYNATOR
+dockerfilelint
+dotenv
