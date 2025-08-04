@@ -129,7 +129,13 @@ tasks:
     desc: "CSHARP_CSHARPIER"
     cmds: [{ task: run, vars: { MEGALINTER_ARGS: "--env ENABLE_LINTERS=CSHARP_CSHARPIER" } }]
 
+  csharp-dotnet-format:
+    desc: "CSHARP_DOTNET_FORMAT"
+    cmds: [{ task: run, vars: { MEGALINTER_ARGS: "--env ENABLE_LINTERS=CSHARP_DOTNET_FORMAT" } }]
 
+  csharp-roslynator:
+    desc: "CSHARP_ROSLYNATOR"
+    cmds: [{ task: run, vars: { MEGALINTER_ARGS: "--env ENABLE_LINTERS=CSHARP_ROSLYNATOR" } }]
 
   copypaste:
     desc: "Run jscpd for copy/paste detection"
@@ -138,26 +144,6 @@ tasks:
 
 
 
-        # "lint:mypy": "npm run lint:base -- --env ENABLE_LINTERS=PYTHON_MYPY",
-        # "lint:actionlint": "npm run lint:base -- --env ENABLE_LINTERS=ACTION_ACTIONLINT",
-        # "lint:ansible": "npm run lint:base -- --env ENABLE_LINTERS=ANSIBLE_ANSIBLE_LINT",
-        # "lint:spectral": "npm run lint:base -- --env ENABLE_LINTERS=API_SPECTRAL",
-        # "lint:arm-ttk": "npm run lint:base -- --env ENABLE_LINTERS=ARM_ARM_TTK",
-        # "lint:bash_exec": "npm run lint:base -- --env ENABLE_LINTERS=BASH_EXEC",
-        # "lint:shellcheck": "npm run lint:base -- --env ENABLE_LINTERS=BASH_SHELLCHECK",
-        # "lint:shfmt": "npm run lint:base -- --env ENABLE_LINTERS=BASH_SHFMT",
-        # "lint:bicep": "npm run lint:base -- --env ENABLE_LINTERS=BICEP_BICEP_LINT",
-        # "lint:bicep-linter": "npm run lint:base -- --env ENABLE_LINTERS=BICEP_BICEP_LINTER",
-        # "lint:clojure-cljstyle": "npm run lint:base -- --env ENABLE_LINTERS=CLOJURE_CLJSTYLE",
-        # "lint:clojure-clj-kondo": "npm run lint:base -- --env ENABLE_LINTERS=CLOJURE_CLJ_KONDO",
-        # "lint:cloudformation": "npm run lint:base -- --env ENABLE_LINTERS=CLOUDFORMATION_CFN_LINT",
-        # "lint:coffeelint": "npm run lint:base -- --env ENABLE_LINTERS=COFFEE_COFFEELINT",
-        # "lint:cpp-clang-format": "npm run lint:base -- --env ENABLE_LINTERS=CPP_CLANG_FORMAT",
-        # "lint:cpp-cpplint": "npm run lint:base -- --env ENABLE_LINTERS=CPP_CPPLINT",
-        # "lint:credentials-secretlint": "npm run lint:base -- --env ENABLE_LINTERS=CREDENTIALS_SECRETLINT",
-        # "lint:csharp-csharpier": "npm run lint:base -- --env ENABLE_LINTERS=CSHARP_CSHARPIER",
-        # "lint:csharp-dotnet-format": "npm run lint:base -- --env ENABLE_LINTERS=CSHARP_DOTNET_FORMAT",
-        # "lint:csharp-roslynator": "npm run lint:base -- --env ENABLE_LINTERS=CSHARP_ROSLYNATOR",
         # "lint:css-scss-lint": "npm run lint:base -- --env ENABLE_LINTERS=CSS_SCSS_LINT",
         # "lint:css-stylelint": "npm run lint:base -- --env ENABLE_LINTERS=CSS_STYLELINT",
         # "lint:c-clang-format": "npm run lint:base -- --env ENABLE_LINTERS=C_CLANG_FORMAT",
