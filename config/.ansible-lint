@@ -10,6 +10,11 @@ exclude_paths:
     - package-lock.json
     - yarn.lock
     - .cache/
+    - .next/
+    - .nuxt/
+    - .vercel/
+    - tasks/
+    - config/
     - reports/
     - .venv/
     - venv/
@@ -27,3 +32,8 @@ exclude_paths:
     - logs/
     - coverage/
     - node_modules/
+    - "**/Taskfile.yml"
+    - "**/taskfile.yml"
+    - "**/Taskfile.yaml"
+    - "**/taskfile.yaml"
+    - "**/.megalinter.yml"

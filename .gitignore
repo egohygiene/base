@@ -93,3 +93,6 @@ lychee.out
 .trivycache/
 
 reports
+
+.ruff_cache
+.ansible
