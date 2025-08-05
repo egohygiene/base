@@ -65,8 +65,10 @@ ENV DEBIAN_FRONTEND=noninteractive \
     DO_NOT_TRACK=1 \
     PYTHONWARNINGS=default \
     CLICOLOR_FORCE=1 \
+    CLICOLOR=1 \
     LESS=-R \
     COLORTERM=truecolor \
+    GCC_COLORS="error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01" \
     FORCE_COLOR=1 \
     EDITOR=code \
     VISUAL=code \
@@ -346,7 +348,31 @@ FROM base AS environment
 # Set cache directories for various tools.
 ENV SONARLINT_USER_HOME="${XDG_CACHE_HOME}/.sonarlint" \
     YARN_CACHE_FOLDER="${XDG_CACHE_HOME}/yarn" \
-    PUB_CACHE="${XDG_CACHE_HOME}/.pub-cache"
+    PUB_CACHE="${XDG_CACHE_HOME}/.pub-cache" \
+    __GL_SHADER_DISK_CACHE_PATH="${XDG_CACHE_HOME}/.nv" \
+    HOMEBREW_CACHE="${XDG_CACHE_HOME}/homebrew" \
+    KSCRIPT_CACHE_DIR="${XDG_CACHE_HOME}/kscript" \
+    PYTHON_EGG_CACHE="${XDG_CACHE_HOME}/.python-eggs" \
+    PEX_ROOT="${XDG_CACHE_HOME}/.pex" \
+    MYPY_CACHE_DIR="${XDG_CACHE_HOME}/mypy" \
+    CUDA_CACHE_PATH="${XDG_CACHE_HOME}/nv" \
+    CALIBRE_CACHE_DIRECTORY="${XDG_CACHE_HOME}/calibre" \
+    SOLARGRAPH_CACHE="${XDG_CACHE_HOME}/solargraph" \
+    XCOMPOSECACHE="${XDG_CACHE_HOME}/X11/xcompose" \
+    DVDCSS_CACHE="${XDG_CACHE_HOME}/dvdcss" \
+    XMONAD_CACHE_DIR="${XDG_CACHE_HOME}/xmonad" \
+    BUNDLE_USER_CACHE="${XDG_CACHE_HOME}/bundle" \
+    GEM_SPEC_CACHE="${XDG_CACHE_HOME}/gem" \
+    ICEAUTHORITY="${XDG_CACHE_HOME}/ICEauthority" \
+    PYLINTHOME="${XDG_CACHE_HOME}/pylint" \
+    STARSHIP_CACHE="${XDG_CACHE_HOME}/starship" \
+    ALTUSERXSESSION="${XDG_CACHE_HOME}/X11/Xsession" \
+    USERXSESSION="${XDG_CACHE_HOME}/X11/xsession" \
+    USERXSESSIONRC="${XDG_CACHE_HOME}/X11/xsessionrc" \
+    SINGULARITY_CACHEDIR="${XDG_CACHE_HOME}/singularity" \
+    RUFF_CACHE_DIR="${XDG_CACHE_HOME}/ruff" \
+    EM_CACHE="$XDG_CACHE_HOME/emscripten/cache" \
+    HOUDINI_USER_PREF_DIR="$XDG_CACHE_HOME/houdini__HVER__"
 
 # History settings
 ENV HISTFILE="${XDG_CACHE_HOME}/bash_history" \
@@ -363,7 +389,8 @@ ENV HISTFILE="${XDG_CACHE_HOME}/bash_history" \
     CALCHISTFILE="${XDG_CACHE_HOME}/calc_history" \
     UNITS_HISTORY_FILE="${XDG_CACHE_HOME}/units_history" \
     RLWRAP_HOME="${XDG_CACHE_HOME}/rlwrap" \
-    GDBHISTFILE="${XDG_CACHE_HOME}/gdb_history"
+    GDBHISTFILE="${XDG_CACHE_HOME}/gdb_history" \
+    OCTAVE_HISTFILE="${XDG_CACHE_HOME}/octave-hsts"
 
 # Disable telemetry for various tools.
 # https://github.com/beatcracker/toptout
