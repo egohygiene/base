@@ -143,8 +143,7 @@ ENV ASDF_DIR="${XDG_DATA_HOME}/.asdf" \
     PARALLEL_HOME="${XDG_DATA_HOME}/.parallel" \
     DISTCC_DIR="${XDG_DATA_HOME}/.distcc" \
     ZPLUG_HOME="${XDG_DATA_HOME}/zplug" \
-    RLWRAP_HOME="$XDG_DATA_HOME/rlwrap" \
-    N_PREFIX="$XDG_DATA_HOME/n" \
+    N_PREFIX="${XDG_DATA_HOME}/n" \
     UNISON="${XDG_DATA_HOME}/unison" \
     NB_DIR="${XDG_DATA_HOME}/nb" \
     OPAMROOT="${XDG_DATA_HOME}/opam" \
@@ -208,8 +207,6 @@ ENV ASDF_CONFIG_FILE="${XDG_CONFIG_HOME}/asdf/asdfrc" \
     STARSHIP_CONFIG="${XDG_CONFIG_HOME}/starship.toml" \
     RIPGREP_CONFIG_PATH="${XDG_CONFIG_HOME}/ripgrep/config" \
     TRAVIS_CONFIG_PATH="${XDG_CONFIG_HOME}/travis" \
-    GRIPHOME="${XDG_CONFIG_HOME}/grip" \
-    PARALLEL_HOME="${XDG_CONFIG_HOME}/parallel" \
     OMNISHARPHOME="${XDG_CONFIG_HOME}/omnisharp" \
     DUB_HOME="${XDG_CONFIG_HOME}/dub" \
     EM_CONFIG="${XDG_CONFIG_HOME}/emscripten/config" \
@@ -272,7 +269,6 @@ ENV ASDF_CONFIG_FILE="${XDG_CONFIG_HOME}/asdf/asdfrc" \
     C3270PRO="${XDG_CONFIG_HOME}/c3270/config" \
     SINGULARITY_CONFIGDIR="${XDG_CONFIG_HOME}/singularity"
 
-
 # Set cache directories for various tools.
 ENV SONARLINT_USER_HOME="${XDG_CACHE_HOME}/.sonarlint" \
     NODE_COMPILER_CACHE="${XDG_CACHE_HOME}/node/compiler" \
@@ -301,7 +297,6 @@ ENV SONARLINT_USER_HOME="${XDG_CACHE_HOME}/.sonarlint" \
     SINGULARITY_CACHEDIR="${XDG_CACHE_HOME}/singularity" \
     RUFF_CACHE_DIR="${XDG_CACHE_HOME}/ruff" \
     EM_CACHE="${XDG_CACHE_HOME}/emscripten/cache" \
-    HOUDINI_USER_PREF_DIR="${XDG_CACHE_HOME}/houdini__HVER__" \
     HOMEBREW_TEMP="${XDG_CACHE_HOME}/homebrew/tmp" \
     HOMEBREW_LOGS="${UNIVERSAL_LOGS}/homebrew"
 

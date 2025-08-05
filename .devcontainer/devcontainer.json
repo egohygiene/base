@@ -1,0 +1,31 @@
+{
+  "$schema": "https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainer.schema.json",
+  "name": "development",
+  "dockerComposeFile": ["docker-compose.yml"],
+  "service": "development",
+  "runServices": ["development"],
+  "workspaceFolder": "/workspace",
+  "forwardPorts": [8000, 8084, 8085, 5050, 80, 443, 5173, 9000, 3001],
+//   "postCreateCommand": "task --dir /workspace --taskfile /workspace/Taskfile.yml --yes setup",
+//   "features": {
+//     "ghcr.io/devcontainers/features/docker-in-docker:2.12.2": {
+//       "version": "latest",
+//       "moby": true,
+//       "mobyBuildxVersion": "latest",
+//       "dockerDashComposeVersion": "latest",
+//       "azureDnsAutoDetection": true,
+//       "installDockerBuildx": true,
+//       "installDockerComposeSwitch": true,
+//       "disableIp6tables": false
+//     }
+//   },
+  "mounts": [
+    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.aws,target=/home/vscode/.aws,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,consistency=cached"
+  ],
+  "containerEnv": {},
+  "remoteUser": "vscode",
+  "privileged": true,
+  "capAdd": ["SYS_ADMIN", "SYS_PTRACE"],
+}

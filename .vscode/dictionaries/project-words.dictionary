@@ -493,6 +493,9 @@ wakatime
 CONFIGDIR
 prepl
 vmoptions
+DOOMDIR
+TELE
+libio
 BINDLEPATH
 GQSTATE
 abook
