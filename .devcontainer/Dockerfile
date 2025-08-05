@@ -21,6 +21,10 @@ ARG LANGUAGE=en_US:en
 ARG TZ=UTC
 ARG LC_ALL=en_US.UTF-8
 
+ARG NODE_OPTIONS="--max-old-space-size=4096 --max-new-space-size=2048 --max-semi-space-size=512"
+
+# ENV NODE_OPTIONS="--max-old-space-size=4096 --report-directory=$USER_SYS_REPORTS/node"
+
 # Set workspace home directory
 ENV WORKSPACE_HOME=/workspace
 
