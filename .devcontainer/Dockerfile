@@ -440,7 +440,6 @@ ENV DO_NOT_TRACK=1 \
 # https://nodejs.org/api/cli.html
 ARG NODE_OPTIONS="\
   --max-old-space-size=4096 \
-  --max-new-space-size=2048 \
   --max-semi-space-size=512 \
   --report-directory=${UNIVERSAL_REPORTS}/node \
   --diagnostic-dir=${XDG_CACHE_HOME}/node/diagnostics \
@@ -453,22 +452,22 @@ ENV TASKFILE_HOME_DIR="${UNIVERSAL_HOME}/.task"
 # Prepend devtool locations to the PATH for easy access
 ENV PATH="${UNIVERSAL_BIN}:${UNIVERSAL_BIN}/install:${UNIVERSAL_BIN}/tests:${UNIVERSAL_TOOLBOX}:${TASKFILE_HOME_DIR}:${ASDF_DIR}/bin:${ASDF_SHIMS_DIR}:${PATH}"
 
-# FROM environment AS setup
+FROM environment AS shell
 
-# # Set working directory
-# WORKDIR ${WORKSPACE_HOME}
+# Set working directory
+WORKDIR ${WORKSPACE_HOME}
 
-# # Copy custom shell scripts and binaries
-# COPY --chown=vscode:vscode shell/bin/ ${UNIVERSAL_BIN}/
-# RUN chmod +x ${UNIVERSAL_BIN}/*
+# Copy custom shell scripts and binaries
+COPY --chown=vscode:vscode shell/bin/ ${UNIVERSAL_BIN}/
+RUN chmod +x ${UNIVERSAL_BIN}/*
 
-# # COPY custom shell library
-# COPY --chown=vscode:vscode shell/lib/ ${UNIVERSAL_LIB}/
-# RUN find ${UNIVERSAL_LIB} -type f -name "*.sh" -exec chmod +x {} \;
+# COPY custom shell library
+COPY --chown=vscode:vscode shell/lib/ ${UNIVERSAL_LIB}/
+RUN find ${UNIVERSAL_LIB} -type f -name "*.sh" -exec chmod +x {} \;
 
-# # Copy configuration files for apt and dpkg
-# COPY shell/etc/dpkg/dpkg.cfg.d/*.conf /etc/dpkg/dpkg.cfg.d/
-# COPY shell/etc/apt/apt.conf.d/*.conf /etc/apt/apt.conf.d/
+# Copy configuration files for apt and dpkg
+COPY shell/etc/dpkg/dpkg.cfg.d/*.conf /etc/dpkg/dpkg.cfg.d/
+COPY shell/etc/apt/apt.conf.d/*.conf /etc/apt/apt.conf.d/
 
 # # Copy configuration files
 # # COPY shell/config/.gitignore_global
