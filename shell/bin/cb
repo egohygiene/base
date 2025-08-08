@@ -1,110 +1,270 @@
 #!/usr/bin/env bash
-# cb: Copies the contents of a file to the system clipboard (cross-platform)
+# shellcheck shell=bash
+set -Eeuo pipefail
 
-set -euo pipefail
+## @file cb
+## @brief Copy text to the system clipboard (cross‑platform, stdin/file/args).
+## @version 1.1.0
+## @description
+##   A universal “copy to clipboard” helper:
+##   - Reads from: file (`--file path`), stdin (`--file -` or no args), or trailing args as text.
+##   - Auto‑detects the best clipboard backend: pbcopy (macOS), wl-copy (Wayland),
+##     xclip/xsel (X11), clip.exe/powershell.exe (Windows/WSL).
+##   - Clean logs, strict mode, safe quoting, shfmt/shellcheck friendly.
+## @usage
+##   cb [--file <path>|-] [--no-color] [--debug] [TEXT...]
+##   cb --help | --version
+## @options
+##   --file <path>   Read from file (use '-' for stdin). If omitted and TEXT... present, copies that text.
+##   --no-color      Disable ANSI colors in logs.
+##   --debug         Verbose diagnostics to stderr.
+##   -h, --help      Show help and exit.
+##   -v, --version   Show version and exit.
+## @examples
+##   echo "hello" | cb                   # stdin
+##   cb --file ./notes.txt               # file
+##   cb "Quick brown fox"                # arg text
+## @exitcode
+##   0  on success
+##   1  on usage or runtime error
+##   127 if no supported clipboard backend is found
+## @stdout Nothing on success.
+## @stderr Log messages and errors.
 
+# ----------------------------- configuration ---------------------------------
+
+VERSION="1.1.0"
 USE_COLOR=true
-VERSION="1.0.0"
+DEBUG=false
 
+# ------------------------------- utilities -----------------------------------
+
+## @description Print an ANSI color code (or nothing if color disabled).
+## @arg $1 Color name: red|green|yellow|cyan|reset
 color() {
-    [[ "${USE_COLOR}" == true ]] || return 0
-    case "$1" in
-    red) echo -e "\033[31m" ;;
-    green) echo -e "\033[32m" ;;
-    cyan) echo -e "\033[36m" ;;
-    yellow) echo -e "\033[33m" ;;
-    reset) echo -e "\033[0m" ;;
-    *) echo "" ;;
-    esac
+  [[ "${USE_COLOR}" == true ]] || { printf ''; return 0; }
+  case "${1:-}" in
+    red)    printf '\033[31m' ;;
+    green)  printf '\033[32m' ;;
+    yellow) printf '\033[33m' ;;
+    cyan)   printf '\033[36m' ;;
+    reset)  printf '\033[0m'  ;;
+    *)      printf '' ;;
+  esac
 }
 
+## @description Log a message with a level prefix.
+## @arg $1 Level: info|success|warn|error|debug
+## @arg $@ Message parts
 log() {
-    local type="$1"
-    shift
-    local prefix color_code output
-    case "${type}" in
-    info)
-        prefix="👉"
-        color_code=$(color cyan)
-        ;;
-    success)
-        prefix="✅"
-        color_code=$(color green)
-        ;;
-    warn)
-        prefix="⚠️"
-        color_code=$(color yellow)
-        ;;
-    error)
-        prefix="❌"
-        color_code=$(color red)
-        ;;
-    *)
-        prefix=""
-        color_code=$(color reset)
-        ;;
-    esac
-    output="${color_code}${prefix} $*$(color reset)"
-    if [[ "${type}" == "error" ]]; then
-        printf "%s\n" "${output}" >&2
-        exit 1
-    else
-        printf "%s\n" "${output}"
-    fi
+  local level="${1:-}"; shift || true
+  local prefix c
+  case "${level}" in
+    info)    prefix='👉'; c=$(color cyan) ;;
+    success) prefix='✅'; c=$(color green) ;;
+    warn)    prefix='⚠️'; c=$(color yellow) ;;
+    error)   prefix='❌'; c=$(color red) ;;
+    debug)   [[ "${DEBUG}" == true ]] || return 0; prefix='🐞'; c=$(color cyan) ;;
+    *)       prefix=''; c=$(color reset) ;;
+  esac
+  printf '%s%s %s%s\n' "${c}" "${prefix}" "$*" "$(color reset)" >&2
 }
 
-print_help() {
-    cat <<EOF
-Usage: cb <file>
+## @description Print an error and exit with code.
+## @arg $1 Exit code
+## @arg $@ Message
+die() { local code="$1"; shift || true; log error "$*"; exit "${code}"; }
 
-Copy the contents of a file to the clipboard.
+## @description Ensure a command exists on PATH.
+## @arg $1 Command name
+require_cmd() { command -v "$1" >/dev/null 2>&1; }
+
+# --------------------------- environment detect ------------------------------
+
+## @description Detect OS platform (darwin|linux|windows|other).
+detect_os() {
+  local u
+  u="$(uname -s 2>/dev/null || printf 'unknown')"
+  case "${u}" in
+    Darwin)  printf 'darwin'  ;;
+    Linux)   printf 'linux'   ;;
+    MINGW*|MSYS*|CYGWIN*) printf 'windows' ;;
+    *)       printf 'other'   ;;
+  esac
+}
+
+## @description Detect display server on Linux (wayland|x11|headless).
+detect_display_server() {
+  if [[ -n "${WAYLAND_DISPLAY:-}" ]] || [[ "${XDG_SESSION_TYPE:-}" == "wayland" ]]; then
+    printf 'wayland'
+  elif [[ -n "${DISPLAY:-}" ]]; then
+    printf 'x11'
+  else
+    printf 'headless'
+  fi
+}
+
+## @description Detect if running under WSL (Windows Subsystem for Linux).
+is_wsl() {
+  [[ "${WSL_DISTRO_NAME:-}" != "" ]] || grep -qi 'microsoft' /proc/version 2>/dev/null
+}
+
+# ------------------------------- backends ------------------------------------
+
+## @description Determine the best available clipboard backend.
+## @stdout Prints backend token: pbcopy|wl-copy|xclip|xsel|clip.exe|powershell.exe
+select_backend() {
+  local os ds
+  os="$(detect_os)"
+  ds=''
+
+  if [[ "${os}" == 'darwin' ]] && require_cmd pbcopy; then
+    printf 'pbcopy'; return 0
+  fi
+
+  if [[ "${os}" == 'linux' ]]; then
+    ds="$(detect_display_server)"
+    if [[ "${ds}" == 'wayland' ]] && require_cmd wl-copy; then
+      printf 'wl-copy'; return 0
+    fi
+    if [[ "${ds}" == 'x11' ]] && require_cmd xclip; then
+      printf 'xclip'; return 0
+    fi
+    if [[ "${ds}" == 'x11' ]] && require_cmd xsel; then
+      printf 'xsel'; return 0
+    fi
+    if is_wsl && require_cmd clip.exe; then
+      printf 'clip.exe'; return 0
+    fi
+    if is_wsl && require_cmd powershell.exe; then
+      printf 'powershell.exe'; return 0
+    fi
+  fi
+
+  if [[ "${os}" == 'windows' ]]; then
+    if require_cmd clip; then printf 'clip'; return 0; fi
+    if require_cmd powershell; then printf 'powershell'; return 0; fi
+  fi
+
+  return 1
+}
+
+## @description Copy stdin to clipboard using the chosen backend.
+## @arg $1 Backend token from select_backend
+copy_with_backend() {
+  local backend="${1:-}"
+  case "${backend}" in
+    pbcopy)          pbcopy ;;
+    'wl-copy')       wl-copy ;;
+    xclip)           xclip -selection clipboard ;;
+    xsel)            xsel --input --clipboard ;;
+    clip)            clip ;;
+    'clip.exe')      clip.exe ;;
+    powershell)      powershell -NoProfile -Command 'Set-Clipboard -Value ([Console]::In.ReadToEnd())' ;;
+    'powershell.exe') powershell.exe -NoProfile -Command 'Set-Clipboard -Value ([Console]::In.ReadToEnd())' ;;
+    *) return 1 ;;
+  esac
+}
+
+# ------------------------------- CLI parse -----------------------------------
+
+## @description Print usage help.
+usage() {
+  cat <<'EOF'
+Usage:
+  cb [--file <path>|-] [--no-color] [--debug] [TEXT...]
+  cb --help | --version
 
 Options:
---help       Show this help message
---version    Show script version
+  --file <path>   Read from file (use '-' for stdin). If omitted and TEXT is provided, copies TEXT.
+  --no-color      Disable ANSI colors in logs.
+  --debug         Verbose diagnostics to stderr.
+  -h, --help      Show help and exit.
+  -v, --version   Show version and exit.
+
+Examples:
+  echo "hello" | cb
+  cb --file ./notes.txt
+  cb "Quick brown fox"
 EOF
 }
 
-# ─────────────────────────────────────────────────────────────────────────────
-# Main
-# ─────────────────────────────────────────────────────────────────────────────
+## @description Parse CLI arguments into globals: FROM_FILE, INLINE_TEXT.
+## @arg $@ Raw CLI args
+parse_args() {
+  FROM_FILE=''
+  INLINE_TEXT=()
 
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --file)
+        [[ $# -ge 2 ]] || die 1 "--file requires a path (or '-')"
+        FROM_FILE="$2"; shift
+        ;;
+      --no-color) USE_COLOR=false ;;
+      --debug)    DEBUG=true ;;
+      -h|--help)  usage; exit 0 ;;
+      -v|--version) printf 'cb v%s\n' "${VERSION}"; exit 0 ;;
+      --) shift; break ;;
+      -*)
+        die 1 "Unknown option: $1"
+        ;;
+      *)
+        INLINE_TEXT+=("$1")
+        ;;
+    esac
+    shift
+  done
+
+  # Collect any remaining positional text after '--'
+  if [[ $# -gt 0 ]]; then
+    INLINE_TEXT+=("$@")
+  fi
+
+  # Auto-disable color if not a TTY
+  if [[ ! -t 2 ]]; then USE_COLOR=false; fi
+
+  log debug "Args parsed: FROM_FILE='${FROM_FILE}' TEXT_COUNT=${#INLINE_TEXT[@]}"
+}
+
+# --------------------------------- main --------------------------------------
+
+## @description Read input (file/stdin/args) and copy to clipboard.
 main() {
-    if [[ "${1:-}" == "--help" ]]; then
-        print_help
-        exit 0
-    fi
+  parse_args "$@"
 
-    if [[ "${1:-}" == "--version" ]]; then
-        echo "cb v${VERSION}"
-        exit 0
-    fi
+  local backend
+  if ! backend="$(select_backend)"; then
+    die 127 "No supported clipboard utility found (pbcopy, wl-copy, xclip, xsel, clip/clip.exe, powershell/powershell.exe)."
+  fi
+  log debug "Selected backend: ${backend}"
 
-    if [[ $# -ne 1 ]]; then
-        log error "Usage: cb <file>"
-    fi
-
-    local file="$1"
-
-    if [[ ! -f "${file}" || ! -r "${file}" ]]; then
-        log error "File not found or not readable: ${file}"
-    fi
-
-    if command -v pbcopy &>/dev/null; then
-        pbcopy <"${file}"
-    elif command -v xclip &>/dev/null; then
-        xclip -selection clipboard <"${file}"
-    elif command -v xsel &>/dev/null; then
-        xsel -ib <"${file}"
-    elif command -v clip &>/dev/null; then
-        clip <"${file}"
-    elif command -v powershell &>/dev/null; then
-        powershell -NoProfile -Command "Get-Content -Path '${file}' | Set-Clipboard"
+  # Prepare input stream
+  if [[ -n "${FROM_FILE}" ]]; then
+    if [[ "${FROM_FILE}" == "-" ]]; then
+      log info "Reading from stdin…"
+      copy_with_backend "${backend}"
     else
-        log error "No supported clipboard utility found (pbcopy, xclip, xsel, clip, powershell)"
+      [[ -r "${FROM_FILE}" ]] || die 1 "File not found or not readable: ${FROM_FILE}"
+      log info "Copying file: ${FROM_FILE}"
+      # shellcheck disable=SC2002
+      cat -- "${FROM_FILE}" | copy_with_backend "${backend}"
     fi
+  elif [[ ${#INLINE_TEXT[@]} -gt 0 ]]; then
+    # Join args with spaces, no trailing newline change
+    local joined
+    printf -v joined '%s ' "${INLINE_TEXT[@]}"
+    # Trim trailing space added by printf -v
+    joined="${joined% }"
+    log info "Copying inline text (${#joined} bytes)…"
+    printf '%s' "${joined}" | copy_with_backend "${backend}"
+  else
+    # Default to stdin if nothing specified
+    log info "Reading from stdin…"
+    copy_with_backend "${backend}"
+  fi
 
-    log success "Copied contents of ${file} to clipboard"
+  log success "Copied to clipboard."
 }
 
 main "$@"

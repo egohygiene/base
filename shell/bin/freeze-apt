@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# freeze-apt.sh
+# freeze-apt
 # Generate reproducible APT install state for Docker builds using Ubuntu snapshot service
 
 set -euo pipefail

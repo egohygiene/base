@@ -469,8 +469,152 @@ RUN find ${UNIVERSAL_LIB} -type f -name "*.sh" -exec chmod +x {} \;
 COPY shell/etc/dpkg/dpkg.cfg.d/*.conf /etc/dpkg/dpkg.cfg.d/
 COPY shell/etc/apt/apt.conf.d/*.conf /etc/apt/apt.conf.d/
 
-# # Copy configuration files
-# # COPY shell/config/.gitignore_global
+# Copy configuration files
+COPY shell/config/.gitignore_global
+
+
+FROM shell AS apt-packages
+
+# # Install common development tools and libraries
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked,id=apt-lib \
+    apt-get update -qq && \
+    apt-get upgrade --yes && \
+    apt-get install --yes --no-install-recommends \
+    ansible \
+    apt-rdepends \
+    bat \
+    build-essential \
+    ca-certificates \
+    ccache \
+    chktex \
+    clang \
+    clang-format \
+    clang-tidy \
+    cmake \
+    cpanminus \
+    curl \
+    debtree \
+    direnv \
+    dnsutils \
+    dos2unix \
+    exiftool \
+    eza \
+    ffmpeg \
+    file \
+    fontconfig \
+    fonts-lmodern \
+    fonts-noto \
+    fonts-noto-cjk \
+    fonts-noto-color-emoji \
+    fzf \
+    gawk \
+    gdal-bin \
+    gettext \
+    ghostscript \
+    git \
+    git-lfs \
+    gnupg \
+    graphviz \
+    htop \
+    inkscape \
+    iputils-ping \
+    jq \
+    less \
+    libavif-dev \
+    libblosc-dev \
+    libboost-all-dev \
+    libbz2-dev \
+    libcairo2-dev \
+    libcurl4-openssl-dev \
+    libdb-dev \
+    libde265-dev \
+    libev-dev \
+    libexif-dev \
+    libffi-dev \
+    libgdal-dev \
+    libgdbm-dev \
+    libgeos-dev \
+    libgif-dev \
+    libheif-dev \
+    libimagequant-dev \
+    libjpeg-dev \
+    libkrb5-dev \
+    liblcms2-dev \
+    liblz4-dev \
+    liblzma-dev \
+    libncurses-dev \
+    libnss3-dev \
+    libopenexr-dev \
+    libopenjp2-7-dev \
+    libpango1.0-dev \
+    libperl-dev \
+    libpng-dev \
+    libproj-dev \
+    libraw-dev \
+    libreadline-dev \
+    libspatialindex-dev \
+    libsqlite3-dev \
+    libssl-dev \
+    libtiff-dev \
+    libtool \
+    libvips-dev \
+    libwebp-dev \
+    libxi-dev \
+    libxml2-dev \
+    libxmlsec1-dev \
+    libxslt1-dev \
+    libzstd-dev \
+    llvm \
+    locales \
+    locales-all \
+    logrotate \
+    lsb-release \
+    lsof \
+    make \
+    moreutils \
+    nano \
+    net-tools \
+    netcat-openbsd \
+    ninja-build \
+    nmap \
+    openssh-client \
+    openssl \
+    pandoc \
+    parallel \
+    pkg-config \
+    potrace \
+    procps \
+    proj-bin \
+    psmisc \
+    pwgen \
+    python3 \
+    python3-dev \
+    python3-pip \
+    python3-venv \
+    ripgrep \
+    rsync \
+    software-properties-common \
+    sqlite3 \
+    strace \
+    sudo \
+    sysdig \
+    sysstat \
+    tar \
+    tcpdump \
+    tk-dev \
+    tree \
+    tzdata \
+    unzip \
+    uuid-dev \
+    vim \
+    watch \
+    wget \
+    xsel \
+    xz-utils \
+    yq \
+    zlib1g-dev \
+    zsh
 
 # FROM base AS fonts
 
@@ -541,112 +685,7 @@ COPY shell/etc/apt/apt.conf.d/*.conf /etc/apt/apt.conf.d/
 # # See https://github.com/debuerreotype/docker-debian-artifacts/issues/24#issuecomment-360870939
 # RUN mkdir --parents /usr/share/man/man1
 
-# # Install common development tools and libraries
-# RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
-#     --mount=type=cache,target=/var/lib/apt,sharing=locked,id=apt-lib \
-#     apt-get update -qq && \
-#     apt-get install --yes --no-install-recommends \
-#     ansible \
-#     apt-rdepends \
-#     bat \
-#     build-essential \
-#     ca-certificates \
-#     ccache \
-#     procps \
-#     file \
-#     chktex \
-#     clang-format \
-#     clang-tidy \
-#     clang \
-#     cmake \
-#     cpanminus \
-#     curl \
-#     debtree \
-#     dnsutils \
-#     dos2unix \
-#     ffmpeg \
-#     fontconfig \
-#     fonts-lmodern \
-#     fonts-noto-cjk \
-#     fonts-noto-color-emoji \
-#     fonts-noto \
-#     fzf \
-#     gdal-bin \
-#     gettext \
-#     ghostscript \
-#     git \
-#     gnupg \
-#     graphviz \
-#     htop \
-#     inkscape \
-#     iputils-ping \
-#     jq \
-#     less \
-#     libblosc-dev \
-#     libboost-all-dev \
-#     libbz2-dev \
-#     libcurl4-openssl-dev \
-#     libdb-dev \
-#     libev-dev \
-#     libffi-dev \
-#     libgdal-dev \
-#     libgdbm-dev \
-#     libgeos-dev \
-#     liblcms2-dev \
-#     liblz4-dev \
-#     liblzma-dev \
-#     libncurses-dev \
-#     libnss3-dev \
-#     libperl-dev \
-#     libproj-dev \
-#     libreadline-dev \
-#     libspatialindex-dev \
-#     libsqlite3-dev \
-#     libssl-dev \
-#     libxi-dev \
-#     libxml2-dev \
-#     libxmlsec1-dev \
-#     libxslt1-dev \
-#     libzstd-dev \
-#     llvm \
-#     locales-all \
-#     locales \
-#     logrotate \
-#     lsof \
-#     make \
-#     moreutils \
-#     nano \
-#     net-tools \
-#     netcat-openbsd \
-#     ninja-build \
-#     nmap \
-#     openssh-client \
-#     pandoc \
-#     pkg-config \
-#     proj-bin \
-#     pwgen \
-#     python3-dev \
-#     python3-pip \
-#     python3-venv \
-#     python3 \
-#     ripgrep \
-#     strace \
-#     sudo \
-#     sysdig \
-#     sysstat \
-#     tar \
-#     tcpdump \
-#     tk-dev \
-#     tzdata \
-#     unzip \
-#     uuid-dev \
-#     vim \
-#     wget \
-#     xz-utils \
-#     zlib1g-dev \
-#     zsh \
-#     libtool \
-#     potrace
+
 
 # # COPY --from=fonts /opt/devtools/fonts /opt/devtools/fonts
 # RUN fc-cache -f -v

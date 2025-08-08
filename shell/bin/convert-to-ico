@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Converts an image file to .ico format using ImageMagick's `convert` command.
-# Usage: ./convert-to-ico.sh <image_file>
+# Usage: convert-to-ico <image_file>
 set -euo pipefail
 
 main() {

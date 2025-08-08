@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# freeze-github-release.sh
+# freeze-github-release
 # Outputs reproducible URL, SHA256, and MD5 for a GitHub release tarball or latest branch archive.
 
 set -euo pipefail
