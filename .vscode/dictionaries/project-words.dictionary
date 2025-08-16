@@ -20,6 +20,8 @@ libimagequant
 libexif
 exiftool
 libkrb5
+pacman
+noconfirm
 exitcode
 autocompletions
 autologout
@@ -493,6 +495,11 @@ USERDIR
 nbrc
 K9SCONFIG
 XCOMPOSEFILE
+errexit
+errtrace
+functrace
+pipefail
+nounset
 mplayer
 mathematica
 USERBASE

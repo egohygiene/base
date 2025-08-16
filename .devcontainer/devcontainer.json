@@ -28,5 +28,54 @@
   "containerEnv": {},
   "remoteUser": "vscode",
   "privileged": true,
-  "capAdd": ["SYS_ADMIN", "SYS_PTRACE"]
+  "capAdd": [
+    "SYS_ADMIN",
+    "SYS_PTRACE"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "remcohaszing.schemastore",
+        "Google.arb-editor",
+        "astro-build.astro-vscode",
+        "mads-hartmann.bash-ide-vscode",
+        "BazelBuild.vscode-bazel",
+        "samuelcolvin.jinjahtml",
+        "FelixAngelov.bloc",
+        "matthewpi.caddyfile-support",
+        "qwtel.sqlite-viewer",
+        "adpyke.codesnap",
+        "vsls-contrib.codetour",
+        "vizzuhq.code-viz-stat",
+        "anseki.vscode-color",
+        "ms-azuretools.vscode-docker",
+        "docker.docker",
+        "dbaeumer.vscode-eslint",
+        "adamhartford.vscode-base64",
+        "antfu.vite",
+        "adpyke.vscode-sql-formatter",
+        "stylelint.vscode-stylelint",
+        "svelte.svelte-vscode",
+        "JuanBlanco.solidity",
+        "sibiraj-s.vscode-scss-formatter",
+        "charliermarsh.ruff",
+        "figma.figma-vscode-extension",
+        "vscjava.vscode-java-pack",
+        "mkxml.vscode-filesize",
+        "Dart-Code.flutter",
+        "google.geminicodeassist",
+        "waderyan.gitblame",
+        "golang.go",
+        "googlecloudtools.cloudcode",
+        "richardwillis.vscode-gradle-extension-pack",
+        "naco-siren.gradle-language",
+        "hashicorp.hcl",
+        "hashicorp.terraform",
+        "ms-vscode.hexeditor",
+        "george-alisson.html-preview-vscode",
+        "kisstkondoros.vscode-gutter-preview",
+        "Meezilla.json"
+      ]
+    }
+  }
 }

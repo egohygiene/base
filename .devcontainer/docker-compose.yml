@@ -62,8 +62,10 @@ services:
     hostname: development
     build:
       context: ..
-      target: environment
+      target: final
       dockerfile: .devcontainer/Dockerfile
+      args:
+        - INSTALL_GOOGLE_FONTS=true
     volumes:
       # Mount the repository so that changes on the host are reflected inside the container
       - ..:/workspace:cached

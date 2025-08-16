@@ -11,6 +11,9 @@
 ######################################################################
 FROM mcr.microsoft.com/devcontainers/base:latest AS base
 
+# Set safer shell options for script execution.
+# SHELL ["/bin/bash", "-o", "errexit", "-o", "errtrace", "-o", "functrace", "-o", "nounset", "-o", "pipefail", "-c"]
+
 # TODO: Not sure what could go here.
 
 FROM base AS environment
@@ -470,8 +473,7 @@ COPY shell/etc/dpkg/dpkg.cfg.d/*.conf /etc/dpkg/dpkg.cfg.d/
 COPY shell/etc/apt/apt.conf.d/*.conf /etc/apt/apt.conf.d/
 
 # Copy configuration files
-COPY shell/config/.gitignore_global
-
+# COPY shell/config/.gitignore_global
 
 FROM shell AS apt-packages
 
@@ -499,7 +501,6 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
     dnsutils \
     dos2unix \
     exiftool \
-    eza \
     ffmpeg \
     file \
     fontconfig \
@@ -616,25 +617,32 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
     zlib1g-dev \
     zsh
 
-# FROM base AS fonts
+FROM apt-packages AS fonts
 
-# # Optional Google Fonts installation
-# ARG INSTALL_GOOGLE_FONTS=false
-# ARG GOOGLE_FONTS_SHA_COMMIT=2b5bd4077bd9269cdf3114266603372af6c3222d
-# ARG GOOGLE_FONTS_SHA256=e413e29c18fa727ff4d509280fd432fc0ecb1f6117eb29f2c0a87918d30fe3ad
+#  Optional Google Fonts installation
+ARG INSTALL_GOOGLE_FONTS=false
+ARG GOOGLE_FONTS_SHA_COMMIT=2b5bd4077bd9269cdf3114266603372af6c3222d
+ARG GOOGLE_FONTS_SHA256=e413e29c18fa727ff4d509280fd432fc0ecb1f6117eb29f2c0a87918d30fe3ad
+ARG GOOGLE_FONTS_DIR="/usr/local/share/fonts/google"
 
-# ENV INSTALL_GOOGLE_FONTS=${INSTALL_GOOGLE_FONTS} \
-#     GOOGLE_FONTS_SHA_COMMIT=${GOOGLE_FONTS_SHA_COMMIT} \
-#     GOOGLE_FONTS_SHA256=${GOOGLE_FONTS_SHA256}
+ENV INSTALL_GOOGLE_FONTS=${INSTALL_GOOGLE_FONTS} \
+    GOOGLE_FONTS_SHA_COMMIT=${GOOGLE_FONTS_SHA_COMMIT} \
+    GOOGLE_FONTS_SHA256=${GOOGLE_FONTS_SHA256} \
+    GOOGLE_FONTS_DIR=${GOOGLE_FONTS_DIR}
 
-# RUN --mount=type=cache,target=/var/cache/fonts,sharing=locked,id=google-fonts \
-#     if [ "${INSTALL_GOOGLE_FONTS}" = "true" ]; then \
-#     chmod +x /workspace/scripts/install-google-fonts.sh && \
-#     bash /workspace/scripts/install-google-fonts.sh "/usr/local/share/fonts/google" && \
-#     fc-cache -f -v; \
-#     else \
-#     echo "📁 Skipping Google Fonts install"; \
-#     fi
+RUN --mount=type=cache,target=/var/cache/fonts,sharing=locked,id=google-fonts \
+    bash -Eeuo pipefail -c '\
+      if [[ "${INSTALL_GOOGLE_FONTS}" == "true" ]]; then \
+        install-google-fonts --dest "${GOOGLE_FONTS_DIR}" --no-color && \
+        fc-cache -f "${GOOGLE_FONTS_DIR}" && \
+        echo "✅ Installed Google Fonts into: ${GOOGLE_FONTS_DIR}" && \
+        count=$(find "${GOOGLE_FONTS_DIR}" -type f \( -iname "*.ttf" -o -iname "*.otf" -o -iname "*.ttc" -o -iname "*.otc" \) | wc -l) && \
+        echo "📦 Font files found: ${count}" && \
+        echo "🔎 Sample check (Roboto):" && \
+        fc-list | grep -i "roboto" || true; \
+      else \
+        echo "📁 Skipping Google Fonts install"; \
+      fi'
 
 # FROM environment AS imagemagick
 
@@ -738,4 +746,4 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
 # RUN echo 'source /etc/profile.d/aliases.sh' >> /etc/zsh/zshrc
 
 
-
+FROM fonts AS final
