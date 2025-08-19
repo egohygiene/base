@@ -65,7 +65,8 @@ services:
       target: final
       dockerfile: .devcontainer/Dockerfile
       args:
-        - INSTALL_GOOGLE_FONTS=true
+        - INSTALL_GOOGLE_FONTS=${INSTALL_GOOGLE_FONTS:-false}
+        - INSTALL_IMAGEMAGICK=${INSTALL_IMAGEMAGICK:-false}
     volumes:
       # Mount the repository so that changes on the host are reflected inside the container
       - ..:/workspace:cached

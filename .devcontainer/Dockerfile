@@ -644,25 +644,52 @@ RUN --mount=type=cache,target=/var/cache/fonts,sharing=locked,id=google-fonts \
         echo "📁 Skipping Google Fonts install"; \
       fi'
 
-# FROM environment AS imagemagick
+FROM fonts AS imagemagick
 
-# # Optional ImageMagick installation
-# ARG INSTALL_IMAGEMAGICK=false
-# ARG IMAGEMAGICK_VERSION=7.1.1-47
-# ARG IMAGEMAGICK_SHA256=53ea43035cf0a1573bebd215932ea6ffeaa7ca1703f4e57d1e849b5bc0bed859
-# ARG IMAGEMAGICK_MD5=895118664de9d97a10c2d86e222c60c5
+# Build-time toggles & pins
+ARG INSTALL_IMAGEMAGICK=false
+ARG IMAGEMAGICK_VERSION=7.1.1-47
+# ✅ SHA256 for the official .tar.xz release (matches what you saw)
+ARG IMAGEMAGICK_SHA256=2396cd3c4237cfbc09a89d31d1cee157ee11fbc8ec1e540530e10175cb707160
+# Leave MD5 empty unless you want to pin it too
+ARG IMAGEMAGICK_MD5=
+# Optional explicit source URL (script has the same default internally)
+ARG IMAGEMAGICK_URL="https://download.imagemagick.org/ImageMagick/download/releases/ImageMagick-${IMAGEMAGICK_VERSION}.tar.xz"
 
-# ENV INSTALL_IMAGEMAGICK=${INSTALL_IMAGEMAGICK} \
-#     IMAGEMAGICK_VERSION=${IMAGEMAGICK_VERSION} \
-#     IMAGEMAGICK_SHA256=${IMAGEMAGICK_SHA256} \
-#     IMAGEMAGICK_MD5=${IMAGEMAGICK_MD5} \
-#     IMAGEMAGICK_PREFIX=${UNIVERSAL_TOOLBOX}/imagemagick
+ENV INSTALL_IMAGEMAGICK="${INSTALL_IMAGEMAGICK}" \
+    IMAGEMAGICK_VERSION="${IMAGEMAGICK_VERSION}" \
+    IMAGEMAGICK_SHA256="${IMAGEMAGICK_SHA256}" \
+    IMAGEMAGICK_MD5="${IMAGEMAGICK_MD5}" \
+    IMAGEMAGICK_URL="${IMAGEMAGICK_URL}" \
+    IMAGEMAGICK_PREFIX="${UNIVERSAL_TOOLBOX}/imagemagick"
 
-# ENV PATH="${IMAGEMAGICK_PREFIX}/bin:${PATH}" \
-#     PKG_CONFIG_PATH="${IMAGEMAGICK_PREFIX}/lib/pkgconfig:${PKG_CONFIG_PATH}" \
-#     LD_LIBRARY_PATH="${IMAGEMAGICK_PREFIX}/lib:${LD_LIBRARY_PATH}"
+# Add ImageMagick to PATH (bin symlinked too if --symlink-bin)
+ENV PATH="${UNIVERSAL_TOOLBOX}/imagemagick/bin:${PATH}"
 
-# RUN if [ "${INSTALL_IMAGEMAGICK}" = "true" ]; then install-imagemagick; fi
+# Optional: make IM config path explicit (modules are auto-discovered)
+ENV MAGICK_CONFIGURE_PATH="${IMAGEMAGICK_PREFIX}/etc/ImageMagick-7"
+# (Tip: MAGICK_CODER_MODULE_PATH usually isn't needed; IM finds modules under the prefix.)
+
+# Cache mounts: apt + sources
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked,id=apt-lib \
+    --mount=type=cache,target=/var/cache/src,sharing=locked,id=src-cache \
+    bash -Eeuo pipefail -c '\
+      if [[ "${INSTALL_IMAGEMAGICK}" == "true" ]]; then \
+        install-imagemagick \
+          --version "${IMAGEMAGICK_VERSION}" \
+          --sha256 "${IMAGEMAGICK_SHA256}" \
+          ${IMAGEMAGICK_MD5:+--md5 "${IMAGEMAGICK_MD5}"} \
+          --url    "${IMAGEMAGICK_URL}" \
+          --prefix "${IMAGEMAGICK_PREFIX}" \
+          --harden-policy --symlink-bin --no-color && \
+        magick -version && \
+        ldd "$(command -v magick)" | tee /tmp/ldd.magick && \
+        identify -list format | egrep "PNG|JPEG|WEBP|HEIC|TIFF" | head -n 50; \
+      else \
+        echo "📁 Skipping ImageMagick install"; \
+      fi'
+
 
 # FROM environment AS texlive
 
@@ -746,4 +773,4 @@ RUN --mount=type=cache,target=/var/cache/fonts,sharing=locked,id=google-fonts \
 # RUN echo 'source /etc/profile.d/aliases.sh' >> /etc/zsh/zshrc
 
 
-FROM fonts AS final
+FROM imagemagick AS final
