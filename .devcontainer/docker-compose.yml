@@ -67,6 +67,9 @@ services:
       args:
         - INSTALL_GOOGLE_FONTS=${INSTALL_GOOGLE_FONTS:-false}
         - INSTALL_IMAGEMAGICK=${INSTALL_IMAGEMAGICK:-false}
+        - INSTALL_E57FORMAT=${INSTALL_E57FORMAT:-false}
+        - INSTALL_PDAL=${INSTALL_PDAL:-false}
+        - INSTALL_SHDOC=${INSTALL_SHDOC:-false}
     volumes:
       # Mount the repository so that changes on the host are reflected inside the container
       - ..:/workspace:cached

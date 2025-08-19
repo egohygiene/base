@@ -649,10 +649,13 @@ FROM fonts AS imagemagick
 # Build-time toggles & pins
 ARG INSTALL_IMAGEMAGICK=false
 ARG IMAGEMAGICK_VERSION=7.1.1-47
+
 # ✅ SHA256 for the official .tar.xz release (matches what you saw)
 ARG IMAGEMAGICK_SHA256=2396cd3c4237cfbc09a89d31d1cee157ee11fbc8ec1e540530e10175cb707160
+
 # Leave MD5 empty unless you want to pin it too
 ARG IMAGEMAGICK_MD5=
+
 # Optional explicit source URL (script has the same default internally)
 ARG IMAGEMAGICK_URL="https://download.imagemagick.org/ImageMagick/download/releases/ImageMagick-${IMAGEMAGICK_VERSION}.tar.xz"
 
@@ -688,6 +691,86 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
         identify -list format | egrep "PNG|JPEG|WEBP|HEIC|TIFF" | head -n 50; \
       else \
         echo "📁 Skipping ImageMagick install"; \
+      fi'
+
+# ------------------------------
+# PDAL (from pinned commit)
+# ------------------------------
+FROM imagemagick AS pdal
+
+# E57 (libE57Format) – optional but recommended before PDAL
+ARG INSTALL_E57=false
+ARG E57_REPO="https://github.com/asmaloney/libE57Format.git"
+
+# Pin if you like: e.g. a tag or commit; leave empty for default branch
+ARG E57_REF=2524923cabf0180cc559b81c13ea6c0566752a60
+ARG E57_PREFIX="${UNIVERSAL_TOOLBOX}/e57"
+
+ENV INSTALL_E57="${INSTALL_E57}" \
+    E57_REPO="${E57_REPO}" \
+    E57_REF="${E57_REF}" \
+    E57_PREFIX="${E57_PREFIX}"
+
+# Build E57 first so PDAL can enable the E57 plugin
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked,id=apt-lib \
+    --mount=type=cache,target=/var/cache/src,sharing=locked,id=src-cache \
+    bash -Eeuo pipefail -c '\
+      if [[ "${INSTALL_E57}" == "true" ]]; then \
+        install-e57format \
+          --repo   "${E57_REPO}" \
+          ${E57_REF:+--ref "${E57_REF}"} \
+          --prefix "${E57_PREFIX}" \
+          --with-deps \
+          --debug && \
+        test -f /etc/ld.so.conf.d/e57.conf && head -n 1 /etc/ld.so.conf.d/e57.conf || true; \
+      else \
+        echo "📁 Skipping E57 install"; \
+      fi'
+
+# Build-time toggles & pins
+ARG INSTALL_PDAL=false
+
+# Your commit + SHA-512 pin
+ARG PDAL_COMMIT=795f0d9858dba72074fa3a4736282b1d2635620b
+ARG PDAL_SHA512=2d479e7eda8f937c8f37e768c0f075d1cdad571a400659c64ad8c871f7367650825f4963ac546224d02fbd9f43ae69e9d5f822d4bae5666aae5b6d8b5e7c473e
+
+# Optional alternatives (leave empty to use commit pin)
+ARG PDAL_VERSION=
+ARG PDAL_URL=
+
+ENV INSTALL_PDAL="${INSTALL_PDAL}" \
+    PDAL_COMMIT="${PDAL_COMMIT}" \
+    PDAL_SHA512="${PDAL_SHA512}" \
+    PDAL_VERSION="${PDAL_VERSION}" \
+    PDAL_URL="${PDAL_URL}" \
+    PDAL_PREFIX="${UNIVERSAL_TOOLBOX}/pdal"
+
+# Put PDAL on PATH once installed (script also registers libs via ld.so.conf.d)
+ENV PATH="${PDAL_PREFIX}/bin:${PATH}"
+
+# Cache mounts: apt + sources
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked,id=apt-lib \
+    --mount=type=cache,target=/var/cache/src,sharing=locked,id=src-cache \
+    bash -Eeuo pipefail -c '\
+      if [[ "${INSTALL_PDAL}" == "true" ]]; then \
+        set -x; \
+        install-pdal \
+          --commit "${PDAL_COMMIT}" \
+          ${PDAL_VERSION:+--version "${PDAL_VERSION}"} \
+          ${PDAL_URL:+--url "${PDAL_URL}"} \
+          --sha512 "${PDAL_SHA512}" \
+          --prefix "${PDAL_PREFIX}" \
+          --with-deps \
+          --symlink-bin \
+          --debug && \
+        pdal --version && \
+        pdal --drivers | head -n 50 && \
+        gdalinfo --version && \
+        test -f /etc/ld.so.conf.d/pdal.conf && head -n 1 /etc/ld.so.conf.d/pdal.conf; \
+      else \
+        echo "📁 Skipping PDAL install"; \
       fi'
 
 
@@ -772,5 +855,45 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
 
 # RUN echo 'source /etc/profile.d/aliases.sh' >> /etc/zsh/zshrc
 
+# ------------------------------
+# shdoc (Bash doc generator)
+# ------------------------------
+FROM pdal AS shdoc
 
-FROM imagemagick AS final
+# Build-time toggles & pins
+ARG INSTALL_SHDOC=false
+ARG SHDOC_REPO="https://github.com/reconquest/shdoc.git"
+
+# Optional git ref (tag/branch/commit). Leave empty for default branch.
+ARG SHDOC_REF=""
+
+# Install prefix (script defaults to /usr/local if omitted)
+ARG SHDOC_PREFIX="${UNIVERSAL_TOOLBOX}/shdoc"
+
+ENV INSTALL_SHDOC="${INSTALL_SHDOC}" \
+    SHDOC_REPO="${SHDOC_REPO}" \
+    SHDOC_REF="${SHDOC_REF}" \
+    SHDOC_PREFIX="${SHDOC_PREFIX}"
+
+# Ensure the chosen prefix bin is on PATH (covers non-/usr/local installs)
+ENV PATH="${SHDOC_PREFIX}/bin:${PATH}"
+
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked,id=apt-lib \
+    bash -Eeuo pipefail -c '\
+      if [[ "${INSTALL_SHDOC}" == "true" ]]; then \
+        install-shdoc \
+          --repo   "${SHDOC_REPO}" \
+          ${SHDOC_REF:+--ref "${SHDOC_REF}"} \
+          --prefix "${SHDOC_PREFIX}" \
+          --with-deps \
+          --symlink-bin \
+          --debug && \
+        which shdoc && shdoc -h >/dev/null 2>&1 || shdoc --help >/dev/null 2>&1 && \
+        echo "✅ shdoc installed to ${SHDOC_PREFIX}"; \
+      else \
+        echo "📁 Skipping shdoc install"; \
+      fi'
+
+
+FROM shdoc AS final

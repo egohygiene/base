@@ -173,7 +173,12 @@ install_deps() {
   $NO_DEPS && { log debug "Skipping apt deps (--no-deps)."; return; }
   require_cmd apt-get
 
-  if [[ -r /etc/os-release ]]; then . /etc/os-release; else die 1 "/etc/os-release not found"; fi
+  if [[ -r /etc/os-release ]]; then
+    # shellcheck disable=SC1091
+    . /etc/os-release;
+  else
+    die 1 "/etc/os-release not found";
+  fi
   local ID_LIKE_LOWER; ID_LIKE_LOWER="$(printf '%s' "${ID_LIKE:-}" | tr '[:upper:]' '[:lower:]')"
   local IS_UBU=false
   if [[ "${ID:-}" == "ubuntu" || "${ID_LIKE_LOWER}" == *"ubuntu"* ]]; then IS_UBU=true; fi
