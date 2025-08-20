@@ -1,38 +1,38 @@
-name: 🐞 Bug Report
-description: Something is broken? Let us know!
-title: "[Bug] "
-labels: ["bug"]
-assignees: []
+---
+name: Bug report
+about: Create a report to help us improve
+title: ''
+labels: ''
+assignees: ''
 
-body:
+---
 
-- type: markdown
-  attributes:
-  value: |
-  Please provide as much context as possible. Screenshots or logs help a lot!
-- type: input
-  id: environment
-  attributes:
-  label: Environment
-  description: OS, Node version, browser, platform, etc.
-  placeholder: "e.g., macOS, Node 20.9, Firefox"
-  validations:
-  required: true
-- type: textarea
-  id: steps
-  attributes:
-  label: Steps to Reproduce
-  description: Be as clear and concise as possible.
-  placeholder: "1. Go to '...'\n2. Click on '...'\n3. See error"
-  validations:
-  required: true
-- type: textarea
-  id: expected
-  attributes:
-  label: Expected vs. Actual
-  description: What you expected to happen vs. what actually happened.
-- type: textarea
-  id: logs
-  attributes:
-  label: Logs or Output
-  render: shell
+**Describe the bug**
+A clear and concise description of what the bug is.
+
+**To Reproduce**
+Steps to reproduce the behavior:
+1. Go to '...'
+2. Click on '....'
+3. Scroll down to '....'
+4. See error
+
+**Expected behavior**
+A clear and concise description of what you expected to happen.
+
+**Screenshots**
+If applicable, add screenshots to help explain your problem.
+
+**Desktop (please complete the following information):**
+ - OS: [e.g. iOS]
+ - Browser [e.g. chrome, safari]
+ - Version [e.g. 22]
+
+**Smartphone (please complete the following information):**
+ - Device: [e.g. iPhone6]
+ - OS: [e.g. iOS8.1]
+ - Browser [e.g. stock browser, safari]
+ - Version [e.g. 22]
+
+**Additional context**
+Add any other context about the problem here.
