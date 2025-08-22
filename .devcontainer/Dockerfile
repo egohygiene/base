@@ -117,7 +117,6 @@ ENV ASDF_DIR="${XDG_DATA_HOME}/.asdf" \
     TERMINFO="${XDG_DATA_HOME}/terminfo" \
     M2_HOME="${XDG_DATA_HOME}/mvn/.mvn" \
     MINIKUBE_HOME="${XDG_DATA_HOME}/minikube" \
-    CARGO_HOME="${XDG_DATA_HOME}/.cargo" \
     WINEPREFIX="${XDG_DATA_HOME}/wine" \
     CCACHE_DIR="${XDG_DATA_HOME}/.ccache" \
     SINCE="${XDG_DATA_HOME}/since" \
@@ -617,6 +616,35 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
     zlib1g-dev \
     zsh
 
+FROM apt-packages AS rust
+
+ARG RUSTUP_VERSION=1.28.2
+ARG INSTALL_RUST=true
+
+# Install Rust toolchain
+ENV INSTALL_RUST="${INSTALL_RUST}" \
+    RUSTUP_VERSION="${RUSTUP_VERSION}" \
+    RUSTUP_HOME="${XDG_DATA_HOME}/rustup" \
+    RUST_BACKTRACE=1 \
+    CARGO_TERM_COLOR=always \
+    CARGO_HOME="${XDG_DATA_HOME}/cargo"
+
+ENV PATH="${CARGO_HOME}/bin:${PATH}"
+
+# Install Rust using rustup
+RUN bash -Eeuo pipefail -c '\
+      if [[ "${INSTALL_RUST}" == "true" ]]; then \
+        curl --proto '=https' --tlsv1.2 --silent --show-error --fail --location https://sh.rustup.rs | \
+        bash -s -- --default-toolchain stable --profile complete --no-modify-path -y && \
+        rustc --version && \
+        cargo --version && \
+        echo "✅ Rust toolchain installed successfully." \
+      else \
+        echo "📁 Skipping Rustup install"; \
+      fi'
+
+FROM rust AS final
+
 FROM apt-packages AS fonts
 
 #  Optional Google Fonts installation
@@ -896,4 +924,4 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
       fi'
 
 
-FROM shdoc AS final
+# FROM shdoc AS final

@@ -65,6 +65,7 @@ services:
       target: final
       dockerfile: .devcontainer/Dockerfile
       args:
+        - INSTALL_RUST=${INSTALL_RUST:-false}
         - INSTALL_GOOGLE_FONTS=${INSTALL_GOOGLE_FONTS:-false}
         - INSTALL_IMAGEMAGICK=${INSTALL_IMAGEMAGICK:-false}
         - INSTALL_E57FORMAT=${INSTALL_E57FORMAT:-false}

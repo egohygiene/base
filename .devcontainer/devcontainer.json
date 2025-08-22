@@ -83,7 +83,8 @@
         "stoplight.spectral",
         "ms-vscode.cpptools",
         "EditorConfig.EditorConfig",
-        "IronGeek.vscode-env"
+        "IronGeek.vscode-env",
+        "biomejs.biome"
       ]
     }
   }
