@@ -663,7 +663,19 @@ ENV INSTALL_OXIPNG=${INSTALL_OXIPNG} \
 
 RUN cargo install --git ${OXIPNG_REPO} oxipng --rev ${OXIPNG_COMMIT} --force
 
-FROM oxipng AS final
+FROM oxipng AS lychee
+
+ARG INSTALL_LYCHEE=true
+ARG LYCHEE_REPO=https://github.com/lycheeverse/lychee.git
+ARG LYCHEE_COMMIT=3592972d6462ceb6081c3945cc43121bc3ce2039
+
+ENV INSTALL_LYCHEE=${INSTALL_LYCHEE} \
+    LYCHEE_REPO=${LYCHEE_REPO} \
+    LYCHEE_COMMIT=${LYCHEE_COMMIT}
+
+RUN cargo install --git ${LYCHEE_REPO} lychee --rev ${LYCHEE_COMMIT} --force
+
+FROM lychee AS final
 
 FROM apt-packages AS fonts
 
