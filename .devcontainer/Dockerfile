@@ -474,6 +474,10 @@ COPY shell/etc/apt/apt.conf.d/*.conf /etc/apt/apt.conf.d/
 # Copy configuration files
 # COPY shell/config/.gitignore_global
 
+# Ensure GNUPG home exists with correct perms and ownership for vscode
+RUN install -d -m 0700 -o vscode -g vscode "${GNUPGHOME}" \
+ && chown -R vscode:vscode "${UNIVERSAL_TOOLBOX}"
+
 FROM shell AS apt-packages
 
 # # Install common development tools and libraries
@@ -643,7 +647,23 @@ RUN bash -Eeuo pipefail -c '\
         echo "📁 Skipping Rustup install"; \
       fi'
 
-FROM rust AS final
+# Ensure dev user owns tool dirs for runtime installs
+RUN install -d -m 0775 -o vscode -g vscode \
+      "${CARGO_HOME}" "${CARGO_HOME}/bin" "${CARGO_HOME}/git" "${CARGO_HOME}/registry" "${RUSTUP_HOME}"
+
+FROM rust AS oxipng
+
+ARG INSTALL_OXIPNG=true
+ARG OXIPNG_REPO=https://github.com/oxipng/oxipng.git
+ARG OXIPNG_COMMIT=c7d462f909e9c6ebc8d32820d83a6119b681cad6
+
+ENV INSTALL_OXIPNG=${INSTALL_OXIPNG} \
+    OXIPNG_REPO=${OXIPNG_REPO} \
+    OXIPNG_COMMIT=${OXIPNG_COMMIT}
+
+RUN cargo install --git ${OXIPNG_REPO} oxipng --rev ${OXIPNG_COMMIT} --force
+
+FROM oxipng AS final
 
 FROM apt-packages AS fonts
 
