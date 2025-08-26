@@ -56,6 +56,12 @@ networks:
       com.docker.network.bridge.enable_ip_masquerade: "true"
     <<: *labels
 
+# Define named volumes for persistent data storage
+volumes:
+  portainer_data:
+    name: portainer_data
+    <<: *labels
+
 services:
   development:
     container_name: development
@@ -78,3 +84,41 @@ services:
     privileged: true # required for docker-in-docker
     user: vscode
     <<: *settings
+
+  portainer:
+    image: portainer/portainer-ce@sha256:d5b9eba8d4d2f4e952aee6a6fb154e618857a976f734bfcec5a5603b03f45acd
+    container_name: ${PORTAINER_CONTAINER_NAME:-portainer}
+    hostname: ${PORTAINER_HOSTNAME:-portainer}
+    ports:
+      - "${PORTAINER_EXPOSED_PORT:-9000}:9000"
+    volumes:
+      - portainer_data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    <<: *settings
+
+  # pgAdmin service for managing the PostGIS database
+  # pgadmin:
+  #   image: dpage/pgadmin4@sha256:6b1c0db09695758c72abcd5160b7c4cc6d0847ab0c90a2403bdbf951f0defb5a
+  #   container_name: ${PGADMIN_CONTAINER_NAME:-pgadmin}
+  #   hostname: ${PGADMIN_HOSTNAME:-pgadmin}
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-admin@${APP_NAME}.localhost}
+  #     PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-adminpassword}
+  #     PGADMIN_CONFIG_ALLOW_SPECIAL_EMAIL_DOMAINS: "['localhost']"
+  #     PGADMIN_LISTEN_PORT: ${PGADMIN_PORT:-5050}
+  #   ports:
+  #     - "${PGADMIN_EXPOSED_PORT:-5050}:${PGADMIN_PORT:-5050}"
+  #   volumes:
+  #     - pgadmin:/var/lib/pgadmin
+  #     - ./services/pgadmin/servers.json:/pgadmin4/servers.json:ro
+  #     - ./services/pgadmin/config_local.py:/pgadmin4/config_local.py:ro
+  #     - ./services/pgadmin/healthcheck.py:/pgadmin4/healthcheck.py:ro
+  #   depends_on:
+  #     database:
+  #       condition: service_healthy
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "python3 /pgadmin4/healthcheck.py"]
+  #     interval: 10s
+  #     timeout: 10s
+  #     retries: 10
+  #   <<: *settings

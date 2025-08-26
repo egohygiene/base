@@ -1,0 +1,142 @@
+#!/usr/bin/env sh
+# .shell — main entrypoint for sourcing all modules
+# Shell agnostic functions.
+
+import_file() {
+    if [ -f "${1}" ]; then
+        # shellcheck source=/dev/null
+        . "${1}"
+    fi
+}
+
+determine_shell() {
+    # Using the SHELL variable might not be reliable in all contexts,
+    # especially if a shell was invoked from another shell.
+    # The $0 variable often contains the name or path of the current shell.
+    echo "$0" | awk -F/ '{print $NF}' | tr -d '-'
+}
+
+check_interactive_shell() {
+    case $- in
+        *i*) ;;
+        *) return;;
+    esac
+}
+
+is_bash() {
+    shell="$(determine_shell)"
+    [ "${shell}" = "bash" ] && return 0 || return 1
+}
+
+is_zsh() {
+    shell="$(determine_shell)"
+    [ "${shell}" = "zsh" ] && return 0 || return 1
+}
+
+is_sh() {
+    shell="$(determine_shell)"
+    [ "${shell}" = "sh" ] && return 0 || return 1
+}
+
+is_dash() {
+    shell="$(determine_shell)"
+    [ "${shell}" = "dash" ] && return 0 || return 1
+}
+
+is_ksh() {
+    shell="$(determine_shell)"
+    [ "${shell}" = "ksh" ] && return 0 || return 1
+}
+
+is_csh() {
+    shell="$(determine_shell)"
+    [ "${shell}" = "csh" ] && return 0 || return 1
+}
+
+is_tcsh() {
+    shell="$(determine_shell)"
+    [ "${shell}" = "tcsh" ] && return 0 || return 1
+}
+
+is_fish() {
+    shell="$(determine_shell)"
+    [ "${shell}" = "fish" ] && return 0 || return 1
+}
+
+add_to_path() {
+    while [ $# -gt 0 ]; do
+        if [ -d "$1" ]; then
+            PATH="$1:$PATH"
+        fi
+        shift
+    done
+    export PATH
+}
+
+run_cmd() {
+  "${1}" "${2}"
+}
+
+is_command() {
+  for item in "$@"; do
+    if ! command -v "${item}" > /dev/null 2>&1; then
+      return 1
+    fi
+  done
+  return 0
+}
+
+get_operating_system() {
+    # Use uname -s to get the operating system name
+    os_name=$(uname -s)
+
+    # Convert the output of uname -s to lowercase
+    os_name=$(echo "$os_name" | tr '[:upper:]' '[:lower:]')
+
+    echo "${os_name}"
+}
+
+get_architecture() {
+    # Use uname -m to get the system architecture name
+    arch_name=$(uname -m)
+    echo "${arch_name}"
+}
+
+get_kernel() {
+    # Use uname -s to get the kernel name
+    kernel_name=$(uname -s)
+
+    # Convert the output of uname -s to lowercase
+    kernel_name=$(echo "$kernel_name" | tr '[:upper:]' '[:lower:]')
+
+    echo "${kernel_name}"
+}
+
+get_kernel_release() {
+    # Use uname -r to get the kernel release
+    kernel_release=$(uname -r)
+
+    # Convert the output of uname -r to lowercase
+    kernel_release=$(echo "$kernel_release" | tr '[:upper:]' '[:lower:]')
+
+    echo "${kernel_release}"
+}
+
+get_machine() {
+    # Use uname -m to get the machine hardware name
+    machine_name=$(uname -m)
+
+    # Convert the output of uname -m to lowercase
+    machine_name=$(echo "$machine_name" | tr '[:upper:]' '[:lower:]')
+
+    echo "${machine_name}"
+}
+
+is_darwin() {
+    os_name="$(get_operating_system)"
+    case "${os_name}" in
+        *darwin* ) true ;;
+        * ) false;;
+    esac
+}
+

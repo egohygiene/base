@@ -517,6 +517,7 @@ shdoc
 tlsv1.2
 DCMAKE_INSTALL_RPATH
 libeigen3
+tcsh
 gdalinfo
 RIVLIB
 RDBLIB

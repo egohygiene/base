@@ -12,7 +12,7 @@
 FROM mcr.microsoft.com/devcontainers/base:latest AS base
 
 # Set safer shell options for script execution.
-# SHELL ["/bin/bash", "-o", "errexit", "-o", "errtrace", "-o", "functrace", "-o", "nounset", "-o", "pipefail", "-c"]
+SHELL ["/bin/bash", "-o", "errexit", "-o", "errtrace", "-o", "functrace", "-o", "nounset", "-o", "pipefail", "-c"]
 
 # TODO: Not sure what could go here.
 
@@ -480,7 +480,7 @@ RUN install -d -m 0700 -o vscode -g vscode "${GNUPGHOME}" \
 
 FROM shell AS apt-packages
 
-# # Install common development tools and libraries
+# Install common development tools and libraries
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
     --mount=type=cache,target=/var/lib/apt,sharing=locked,id=apt-lib \
     apt-get update -qq && \
@@ -526,6 +526,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
     jq \
     less \
     libavif-dev \
+    libaudio2 \
     libblosc-dev \
     libboost-all-dev \
     libbz2-dev \
@@ -557,6 +558,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
     libproj-dev \
     libraw-dev \
     libreadline-dev \
+    libsox-fmt-all \
     libspatialindex-dev \
     libsqlite3-dev \
     libssl-dev \
@@ -599,6 +601,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
     ripgrep \
     rsync \
     software-properties-common \
+    sox \
     sqlite3 \
     strace \
     sudo \
@@ -606,6 +609,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
     sysstat \
     tar \
     tcpdump \
+    tini \
     tk-dev \
     tree \
     tzdata \
@@ -661,7 +665,14 @@ ENV INSTALL_OXIPNG=${INSTALL_OXIPNG} \
     OXIPNG_REPO=${OXIPNG_REPO} \
     OXIPNG_COMMIT=${OXIPNG_COMMIT}
 
-RUN cargo install --git ${OXIPNG_REPO} oxipng --rev ${OXIPNG_COMMIT} --force
+RUN bash -Eeuo pipefail -c '\
+      if [[ "${INSTALL_OXIPNG}" == "true" ]]; then \
+        cargo install --git ${OXIPNG_REPO} oxipng --rev ${OXIPNG_COMMIT} --force && \
+        oxipng --version && \
+        echo "✅ oxipng installed successfully." \
+      else \
+        echo "📁 Skipping oxipng install"; \
+      fi'
 
 FROM oxipng AS lychee
 
@@ -675,7 +686,19 @@ ENV INSTALL_LYCHEE=${INSTALL_LYCHEE} \
 
 RUN cargo install --git ${LYCHEE_REPO} lychee --rev ${LYCHEE_COMMIT} --force
 
-FROM lychee AS final
+FROM lychee AS eza
+
+ARG INSTALL_EZA=true
+ARG EZA_REPO=https://github.com/eza-community/eza
+ARG EZA_COMMIT=7a2b2661148a3fa4f01bfe41e74c5f1c57a24bd6
+
+ENV INSTALL_EZA=${INSTALL_EZA} \
+    EZA_REPO=${EZA_REPO} \
+    EZA_COMMIT=${EZA_COMMIT}
+
+RUN cargo install --git ${EZA_REPO} eza --rev ${EZA_COMMIT} --force
+
+FROM eza AS final2
 
 FROM apt-packages AS fonts
 
@@ -956,4 +979,10 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
       fi'
 
 
-# FROM shdoc AS final
+FROM oxipng AS final
+
+# Make tini the entrypoint; pass-through args with "--"
+ENTRYPOINT ["/usr/bin/tini","--"]
+
+# Leave CMD light; devcontainers will override as needed
+CMD ["bash", "-lc", "sleep infinity"]
