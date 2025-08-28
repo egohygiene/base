@@ -501,6 +501,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
     cpanminus \
     curl \
     debtree \
+    apt-transport-https \
     direnv \
     dnsutils \
     dos2unix \
@@ -582,6 +583,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
     logrotate \
     lsb-release \
     lsof \
+    piuparts \
     make \
     mediainfo \
     moreutils \
@@ -733,7 +735,7 @@ RUN bash -Eeuo pipefail -c '\
 
 # Ensure user-owned install prefix for CPAN
 RUN install -d -m 0775 -o vscode -g vscode "${UNIVERSAL_TOOLBOX}/perl5"
-USER vscode
+# USER vscode
 
 # Make your contained local::lib visible at build + runtime
 ENV PERL5LIB="${UNIVERSAL_TOOLBOX}/perl5/lib/perl5${PERL5LIB:+:$PERL5LIB}" \
@@ -745,6 +747,45 @@ RUN bash -Eeuo pipefail -c "\
     AnyEvent::AIO IO::AIO Perl::LanguageServer && \
   perl -MPerl::LanguageServer -e 'print qq(Perl::LanguageServer OK\n)' \
 "
+
+FROM perl AS gcloud
+
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked,id=apt-lib \
+    bash -Eeuo pipefail -c '\
+      echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" \
+        | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \
+      curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg \
+        | gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg && \
+      apt-get update -qq && \
+      apt-get install -y --no-install-recommends \
+        google-cloud-cli \
+        google-cloud-cli-anthos-auth \
+        google-cloud-cli-app-engine-go \
+        google-cloud-cli-app-engine-grpc \
+        google-cloud-cli-app-engine-java \
+        google-cloud-cli-app-engine-python \
+        google-cloud-cli-app-engine-python-extras \
+        google-cloud-cli-bigtable-emulator \
+        google-cloud-cli-cbt \
+        google-cloud-cli-cloud-build-local \
+        google-cloud-cli-cloud-run-proxy \
+        google-cloud-cli-config-connector \
+        google-cloud-cli-datastore-emulator \
+        google-cloud-cli-firestore-emulator \
+        google-cloud-cli-gke-gcloud-auth-plugin \
+        google-cloud-cli-kpt \
+        google-cloud-cli-kubectl-oidc \
+        google-cloud-cli-local-extract \
+        google-cloud-cli-minikube \
+        google-cloud-cli-nomos \
+        google-cloud-cli-pubsub-emulator \
+        google-cloud-cli-skaffold \
+        google-cloud-cli-spanner-emulator \
+        google-cloud-cli-terraform-validator \
+        google-cloud-cli-tests \
+        kubectl \
+    '
 
 FROM apt-packages AS fonts
 
@@ -1012,7 +1053,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
       fi'
 
 
-FROM perl AS final
+FROM gcloud AS final
 
 # Make tini the entrypoint; pass-through args with "--"
 ENTRYPOINT ["/usr/bin/tini","--"]
