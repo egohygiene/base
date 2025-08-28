@@ -472,6 +472,7 @@ COPY shell/etc/dpkg/dpkg.cfg.d/*.conf /etc/dpkg/dpkg.cfg.d/
 COPY shell/etc/apt/apt.conf.d/*.conf /etc/apt/apt.conf.d/
 
 # Copy configuration files
+COPY shell/config/wget/.wgetrc ${WGETRC}
 # COPY shell/config/.gitignore_global
 
 # Ensure GNUPG home exists with correct perms and ownership for vscode
@@ -517,16 +518,19 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
     gettext \
     ghostscript \
     git \
+    git-buildpackage \
     git-lfs \
     gnupg \
     graphviz \
     htop \
+    id3v2 \
     inkscape \
     iputils-ping \
     jq \
+    lame \
     less \
-    libavif-dev \
     libaudio2 \
+    libavif-dev \
     libblosc-dev \
     libboost-all-dev \
     libbz2-dev \
@@ -571,6 +575,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
     libxmlsec1-dev \
     libxslt1-dev \
     libzstd-dev \
+    lintian \
     llvm \
     locales \
     locales-all \
@@ -578,6 +583,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
     lsb-release \
     lsof \
     make \
+    mediainfo \
     moreutils \
     nano \
     net-tools \
@@ -586,6 +592,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
     nmap \
     openssh-client \
     openssl \
+    opus-tools \
     pandoc \
     parallel \
     pkg-config \
@@ -604,6 +611,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
     sox \
     sqlite3 \
     strace \
+    streamripper \
     sudo \
     sysdig \
     sysstat \
@@ -616,6 +624,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
     unzip \
     uuid-dev \
     vim \
+    vorbis-tools \
     watch \
     wget \
     xsel \
@@ -699,6 +708,43 @@ ENV INSTALL_EZA=${INSTALL_EZA} \
 RUN cargo install --git ${EZA_REPO} eza --rev ${EZA_COMMIT} --force
 
 FROM eza AS final2
+
+FROM oxipng AS perl
+
+######################################################################
+# Perl toolchain + Language Server + dev tooling (toggleable)
+######################################################################
+ARG INSTALL_PERL=true
+ARG INSTALL_PERL_DEVTOOLS=true
+
+# System deps (same as your original; fail fast + clean up)
+USER root
+RUN bash -Eeuo pipefail -c '\
+  apt-get update -qq && \
+  apt-get install --yes --no-install-recommends \
+    build-essential \
+    perl \
+    perl-base \
+    perl-modules \
+    libperl-dev \
+    libio-aio-perl && \
+  apt-get clean && rm -rf /var/lib/apt/lists/* \
+'
+
+# Ensure user-owned install prefix for CPAN
+RUN install -d -m 0775 -o vscode -g vscode "${UNIVERSAL_TOOLBOX}/perl5"
+USER vscode
+
+# Make your contained local::lib visible at build + runtime
+ENV PERL5LIB="${UNIVERSAL_TOOLBOX}/perl5/lib/perl5${PERL5LIB:+:$PERL5LIB}" \
+    PATH="${UNIVERSAL_TOOLBOX}/perl5/bin:${PATH}"
+
+# CPAN modules installed into your custom directory; fail on error; smoke test
+RUN bash -Eeuo pipefail -c "\
+  cpanm --no-interactive --local-lib-contained \"${UNIVERSAL_TOOLBOX}/perl5\" \
+    AnyEvent::AIO IO::AIO Perl::LanguageServer && \
+  perl -MPerl::LanguageServer -e 'print qq(Perl::LanguageServer OK\n)' \
+"
 
 FROM apt-packages AS fonts
 
@@ -899,20 +945,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
 #     && update-locale LANG=en_US.UTF-8 \
 #     && dpkg-reconfigure locales
 
-# FROM dependencies AS perl
 
-# RUN apt-get update && apt-get install --yes \
-#   build-essential \
-#   perl \
-#   perl-base \
-#   perl-modules \
-#   libperl-dev \
-#   libio-aio-perl
-
-# # Install Perl modules needed for Perl Language Server
-# RUN cpanm --no-interactive AnyEvent::AIO IO::AIO Perl::LanguageServer
-
-# FROM perl AS devtools
 
 # # Copy .tool-versions file
 # COPY .tool-versions ${WORKSPACE_HOME}/.tool-versions
@@ -979,7 +1012,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
       fi'
 
 
-FROM oxipng AS final
+FROM perl AS final
 
 # Make tini the entrypoint; pass-through args with "--"
 ENTRYPOINT ["/usr/bin/tini","--"]
