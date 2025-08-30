@@ -473,8 +473,9 @@ COPY shell/etc/apt/apt.conf.d/*.conf /etc/apt/apt.conf.d/
 
 # Copy configuration files
 COPY shell/config/wget/.wgetrc ${WGETRC}
-# COPY shell/config/curl/.curlrc ${CURLRC}
+COPY shell/config/curl/.curlrc ${CURLRC}
 COPY shell/config/asdf/.asdfrc ${ASDF_CONFIG_FILE}
+COPY shell/config/python/.pythonrc.py ${PYTHONSTARTUP}
 
 # COPY shell/config/.gitignore_global
 
@@ -650,9 +651,12 @@ ARG PYTHON_VERSION=3.12.10
 ARG PYTHON_TARBALL=Python-${PYTHON_VERSION}.tar.xz
 ARG PYTHON_URL=https://www.python.org/ftp/python/${PYTHON_VERSION}/${PYTHON_TARBALL}
 ARG PYTHON_SHA256=
+ARG PYTHON_COMMIT=""
+ARG PYTHON_REPO="https://github.com/python/cpython.git"
 
 # final install prefix
 ENV PY_PREFIX=${UNIVERSAL_TOOLBOX}/python/${PYTHON_VERSION}
+ENV PATH="${PY_PREFIX}/bin:${PATH}"
 
 # build deps (minimum set)
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
@@ -662,6 +666,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
       build-essential \
       curl \
       ca-certificates \
+      git \
       xz-utils \
       tcl-dev tk-dev \
       libffi-dev \
@@ -680,14 +685,23 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
 WORKDIR /tmp/python-build
 
 RUN set -Eeuo pipefail; \
-    echo "📥 Downloading CPython ${PYTHON_VERSION}…"; \
-    curl -fsSL "${PYTHON_URL}" -o "${PYTHON_TARBALL}"; \
-    if [ -n "${PYTHON_SHA256}" ]; then \
-      echo "${PYTHON_SHA256}  ${PYTHON_TARBALL}" | sha256sum -c -; \
+    if [ -n "${PYTHON_COMMIT}" ]; then \
+      echo "🐍 Cloning CPython repository from ${PYTHON_REPO}…"; \
+      git init .; \
+      git remote add origin "${PYTHON_REPO}"; \
+      echo "📌 Fetching commit ${PYTHON_COMMIT}…"; \
+      git fetch --depth 1 origin "${PYTHON_COMMIT}"; \
+      git checkout --detach FETCH_HEAD; \
     else \
-      echo "⚠️  PYTHON_SHA256 not provided; proceeding without checksum verification"; \
+      echo "📥 Downloading CPython ${PYTHON_VERSION}…"; \
+      curl -fsSL "${PYTHON_URL}" -o "${PYTHON_TARBALL}"; \
+      if [ -n "${PYTHON_SHA256}" ]; then \
+        echo "${PYTHON_SHA256}  ${PYTHON_TARBALL}" | sha256sum -c -; \
+      else \
+        echo "⚠️  PYTHON_SHA256 not provided; proceeding without checksum verification"; \
+      fi; \
+      tar -xJf "${PYTHON_TARBALL}" --strip-components=1; \
     fi; \
-    tar -xJf "${PYTHON_TARBALL}" --strip-components=1; \
     ./configure \
       --prefix="${PY_PREFIX}" \
       --enable-optimizations \
@@ -695,11 +709,14 @@ RUN set -Eeuo pipefail; \
       --with-ensurepip=install; \
     make -j"$(nproc)"; \
     make install; \
+    ln -sf python3 "${PY_PREFIX}/bin/python"; \
+    ln -sf pip3 "${PY_PREFIX}/bin/pip"; \
     "${PY_PREFIX}/bin/python3" --version; \
     "${PY_PREFIX}/bin/pip3" --version; \
+    python --version; \
+    pip --version; \
     cd / && rm -rf /tmp/python-build; \
     echo "✅ CPython ${PYTHON_VERSION} installed successfully at ${PY_PREFIX}."
-
 
 FROM apt-packages AS rust
 
@@ -1119,7 +1136,8 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
       fi'
 
 
-FROM gcloud AS final
+# FROM gcloud AS final
+FROM cpython AS final
 
 # Make tini the entrypoint; pass-through args with "--"
 ENTRYPOINT ["/usr/bin/tini","--"]
