@@ -473,6 +473,9 @@ COPY shell/etc/apt/apt.conf.d/*.conf /etc/apt/apt.conf.d/
 
 # Copy configuration files
 COPY shell/config/wget/.wgetrc ${WGETRC}
+# COPY shell/config/curl/.curlrc ${CURLRC}
+COPY shell/config/asdf/.asdfrc ${ASDF_CONFIG_FILE}
+
 # COPY shell/config/.gitignore_global
 
 # Ensure GNUPG home exists with correct perms and ownership for vscode
@@ -501,12 +504,19 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
     cpanminus \
     curl \
     debtree \
+    flac \
     apt-transport-https \
     direnv \
     dnsutils \
     dos2unix \
     exiftool \
+    musepack-tools \
+    wavpack \
     ffmpeg \
+    rubberband-cli \
+    libsoundtouch1 \
+    ffmpegthumbnailer \
+    soundstretch \
     file \
     fontconfig \
     fonts-lmodern \
@@ -603,10 +613,6 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
     proj-bin \
     psmisc \
     pwgen \
-    python3 \
-    python3-dev \
-    python3-pip \
-    python3-venv \
     ripgrep \
     rsync \
     software-properties-common \
@@ -634,6 +640,66 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
     yq \
     zlib1g-dev \
     zsh
+
+######################################################################
+# CPython (pinned global)
+######################################################################
+FROM apt-packages AS cpython
+
+ARG PYTHON_VERSION=3.12.10
+ARG PYTHON_TARBALL=Python-${PYTHON_VERSION}.tar.xz
+ARG PYTHON_URL=https://www.python.org/ftp/python/${PYTHON_VERSION}/${PYTHON_TARBALL}
+ARG PYTHON_SHA256=
+
+# final install prefix
+ENV PY_PREFIX=${UNIVERSAL_TOOLBOX}/python/${PYTHON_VERSION}
+
+# build deps (minimum set)
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked,id=apt-cache \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked,id=apt-lib \
+    apt-get update -qq && \
+    DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends \
+      build-essential \
+      curl \
+      ca-certificates \
+      xz-utils \
+      tcl-dev tk-dev \
+      libffi-dev \
+      libbz2-dev \
+      libgdbm-dev \
+      libgdbm-compat-dev \
+      liblzma-dev \
+      libncursesw5-dev \
+      libreadline-dev \
+      libsqlite3-dev \
+      libssl-dev \
+      libexpat1-dev \
+      zlib1g-dev && \
+    rm -rf /var/lib/apt/lists/*
+
+WORKDIR /tmp/python-build
+
+RUN set -Eeuo pipefail; \
+    echo "📥 Downloading CPython ${PYTHON_VERSION}…"; \
+    curl -fsSL "${PYTHON_URL}" -o "${PYTHON_TARBALL}"; \
+    if [ -n "${PYTHON_SHA256}" ]; then \
+      echo "${PYTHON_SHA256}  ${PYTHON_TARBALL}" | sha256sum -c -; \
+    else \
+      echo "⚠️  PYTHON_SHA256 not provided; proceeding without checksum verification"; \
+    fi; \
+    tar -xJf "${PYTHON_TARBALL}" --strip-components=1; \
+    ./configure \
+      --prefix="${PY_PREFIX}" \
+      --enable-optimizations \
+      --with-lto \
+      --with-ensurepip=install; \
+    make -j"$(nproc)"; \
+    make install; \
+    "${PY_PREFIX}/bin/python3" --version; \
+    "${PY_PREFIX}/bin/pip3" --version; \
+    cd / && rm -rf /tmp/python-build; \
+    echo "✅ CPython ${PYTHON_VERSION} installed successfully at ${PY_PREFIX}."
+
 
 FROM apt-packages AS rust
 

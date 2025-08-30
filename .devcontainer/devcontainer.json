@@ -84,7 +84,10 @@
         "ms-vscode.cpptools",
         "EditorConfig.EditorConfig",
         "IronGeek.vscode-env",
-        "biomejs.biome"
+        "biomejs.biome",
+        "openai.chatgpt",
+        "ms-dotnettools.vscode-dotnet-runtime",
+        "redhat.ansible"
       ]
     }
   }
